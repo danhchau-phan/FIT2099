@@ -12,6 +12,9 @@ import edu.monash.fit2099.engine.Menu;
 public class Player extends Human {
 
 	private Menu menu = new Menu();
+	private Behaviour[] behaviours = {
+			new AttackBehaviour(ZombieCapability.ALIVE)
+	};
 
 	/**
 	 * Constructor.
