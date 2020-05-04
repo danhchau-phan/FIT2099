@@ -56,9 +56,9 @@ public class LimbOffAttack extends AttackAction implements Chanceable{
 	private void loseLimbs(Zombie zombie, Location location) {
 		if (zombie.getNumArms() > 0) { 
 			zombie.loseArms(1);
-			location.addItem(new Plank());
+			location.addItem(new ZombieArm());
 		} else if (zombie.getNumLegs() > 0) {
-			location.addItem(new Plank());
+			location.addItem(new ZombieLeg());
 		}
 	}
 
