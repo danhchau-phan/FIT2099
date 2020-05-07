@@ -3,9 +3,7 @@ package game;
 import edu.monash.fit2099.engine.WeaponItem;
 
 /**
- * A primitive weapon.
- * 
- * @author ram
+ * A zombie arm dropped during intrinsic attacks. A primitive weapon
  *
  */
 public class ZombieArm extends WeaponItem {
