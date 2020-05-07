@@ -12,6 +12,7 @@ public class Player extends Human {
 			new AttackBehaviour(ZombieCapability.ALIVE)
 	};
 
+
 	/**
 	 * Constructor.
 	 *
@@ -23,33 +24,20 @@ public class Player extends Human {
 		super(name, displayChar, hitPoints);
 	}
 
-	@Override
+    @Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-
-
-        // If players has either a zombie arm or leg in their inventory, craft its related weapon
-        for (int i = 0; i < this.getInventory().size(); i++){
-            if (this.getInventory().get(i).getDisplayChar() == '1'){
-                Item thisItem = this.getInventory().get(i);
-                this.removeItemFromInventory(thisItem);
-                this.addItemToInventory((new ZombieClub()));
-                display.println("Player crafted a zombie club");
-
-            }
-
-            if (this.getInventory().get(i).getDisplayChar() == '7'){
-                Item thisItem = this.getInventory().get(i);
-                this.removeItemFromInventory(thisItem);
-                this.addItemToInventory((new ZombieMaze()));
-                display.println("Player crafted a zombie maze");
-            }
-        }
-
-
 
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+
+		if (this.getInventory().size() != 0){
+            actions.add(new CraftWeaponAction(this));
+        }
+
+
 		return menu.showMenu(this, actions, display);
+
+
 	}
 }

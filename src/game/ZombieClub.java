@@ -12,4 +12,5 @@ public class ZombieClub extends WeaponItem {
     public ZombieClub() {
         super("Zombie Club", '|', 30, "whacks");
     }
+
 }
