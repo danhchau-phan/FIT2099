@@ -8,9 +8,11 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
+import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.PickUpItemAction;
 import edu.monash.fit2099.engine.Weapon;
 
@@ -24,15 +26,17 @@ import edu.monash.fit2099.engine.Weapon;
  */
 public class Zombie extends ZombieActor {
 	private Behaviour[] behaviours = {
-			new ZombieAttackBehaviour(ZombieCapability.ALIVE),
+			new AttackBehaviour(ZombieCapability.ALIVE),
 			new HuntBehaviour(Human.class, 10),
 			new WanderBehaviour()
 	};
 	
+	private GameMap map;
+	
 	private int numArms = 2;
 	private int numLegs = 2;
 	
-	private Map<Integer, Double> punchToBiteProb = Map.of(2,0.8,1,0.4,0,0.0);
+	private static final Map<Integer, Double> PUNCH_TO_BITE_PROB = Map.of(2,0.8,1,0.4,0,0.0);
 
 	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);
@@ -42,7 +46,7 @@ public class Zombie extends ZombieActor {
 	public IntrinsicWeapon getIntrinsicWeapon() {
 		
 		double rand = (new Random()).nextDouble(); 
-		return (rand < this.punchToBiteProb.get(numArms)) ? new IntrinsicPunch() : new IntrinsicBite(this);
+		return (rand < PUNCH_TO_BITE_PROB.get(numArms)) ? new IntrinsicPunch() : new IntrinsicBite(this);
 	}
 
 	public int getNumArms() {
@@ -82,6 +86,7 @@ public class Zombie extends ZombieActor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		this.map = map;
 		// Every turn, each Zombie should have a 10% chance of saying “Braaaaains”
 		double rand = (new Random()).nextDouble();
 		if (rand < 0.1) {
@@ -89,9 +94,12 @@ public class Zombie extends ZombieActor {
 		}
 		
 		// If there is a weapon at the Zombie’s location when its turn starts, the Zombie should pick it up.
-		if (map.locationOf(this).getItems().size() > 0) {
-			Item newItem  = map.locationOf(this).getItems().get(0);
-			(new PickUpItemAction(newItem)).execute(this, map);
+		if (numArms > 0) {
+			for (Item item : map.locationOf(this).getItems()) {
+				if (!(item instanceof ZombieArm || item instanceof ZombieLeg))
+					(new PickUpItemAction(item)).execute(this, map);
+				break;
+			}
 		}
 		
 		for (Behaviour behaviour : behaviours) {
@@ -109,5 +117,21 @@ public class Zombie extends ZombieActor {
 		return new DoNothingAction();	
 	}
 
-	
+	public Weapon getWeapon() {
+		
+		if (numArms == 0) {
+			if (inventory.size() > 0)
+				(new DropItemAction(inventory.get(0))).execute(this, map);
+			return getIntrinsicWeapon();
+		}
+		
+		if (numArms == 1) {
+			double rand = (new Random()).nextDouble();
+			if (inventory.size() > 0 && rand < 0.5) {
+				(new DropItemAction(inventory.get(0))).execute(this, map);
+				return getIntrinsicWeapon();
+			}
+		}
+		return super.getWeapon();
+	}
 }

@@ -10,7 +10,7 @@ import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
 
-public class LimbOffAttack extends AttackAction implements Chanceable{
+public class LimbOffAttack extends AttackAction {
 	public final static double PROBABILITY = 0.25;
 	
 	public LimbOffAttack(Zombie target) {
@@ -37,17 +37,7 @@ public class LimbOffAttack extends AttackAction implements Chanceable{
 		}
 		
 		if (!target.isConscious()) {
-			Item corpse = new PortableItem("dead " + target, '%');
-			map.locationOf(target).addItem(corpse);
-			
-			Actions dropActions = new Actions();
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction());
-			for (Action drop : dropActions)		
-				drop.execute(target, map);
-			map.removeActor(target);	
-			
-			result += System.lineSeparator() + target + " is killed.";
+			result += super.killTarget(map);
 		}
 		
 		return result;
@@ -62,7 +52,7 @@ public class LimbOffAttack extends AttackAction implements Chanceable{
 		}
 	}
 
-	@Override
+
 	public boolean isSuccessful() {
 		double rand = (new Random()).nextDouble();
 		return (rand < PROBABILITY);

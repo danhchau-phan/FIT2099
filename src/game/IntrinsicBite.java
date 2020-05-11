@@ -26,7 +26,7 @@ public class IntrinsicBite extends IntrinsicWeapon implements Chanceable {
 	}
 	
 	// A successful bite attack restores 5 health points to the Zombie
-	public void heal() {
+	private void heal() {
 		zombie.heal(HEAL_POINT);
 	}
 
