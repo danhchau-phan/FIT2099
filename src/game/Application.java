@@ -64,10 +64,14 @@ public class Application {
 			while (gameMap.at(x, y).containsAnActor());
 			gameMap.at(x,  y).addActor(new Human(name));	
 		}
-		
+
+		// Add a few Farmers
+        gameMap.at(39,10).addActor(new Farmer("George"));
+        gameMap.at(47,12).addActor(new Farmer("July"));
+
 		// place a simple weapon
-		//gameMap.at(74, 20).addItem(new ZombieArm());
-		gameMap.at(43, 15).addItem(new ZombieLeg());
+		gameMap.at(74, 20).addItem(new ZombieArm());
+
 
 		// FIXME: Add more zombies!
 		gameMap.at(30, 20).addActor(new Zombie("Groan"));

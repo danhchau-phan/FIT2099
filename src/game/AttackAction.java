@@ -59,15 +59,17 @@ public class AttackAction extends Action {
 			dropActions.add(item.getDropAction());
 		for (Action drop : dropActions)		
 			drop.execute(target, map);
-		map.removeActor(target);	
-		
+
 		String result = System.lineSeparator() + target + " is killed.";
 		
 		if (target instanceof Human) {
 			Corpse corpse = new Corpse("dead" + target);
 			map.locationOf(target).addItem(corpse);
 		}
-		
+
+		map.removeActor(target);
+
+
 		return result;
 	}
 	@Override
