@@ -9,10 +9,17 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
-
+/**
+ * Special attack action that can knock off zombie's limbs 
+ *
+ */
 public class LimbOffAttack extends AttackAction {
 	public final static double PROBABILITY = 0.25;
-	
+	/**
+	 * Constructor.
+	 * 
+	 * @param target the actor to be attacked
+	 */
 	public LimbOffAttack(Zombie target) {
 		super(target);
 	}
@@ -29,9 +36,7 @@ public class LimbOffAttack extends AttackAction {
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
 		target.hurt(damage);
-		// Any attack on a Zombie that causes damage has a chance to knock at least one of its limbs off 
 		if (this.isSuccessful()) {
-			// Lost limbs drop to the ground at the Zombie’s location
 			Location location = map.locationOf(target);
 			loseLimbs((Zombie) target, location);
 		}
@@ -42,7 +47,11 @@ public class LimbOffAttack extends AttackAction {
 		
 		return result;
 	}
-	
+	/**
+	 * Makes zombie's limb to fall off
+	 * @param zombie the target
+	 * @param location the location of the attack
+	 */
 	private void loseLimbs(Zombie zombie, Location location) {
 		if (zombie.getNumArms() > 0) { 
 			zombie.loseArms(1);
@@ -52,8 +61,11 @@ public class LimbOffAttack extends AttackAction {
 		}
 	}
 
-
-	public boolean isSuccessful() {
+	/**
+	 * Checks if attack is successful
+	 * @return true of false depend on success probability
+	 */
+	private boolean isSuccessful() {
 		double rand = (new Random()).nextDouble();
 		return (rand < PROBABILITY);
 	}

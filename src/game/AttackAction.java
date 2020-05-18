@@ -52,7 +52,11 @@ public class AttackAction extends Action {
 
 		return result;
 	}
-
+	/**
+	 * Remove target from map, drop inventory items and create corpse if target is a human
+	 * @param map The map the actor is on
+	 * @return a description of what happened that is reported back to execute()
+	 */
 	protected String killTarget(GameMap map) {
 		Actions dropActions = new Actions();
 		for (Item item : target.getInventory())

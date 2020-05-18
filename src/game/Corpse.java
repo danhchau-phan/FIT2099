@@ -3,11 +3,18 @@ package game;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Location;
-
+/**
+ * Class represents a Corpse.
+ *
+ */
 public class Corpse extends PortableItem {
 	
 	private int turns = 0;
 	private static final int REBIRTH_TURN = 5;
+	/**
+	 * Constructor
+	 * @param name name of the corpse
+	 */
 	public Corpse(String name) {
 		super(name, 'C');
 	}
@@ -16,8 +23,8 @@ public class Corpse extends PortableItem {
      * Inform a carried Item of the passage of time.
      * 
      * This method is called once per turn, if the Item is being carried.
-     * @param currentLocation The location of the actor carrying this Item.
-     * @param actor The actor carrying this Item.
+     * @param currentLocation The location of the actor carrying this Corpse.
+     * @param actor The actor carrying this Corpse.
      */
 	public void tick(Location currentLocation, Actor actor) {
 		turns += 1;
@@ -37,12 +44,19 @@ public class Corpse extends PortableItem {
 			this.riseFromDeath(currentLocation);
 		}
 	}
-	
+	/**
+	 * Transform the corpse into a zombie.
+	 * @param currentLocation The location of the ground on which the corpse lies.
+	 */
 	private void riseFromDeath(Location currentLocation) {
 		currentLocation.removeItem(this);
 		currentLocation.addActor(new Zombie("Groan"));
 	}
-	
+	/**
+	 * Transform the corpse into a zombie.
+	 * @param currentLocation The location of the actor carrying the Corpse
+	 * @param actor The actor carrying the Corpse
+	 */
 	private void riseFromDeath(Location currentLocation, Actor actor) {
 		actor.removeItemFromInventory(this);
 		for (Exit exit : currentLocation.getExits()) {

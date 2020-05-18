@@ -19,54 +19,85 @@ import edu.monash.fit2099.engine.Weapon;
 /**
  * A Zombie.
  * 
- * This Zombie is pretty boring.  It needs to be made more interesting.
+ * This Zombie is pretty boring. It needs to be made more interesting.
  * 
  * @author ram
  *
  */
 public class Zombie extends ZombieActor {
-	private Behaviour[] behaviours = {
-			new AttackBehaviour(ZombieCapability.ALIVE),
-			new HuntBehaviour(Human.class, 10),
-			new WanderBehaviour()
-	};
-	
+	private Behaviour[] behaviours = { new AttackBehaviour(ZombieCapability.ALIVE), new HuntBehaviour(Human.class, 10),
+			new WanderBehaviour() };
+	/**
+	 * The map the zombie is on.
+	 */
 	private GameMap map;
-	
+	/**
+	 * Number of zombie's arms
+	 */
 	private int numArms = 2;
+	/**
+	 * Number of zombie's legs
+	 */
 	private int numLegs = 2;
-	
-	private static final Map<Integer, Double> PUNCH_TO_BITE_PROB = Map.of(2,0.8,1,0.4,0,0.0);
+	/**
+	 * The punch-attack to bite-attack probability
+	 */
+	private static final Map<Integer, Double> PUNCH_TO_BITE_PROB = Map.of(2, 0.8, 1, 0.4, 0, 0.0);
 
 	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);
 	}
 
+	/**
+	 * Creates an intrinsic weapon subject to zombies number of arms remaining
+	 * 
+	 * @return IntrinsicWeapon (e.g: IntrinsicPunch, IntrinsicBite)
+	 */
 	@Override
 	public IntrinsicWeapon getIntrinsicWeapon() {
-		
-		double rand = (new Random()).nextDouble(); 
+
+		double rand = (new Random()).nextDouble();
 		return (rand < PUNCH_TO_BITE_PROB.get(numArms)) ? new IntrinsicPunch() : new IntrinsicBite(this);
 	}
 
+	/**
+	 * Get number of arms remaining
+	 * 
+	 * @return int number of arms
+	 */
 	public int getNumArms() {
 		return this.numArms;
 	}
-	
+
+	/**
+	 * Get number of legs remaining
+	 * 
+	 * @return int number of legs
+	 */
 	public int getNumLegs() {
 		return this.numLegs;
 	}
-	
+
+	/**
+	 * Set number of arms.
+	 * 
+	 * @param num number of lost arms
+	 */
 	public void loseArms(int num) {
 		if (num > 0 && num <= this.numArms)
 			this.numArms = this.numArms - num;
 	}
-	
+
+	/**
+	 * Set number of legs.
+	 * 
+	 * @param num number of lost legs.
+	 */
 	public void loseLegs(int num) {
 		if (num > 0 && num <= this.numLegs)
 			this.numLegs = this.numLegs - num;
 	}
-	
+
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions list = super.getAllowableActions(otherActor, direction, map);
@@ -74,26 +105,31 @@ public class Zombie extends ZombieActor {
 		list.add(new LimbOffAttack(this));
 		return list;
 	}
-	
+
 	/**
-	 * If a Zombie can attack, it will.  If not, it will chase any human within 10 spaces.  
-	 * If no humans are close enough it will wander randomly.
+	 * If a Zombie can attack, it will. If not, it will chase any human within 10
+	 * spaces. If no humans are close enough it will wander randomly.
 	 * 
-	 * @param actions list of possible Actions
+	 * Every turn, each Zombie has a 10% chance of saying “Braaaaains”. If there is
+	 * a weapon at the Zombie’s location when its turn starts, the Zombie would pick
+	 * it up.
+	 * 
+	 * If it loses one leg, its movement speed is halved. If it loses both legs, it
+	 * cannot move at all.
+	 * 
+	 * @param actions    list of possible Actions
 	 * @param lastAction previous Action, if it was a multiturn action
-	 * @param map the map where the current Zombie is
-	 * @param display the Display where the Zombie's utterances will be displayed
+	 * @param map        the map where the current Zombie is
+	 * @param display    the Display where the Zombie's utterances will be displayed
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		this.map = map;
-		// Every turn, each Zombie should have a 10% chance of saying “Braaaaains”
 		double rand = (new Random()).nextDouble();
 		if (rand < 0.1) {
 			display.println("Braaaains");
 		}
-		
-		// If there is a weapon at the Zombie’s location when its turn starts, the Zombie should pick it up.
+
 		if (numArms > 0) {
 			for (Item item : map.locationOf(this).getItems()) {
 				if (!(item instanceof ZombieArm || item instanceof ZombieLeg))
@@ -101,12 +137,9 @@ public class Zombie extends ZombieActor {
 				break;
 			}
 		}
-		
+		if (numLegs == 1 && !(lastAction instanceof DoNothingAction))
+			return new DoNothingAction();
 		for (Behaviour behaviour : behaviours) {
-			// If it loses one leg, its movement speed is halved
-			if (numLegs == 1 && !(lastAction instanceof DoNothingAction)) 
-				break;
-			// If it loses both legs, it cannot move at all
 			if (numLegs == 0 && (behaviour instanceof HuntBehaviour || behaviour instanceof WanderBehaviour)) {
 				continue;
 			}
@@ -114,17 +147,29 @@ public class Zombie extends ZombieActor {
 			if (action != null)
 				return action;
 		}
-		return new DoNothingAction();	
+		return new DoNothingAction();
 	}
 
+	/**
+	 * Get the weapon the Zombie will use for attack.
+	 * 
+	 * If zombie has no weapon item in inventory, return intrinsic weapon (e.g:
+	 * punch, bite) If zombie has weapon items but no arms left, or dropped the
+	 * weapon with 1 arm left, also returns intrinsic weapon.
+	 * 
+	 * Otherwise, returns weapon item.
+	 * 
+	 * @return Weapon the Zombie's weapon item or intrinsic weapon
+	 */
+	@Override
 	public Weapon getWeapon() {
-		
+
 		if (numArms == 0) {
 			if (inventory.size() > 0)
 				(new DropItemAction(inventory.get(0))).execute(this, map);
 			return getIntrinsicWeapon();
 		}
-		
+
 		if (numArms == 1) {
 			double rand = (new Random()).nextDouble();
 			if (inventory.size() > 0 && rand < 0.5) {
