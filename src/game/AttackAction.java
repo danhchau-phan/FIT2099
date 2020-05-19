@@ -45,10 +45,9 @@ public class AttackAction extends Action {
 
 		target.hurt(damage);
 		
-		
-		if (!target.isConscious()) {
-			result += killTarget(map);
-		}
+		try {
+			result += terminateTarget(map);
+		} catch (Exception e) {}
 
 		return result;
 	}
@@ -57,14 +56,15 @@ public class AttackAction extends Action {
 	 * @param map The map the actor is on
 	 * @return a description of what happened that is reported back to execute()
 	 */
-	protected String killTarget(GameMap map) {
+	protected String terminateTarget(GameMap map) throws Exception {
+		if (target.isConscious()) {
+			throw new Exception(this.target.toString() + " is still conscious. Cannot terminate.");
+		}
 		Actions dropActions = new Actions();
 		for (Item item : target.getInventory())
 			dropActions.add(item.getDropAction());
 		for (Action drop : dropActions)		
-			drop.execute(target, map);
-
-		String result = System.lineSeparator() + target + " is killed.";
+			drop.execute(target, map); 
 		
 		if (target instanceof Human) {
 			Corpse corpse = new Corpse("dead" + target);
@@ -72,9 +72,8 @@ public class AttackAction extends Action {
 		}
 
 		map.removeActor(target);
-
-
-		return result;
+		
+		return System.lineSeparator() + target + " is killed.";
 	}
 	@Override
 	public String menuDescription(Actor actor) {

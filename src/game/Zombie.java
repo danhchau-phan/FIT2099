@@ -83,9 +83,10 @@ public class Zombie extends ZombieActor {
 	 * 
 	 * @param num number of lost arms
 	 */
-	public void loseArms(int num) {
-		if (num > 0 && num <= this.numArms)
-			this.numArms = this.numArms - num;
+	public void loseArms(int num) throws IllegalArgumentException{
+		if (num < 0 || num > this.numArms)
+			throw new IllegalArgumentException("");
+		this.numArms = this.numArms - num;
 	}
 
 	/**
@@ -93,9 +94,10 @@ public class Zombie extends ZombieActor {
 	 * 
 	 * @param num number of lost legs.
 	 */
-	public void loseLegs(int num) {
-		if (num > 0 && num <= this.numLegs)
-			this.numLegs = this.numLegs - num;
+	public void loseLegs(int num) throws IllegalArgumentException {
+		if (num < 0 || num > this.numLegs)
+			throw new IllegalArgumentException("");
+		this.numLegs = this.numLegs - num;
 	}
 
 	@Override

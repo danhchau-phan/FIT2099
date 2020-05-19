@@ -42,7 +42,7 @@ public class LimbOffAttack extends AttackAction {
 		}
 		
 		if (!target.isConscious()) {
-			result += super.killTarget(map);
+			result += super.terminateTarget(map);
 		}
 		
 		return result;
@@ -53,12 +53,16 @@ public class LimbOffAttack extends AttackAction {
 	 * @param location the location of the attack
 	 */
 	private void loseLimbs(Zombie zombie, Location location) {
-		if (zombie.getNumArms() > 0) { 
-			zombie.loseArms(1);
-			location.addItem(new ZombieArm());
-		} else if (zombie.getNumLegs() > 0) {
-			location.addItem(new ZombieLeg());
-		}
+		try {
+			if (zombie.getNumArms() > 0) { 
+				zombie.loseArms(1);
+				location.addItem(new ZombieArm());
+			} else if (zombie.getNumLegs() > 0) {
+				zombie.loseLegs(1);
+				location.addItem(new ZombieLeg());
+			}
+		} catch (IllegalArgumentException e) {
+		} 
 	}
 
 	/**
