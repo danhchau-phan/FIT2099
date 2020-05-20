@@ -61,24 +61,6 @@ public class Zombie extends ZombieActor {
 	}
 
 	/**
-	 * Get number of arms remaining
-	 * 
-	 * @return int number of arms
-	 */
-	public int getNumArms() {
-		return this.numArms;
-	}
-
-	/**
-	 * Get number of legs remaining
-	 * 
-	 * @return int number of legs
-	 */
-	public int getNumLegs() {
-		return this.numLegs;
-	}
-
-	/**
 	 * Set number of arms.
 	 * 
 	 * @param num number of lost arms
