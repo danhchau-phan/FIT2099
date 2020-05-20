@@ -41,9 +41,9 @@ public class LimbOffAttack extends AttackAction {
 			loseLimbs((Zombie) target, location);
 		}
 		
-		if (!target.isConscious()) {
+		try {
 			result += super.terminateTarget(map);
-		}
+		} catch (Exception e) {}
 		
 		return result;
 	}
