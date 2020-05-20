@@ -104,7 +104,7 @@ public class Zombie extends ZombieActor {
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions list = super.getAllowableActions(otherActor, direction, map);
 		list.clear();
-		list.add(new LimbOffAttack(this));
+		list.add(new AttackAction(this));
 		return list;
 	}
 
@@ -180,5 +180,28 @@ public class Zombie extends ZombieActor {
 			}
 		}
 		return super.getWeapon();
+	}
+	/**
+	 * Called when zombie's attacked.
+	 *
+	 * Knock off zombie's limb.
+	 *
+	 * @param points number of hitpoints to deduct.
+	 */
+	@Override
+	public void hurt(int point) {
+		super.hurt(point);
+		Location location = map.locationOf(this);
+		int rand = new Random().nextInt(3);
+		try {
+			if (rand <= 1) { 
+				loseArms(1);
+				location.addItem(new ZombieArm());
+			} else {
+				loseLegs(1);
+				location.addItem(new ZombieLeg());
+			}
+		} catch (IllegalArgumentException e) {
+		} 
 	}
 }
