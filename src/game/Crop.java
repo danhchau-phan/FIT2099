@@ -18,7 +18,7 @@ public class Crop extends Ground {
      * Default constructor for Crop
      */
     public Crop() {
-        super('!'); // This displayChar indicates unripe Crop
+        super(DisplayChar.CROP.toChar()); // This displayChar indicates unripe Crop
     }
 
     /**
@@ -54,7 +54,7 @@ public class Crop extends Ground {
 
 
         if (ripe == 20){
-            displayChar = '$'; // new displayChar indicates ripe Crop
+            displayChar = DisplayChar.RIPECROP.toChar(); // new displayChar indicates ripe Crop
         }
 
     }

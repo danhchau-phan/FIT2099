@@ -1,6 +1,6 @@
 package game;
 
-public enum ZombieCapability {
+enum ZombieCapability {
 	UNDEAD,
 	ALIVE
 }

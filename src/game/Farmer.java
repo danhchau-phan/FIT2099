@@ -23,7 +23,7 @@ public class Farmer extends Human {
      * @param name the Farmer's display name
      */
     public Farmer(String name) {
-        super(name, 'F', 50);
+        super(name, DisplayChar.FARMER.toChar(), 50);
     }
 
     /**
@@ -47,7 +47,7 @@ public class Farmer extends Human {
 
         for (Exit e: exits) {
             // Grow crops if farmer is next to a patch of dirt
-            if (e.getDestination().getGround().getDisplayChar() == '.') {
+            if (e.getDestination().getGround().getDisplayChar() == DisplayChar.DIRT.toChar()) {
                 double rand = (new Random()).nextDouble();
                 if (rand < PROBABILITY){
                     e.getDestination().setGround(new Crop());
@@ -57,7 +57,7 @@ public class Farmer extends Human {
         }
 
         // If farmer is standing on a ripe crop, Farmer fertilizes it
-        if (map.locationOf(this).getGround().getDisplayChar() == '$'){
+        if (map.locationOf(this).getGround().getDisplayChar() == DisplayChar.RIPECROP.toChar()){
             Crop crop = (Crop) map.locationOf(this).getGround();
             int ripeAge = crop.getRipe();
 
@@ -71,7 +71,7 @@ public class Farmer extends Human {
         }
 
         // If farmer is on a ripe Crop
-        if (map.locationOf(this).getGround().getDisplayChar() == '$'){
+        if (map.locationOf(this).getGround().getDisplayChar() == DisplayChar.RIPECROP.toChar()){
             map.locationOf(this).setGround(new Dirt());
             map.locationOf(this).addItem(new Food());
             display.println(this + " harvested food!");
@@ -80,7 +80,7 @@ public class Farmer extends Human {
 
         // If farmer is next to a ripe Crop
         for (Exit e: exits){
-            if (e.getDestination().getGround().getDisplayChar() == '$'){
+            if (e.getDestination().getGround().getDisplayChar() == DisplayChar.RIPECROP.toChar()){
                 e.getDestination().setGround(new Dirt());
                 e.getDestination().addItem(new Food());
                 display.println(this + " harvested food!");

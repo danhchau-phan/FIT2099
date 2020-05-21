@@ -12,7 +12,7 @@ public class Food extends PortableItem {
      * Default constructor of Food
      */
     public Food() {
-        super("Bread", 'o');
+        super("Bread", DisplayChar.FOOD.toChar());
     }
 
     /**

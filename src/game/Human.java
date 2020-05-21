@@ -21,7 +21,7 @@ public class Human extends ZombieActor {
 	 * @param name the human's display name
 	 */
 	public Human(String name) {
-		super(name, 'H', 50, ZombieCapability.ALIVE);
+		super(name, game.DisplayChar.HUMAN.toChar(), 50, ZombieCapability.ALIVE);
 	}
 	
 	/**
@@ -44,7 +44,7 @@ public class Human extends ZombieActor {
 		// it to heal.
 		if (this.hasCapability(ZombieCapability.ALIVE)){
 			for (int i = 0; i < map.locationOf(this).getItems().size(); i++){
-				if (map.locationOf(this).getItems().get(i).getDisplayChar() == 'o'){
+				if (map.locationOf(this).getItems().get(i).getDisplayChar() == game.DisplayChar.FOOD.toChar()){
 					if (this.hitPoints < this.maxHitPoints){
 						Food food = (Food) map.locationOf(this).getItems().get(i);
 						this.heal(food.getHealth());

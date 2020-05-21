@@ -45,7 +45,7 @@ public class Zombie extends ZombieActor {
 	private static final Map<Integer, Double> PUNCH_TO_BITE_PROB = Map.of(2, 0.8, 1, 0.4, 0, 0.0);
 
 	public Zombie(String name) {
-		super(name, 'Z', 100, ZombieCapability.UNDEAD);
+		super(name, game.DisplayChar.ZOMBIE.toChar(), 100, ZombieCapability.UNDEAD);
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class Zombie extends ZombieActor {
 	 */
 	public void loseArms(int num) throws IllegalArgumentException{
 		if (num < 0 || num > this.numArms)
-			throw new IllegalArgumentException("");
+			throw new IllegalArgumentException("Lost arms is more than current arms");
 		this.numArms = this.numArms - num;
 	}
 
@@ -78,7 +78,7 @@ public class Zombie extends ZombieActor {
 	 */
 	public void loseLegs(int num) throws IllegalArgumentException {
 		if (num < 0 || num > this.numLegs)
-			throw new IllegalArgumentException("");
+			throw new IllegalArgumentException("Lost legs is more than current legs");
 		this.numLegs = this.numLegs - num;
 	}
 
@@ -118,7 +118,7 @@ public class Zombie extends ZombieActor {
 			for (Item item : map.locationOf(this).getItems()) {
 				if (!(item instanceof ZombieArm || item instanceof ZombieLeg))
 					(new PickUpItemAction(item)).execute(this, map);
-				break;
+					break;
 			}
 		}
 		if (numLegs == 1 && !(lastAction instanceof DoNothingAction))

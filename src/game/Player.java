@@ -44,7 +44,7 @@ public class Player extends Human {
 		Collections.shuffle(exits);
 
 		for (Exit e: exits){
-			if (e.getDestination().getGround().getDisplayChar() == '$'){
+			if (e.getDestination().getGround().getDisplayChar() == DisplayChar.RIPECROP.toChar()){
 				Location location = e.getDestination();
 				actions.add(new HarvestAction(this,location));
 			}
@@ -53,7 +53,7 @@ public class Player extends Human {
 		// If health is low and player has food in their inventory
 		if (this.hitPoints < this.maxHitPoints){
 			for (int i = 0; i < this.getInventory().size(); i++){
-				if (this.getInventory().get(i).getDisplayChar() == 'o'){
+				if (this.getInventory().get(i).getDisplayChar() == DisplayChar.FOOD.toChar()){
 					Food food = (Food) this.getInventory().get(i);
 					actions.add(new EatAction(this,food));
 					this.removeItemFromInventory(food);

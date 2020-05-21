@@ -16,7 +16,7 @@ public class Corpse extends PortableItem {
 	 * @param name name of the corpse
 	 */
 	public Corpse(String name) {
-		super(name, 'C');
+		super(name, DisplayChar.CORSPE.toChar());
 	}
 
     /**

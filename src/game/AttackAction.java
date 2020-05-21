@@ -66,7 +66,7 @@ public class AttackAction extends Action {
 		for (Action drop : dropActions)		
 			drop.execute(target, map); 
 		
-		if (target instanceof Human) {
+		if (target.hasCapability(ZombieCapability.ALIVE)) {
 			Corpse corpse = new Corpse("dead" + target);
 			map.locationOf(target).addItem(corpse);
 		}

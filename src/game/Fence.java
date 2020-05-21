@@ -12,7 +12,7 @@ import edu.monash.fit2099.engine.Ground;
 public class Fence extends Ground {
 
 	public Fence() {
-		super('#');
+		super(DisplayChar.FENCE.toChar());
 	}
 	
 	@Override

@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.WeaponItem;
 public class ZombieArm extends WeaponItem {
 
 	public ZombieArm() {
-		super("Zombie Arm", '1', 10, "whacks");
+		super("Zombie Arm", DisplayChar.ZOMBIEARM.toChar(), 10, "whacks");
 		// TODO Auto-generated constructor stub
 	}
 

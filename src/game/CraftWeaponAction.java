@@ -38,7 +38,7 @@ public class CraftWeaponAction extends Action{
         }
 
         for (int i = 0; i < actor.getInventory().size(); i++){
-            if (actor.getInventory().get(i).getDisplayChar() == '1'){
+            if (actor.getInventory().get(i).getDisplayChar() == DisplayChar.ZOMBIEARM.toChar()){
                 Item newItem = actor.getInventory().get(i);
                 actor.removeItemFromInventory(newItem);
                 item = (new ZombieClub());
@@ -47,7 +47,7 @@ public class CraftWeaponAction extends Action{
             }
 
 
-            else if (actor.getInventory().get(i).getDisplayChar() == '7'){
+            else if (actor.getInventory().get(i).getDisplayChar() == DisplayChar.ZOMBIELEG.toChar()){
                 Item newItem = actor.getInventory().get(i);
                 actor.removeItemFromInventory(newItem);
                 item = (new ZombieMaze());

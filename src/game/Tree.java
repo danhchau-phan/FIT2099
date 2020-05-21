@@ -13,7 +13,7 @@ public class Tree extends Ground {
 	private int age = 0;
 
 	public Tree() {
-		super('+');
+		super(DisplayChar.TREE.toChar());
 	}
 
 	@Override
@@ -22,8 +22,8 @@ public class Tree extends Ground {
 
 		age++;
 		if (age == 10)
-			displayChar = 't';
+			displayChar = DisplayChar.YOUNGTREE.toChar();
 		if (age == 20)
-			displayChar = 'T';
+			displayChar = DisplayChar.OLDTREE.toChar();
 	}
 }
