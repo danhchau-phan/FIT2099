@@ -6,7 +6,7 @@ package game;
  */
 public class Food extends PortableItem {
 
-    private final static double HEALTH = 10;
+    int health = 10;
 
     /**
      * Default constructor of Food
@@ -20,7 +20,7 @@ public class Food extends PortableItem {
      *
      * @return health value
      */
-    public static double getHEALTH() {
-        return HEALTH;
+    public int getHealth() {
+        return health;
     }
 }

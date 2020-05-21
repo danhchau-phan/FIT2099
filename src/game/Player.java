@@ -50,8 +50,16 @@ public class Player extends Human {
 			}
 		}
 
-
-
+		// If health is low and player has food in their inventory
+		if (this.hitPoints < this.maxHitPoints){
+			for (int i = 0; i < this.getInventory().size(); i++){
+				if (this.getInventory().get(i).getDisplayChar() == 'o'){
+					Food food = (Food) this.getInventory().get(i);
+					actions.add(new EatAction(this,food));
+					this.removeItemFromInventory(food);
+				}
+			}
+		}
 
 		return menu.showMenu(this, actions, display);
 
