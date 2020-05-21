@@ -40,6 +40,20 @@ public class Human extends ZombieActor {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// FIXME humans are pretty dumb, maybe they should at least run away from zombies?
 
+		// If humans are hurt and wander onto a location containing food. They automatically consume
+		// it to heal.
+		if (this.hasCapability(ZombieCapability.ALIVE)){
+			for (int i = 0; i < map.locationOf(this).getItems().size(); i++){
+				if (map.locationOf(this).getItems().get(i).getDisplayChar() == 'o'){
+					if (this.hitPoints < this.maxHitPoints){
+						Food food = (Food) map.locationOf(this).getItems().get(i);
+						this.heal(food.getHealth());
+						display.println(Integer.toString(this.hitPoints));
+						map.locationOf(this).removeItem(food);
+					}
+				}
+			}
+		}
 		return behaviour.getAction(this, map);
 	}
 

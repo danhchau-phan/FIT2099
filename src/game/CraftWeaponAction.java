@@ -5,7 +5,6 @@ import edu.monash.fit2099.engine.*;
 /**
  * Action to allow items to be crafted by the player.
  */
-
 public class CraftWeaponAction extends Action{
     protected Item item;
     protected Actor target;
@@ -35,7 +34,7 @@ public class CraftWeaponAction extends Action{
         String result = null;
 
         if (target.getInventory().size() == 0){
-            result = "Required Materials not available";
+            result = "Required materials not available";
         }
 
         for (int i = 0; i < actor.getInventory().size(); i++){
@@ -72,6 +71,6 @@ public class CraftWeaponAction extends Action{
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " crafts" + " a weapon?";
+        return actor + " crafts" + " a weapon";
     }
 }

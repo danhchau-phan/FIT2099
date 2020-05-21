@@ -70,8 +70,7 @@ public class Application {
         gameMap.at(47,12).addActor(new Farmer("July"));
 
 		// place a simple weapon
-		gameMap.at(74, 20).addItem(new ZombieArm());
-
+		gameMap.at(74, 20).addItem(new Plank());
 
 		// FIXME: Add more zombies!
 		gameMap.at(30, 20).addActor(new Zombie("Groan"));

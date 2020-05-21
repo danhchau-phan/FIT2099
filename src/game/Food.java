@@ -6,7 +6,7 @@ package game;
  */
 public class Food extends PortableItem {
 
-    int health = 10;
+    private int health = 10;
 
     /**
      * Default constructor of Food
