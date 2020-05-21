@@ -1,6 +1,6 @@
 package game;
 
-enum DisplayChar {
+public enum DisplayChar {
     FARMER('F'),
     CORSPE('c'),
     CROP('!'),
