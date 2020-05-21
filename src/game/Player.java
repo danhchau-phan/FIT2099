@@ -2,6 +2,10 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Class representing the Player.
  */
@@ -34,6 +38,19 @@ public class Player extends Human {
 		if (this.getInventory().size() != 0){
             actions.add(new CraftWeaponAction(this));
         }
+
+		// Checking if Food is available around Player
+		List<Exit> exits = new ArrayList<Exit>(map.locationOf(this).getExits());
+		Collections.shuffle(exits);
+
+		for (Exit e: exits){
+			if (e.getDestination().getGround().getDisplayChar() == '$'){
+				Location location = e.getDestination();
+				actions.add(new HarvestAction(this,location));
+			}
+		}
+
+
 
 
 		return menu.showMenu(this, actions, display);
