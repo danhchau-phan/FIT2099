@@ -12,6 +12,7 @@ import edu.monash.fit2099.engine.Location;
 public class Crop extends Ground {
 
     private int ripe = 0;
+    private static final int MAXRIPE = 20;
 
     /**
      * Default constructor for Crop
@@ -49,22 +50,12 @@ public class Crop extends Ground {
         super.tick(location);
 
         ripe++;
+        ripe = Math.min(ripe,MAXRIPE);
+
 
         if (ripe == 20){
             displayChar = '$'; // new displayChar indicates ripe Crop
         }
 
-        // If Farmer is on an unripe Crop, Farmer fertilizes it.
-        if (location.containsAnActor()){
-            if (location.getActor().getDisplayChar() == 'F'){
-
-                int newRipe = getRipe();
-
-                if (newRipe <= 10){
-                    setRipe(newRipe + 10);
-                }
-                else setRipe(20);
-            }
-        }
     }
 }
