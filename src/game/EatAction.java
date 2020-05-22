@@ -3,6 +3,7 @@ package game;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 
 /**
  * Action to allow Player to heal.
@@ -10,14 +11,14 @@ import edu.monash.fit2099.engine.GameMap;
 public class EatAction extends Action {
 
     protected Actor actor;
-    protected Food food;
+    protected Item food;
 
     /**
      * Default constructor for EatAction
      * @param actor actor
      * @param food food
      */
-    public EatAction(Actor actor, Food food) {
+    public EatAction(Actor actor, Item food) {
         this.actor = actor;
         this.food = food;
     }
