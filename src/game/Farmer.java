@@ -57,7 +57,7 @@ public class Farmer extends Human {
         }
 
         // If farmer is standing on a ripe crop, Farmer fertilizes it
-        if (map.locationOf(this).getGround().getDisplayChar() == DisplayChar.RIPECROP.toChar()){
+        if (map.locationOf(this).getGround().getDisplayChar() == DisplayChar.CROP.toChar()){
             Crop crop = (Crop) map.locationOf(this).getGround();
             int ripeAge = crop.getRipe();
 
