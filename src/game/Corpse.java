@@ -49,8 +49,12 @@ public class Corpse extends PortableItem {
 	 * @param currentLocation The location of the ground on which the corpse lies.
 	 */
 	private void riseFromDeath(Location currentLocation) {
-		currentLocation.removeItem(this);
-		currentLocation.addActor(new Zombie(name));
+		try {
+			currentLocation.addActor(new Zombie(name));
+			currentLocation.removeItem(this);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} 
 	}
 	/**
 	 * Transform the corpse into a zombie.
