@@ -40,7 +40,7 @@ public class Corpse extends PortableItem {
      */
 	public void tick(Location currentLocation) {
 		turns += 1;
-		if (turns == REBIRTH_TURN) {
+		if (turns >= REBIRTH_TURN) {
 			this.riseFromDeath(currentLocation);
 		}
 	}
