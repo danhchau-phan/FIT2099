@@ -49,7 +49,7 @@ public class Human extends ZombieActor {
 					if (this.hitPoints < this.maxHitPoints){
 						Item food = map.locationOf(this).getItems().get(i);
 						this.heal(food.getHealth());
-						display.println(Integer.toString(this.hitPoints));
+						display.println(this + " has recovered some health");
 						map.locationOf(this).removeItem(food);
 					}
 				}
