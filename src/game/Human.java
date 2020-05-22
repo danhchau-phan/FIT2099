@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 
 /**
  * Class representing an ordinary human.
@@ -46,7 +47,7 @@ public class Human extends ZombieActor {
 			for (int i = 0; i < map.locationOf(this).getItems().size(); i++){
 				if (map.locationOf(this).getItems().get(i).getDisplayChar() == game.DisplayChar.FOOD.toChar()){
 					if (this.hitPoints < this.maxHitPoints){
-						Food food = (Food) map.locationOf(this).getItems().get(i);
+						Item food = map.locationOf(this).getItems().get(i);
 						this.heal(food.getHealth());
 						display.println(Integer.toString(this.hitPoints));
 						map.locationOf(this).removeItem(food);

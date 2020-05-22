@@ -20,6 +20,7 @@ public class Food extends PortableItem {
      *
      * @return health value
      */
+    @Override
     public int getHealth() {
         return health;
     }

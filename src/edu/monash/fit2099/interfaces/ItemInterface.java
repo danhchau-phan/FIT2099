@@ -5,5 +5,8 @@ package edu.monash.fit2099.interfaces;
  * or downcasting references in the game.   
  */
 public interface ItemInterface {
+	public default int getHealth() {
+		return 0;
+	}
 
 }
