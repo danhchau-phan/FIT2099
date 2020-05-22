@@ -54,7 +54,7 @@ public class Player extends Human {
 		if (this.hitPoints < this.maxHitPoints){
 			for (int i = 0; i < this.getInventory().size(); i++){
 				if (this.getInventory().get(i).getDisplayChar() == DisplayChar.FOOD.toChar()){
-					Food food = (Food) this.getInventory().get(i);
+					Item food = this.getInventory().get(i);
 					actions.add(new EatAction(this,food));
 					this.removeItemFromInventory(food);
 				}
