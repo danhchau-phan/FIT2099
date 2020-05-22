@@ -6,6 +6,7 @@ package edu.monash.fit2099.interfaces;
  */
 
 public interface GroundInterface {
-	public default void fertilize() {
-	};
+
+	 default void fertilize(){}
+
 }

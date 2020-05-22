@@ -78,7 +78,19 @@ public class Application {
 		gameMap.at(10,  4).addActor(new Zombie("Uuuurgh"));
 		gameMap.at(50, 18).addActor(new Zombie("Mortalis"));
 		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
-		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));	
+		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
+
+
+//		// Fertilise and Harvest Testing
+//		gameMap.at(15,22).addActor(new Farmer("George"));
+//
+//		// Create crops
+//		for (x = 12; x <= 18; x++){
+//			for (y = 20; y <= 24; y++){
+//				gameMap.at(x,y).setGround(new Crop());
+//			}
+//		}
+
 		world.run();
 	}
 }
