@@ -58,4 +58,15 @@ public class Crop extends Ground {
         }
 
     }
+    
+    @Override
+    public void fertilize() {
+    	int ripeAge = this.getRipe();
+
+        if (ripeAge <= 10){
+            this.setRipe(ripeAge + 10);
+        }
+
+        else this.setRipe(20);
+    }
 }

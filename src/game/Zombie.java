@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -115,7 +117,9 @@ public class Zombie extends ZombieActor {
 		}
 
 		if (numArms > 0) {
-			for (Item item : map.locationOf(this).getItems()) {
+			List<Item> items = map.locationOf(this).getItems();
+			Collections.shuffle(items);
+			for (Item item : items) {
 				if (!(item instanceof ZombieArm || item instanceof ZombieLeg))
 					(new PickUpItemAction(item)).execute(this, map);
 					break;
