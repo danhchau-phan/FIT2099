@@ -45,7 +45,7 @@ public class Zombie extends ZombieActor {
 	/**
 	 * The punch-attack to bite-attack probability
 	 */
-	private static final Map<Integer, Double> PUNCH_TO_BITE_PROB = Map.of(2, 0.8, 1, 0.4, 0, 0.0);
+	private static final Map<Integer, Double> PUNCH_TO_BITE_PROB = Map.of(2, 0.6, 1, 0.3, 0, 0.0);
 
 	public Zombie(String name) {
 		super(name, game.DisplayChar.ZOMBIE.toChar(), 100, ZombieCapability.UNDEAD);
@@ -126,7 +126,7 @@ public class Zombie extends ZombieActor {
 			Collections.shuffle(items);
 			for (Item item : items) 
 				if (item.asWeapon() != null) {
-					(new PickUpItemAction(item)).execute(this, map);
+					display.println((new PickUpItemAction(item)).execute(this, map));
 					break;
 				}
 		}

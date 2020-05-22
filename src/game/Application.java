@@ -80,7 +80,18 @@ public class Application {
 		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
 		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
 
-
+		
+//		//Zombie picking up Weapon Testing
+//		for (x = 29; x <= 31; x++){
+//			for (y = 19; y <= 21; y++){
+//				if (!(x == 30 && y == 20))
+//					gameMap.at(x,y).addItem(new Plank());
+//			}
+//		}
+		
+//		//Rise from the death testing
+//		gameMap.at(38, 20).addItem(new Corpse("Coorrpse"));
+		
 //		// Fertilise and Harvest Testing
 //		gameMap.at(15,22).addActor(new Farmer("George"));
 //

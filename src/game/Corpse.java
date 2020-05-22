@@ -50,7 +50,7 @@ public class Corpse extends PortableItem {
 	 */
 	private void riseFromDeath(Location currentLocation) {
 		currentLocation.removeItem(this);
-		currentLocation.addActor(new Zombie("Groan"));
+		currentLocation.addActor(new Zombie(name));
 	}
 	/**
 	 * Transform the corpse into a zombie.
@@ -62,7 +62,7 @@ public class Corpse extends PortableItem {
 		for (Exit exit : currentLocation.getExits()) {
             Location destination = exit.getDestination();
             if (destination.canActorEnter(actor)) {
-            	destination.addActor(new Zombie("Uuuurgh"));
+            	destination.addActor(new Zombie(name));
             	actor.removeItemFromInventory(this);
             	break;
             }
