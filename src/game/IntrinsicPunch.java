@@ -15,12 +15,16 @@ public class IntrinsicPunch extends IntrinsicWeapon {
 		super(DAMAGE, "punches");
 	}
 	/**
-	 * Did the punch occur successfully?
+	 * Did the bite occur successfully?
 	 * 
-	 * @return true or false depending on hit probability
+	 * @return damage or 0 depending on hit probability
 	 */
-	public boolean isSuccessful() {
+	
+	public int damage() {
 		double rand = (new Random()).nextDouble();
-		return (rand > HIT_PROBABILITY);
+		if (rand < HIT_PROBABILITY) {
+			return super.damage();
+		}
+		return 0;
 	}
 }

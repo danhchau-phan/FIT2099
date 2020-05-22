@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.Actor;
 /**
  * Class that represent an intrinsic bite of an unarmed actor
  */
-public class IntrinsicBite extends IntrinsicWeapon implements Chanceable {
+public class IntrinsicBite extends IntrinsicWeapon {
 	private final static double HIT_PROBABILITY = 0.5;
 	public final static int DAMAGE = 15;
 	public final static int HEAL_POINT = 5;
@@ -22,17 +22,17 @@ public class IntrinsicBite extends IntrinsicWeapon implements Chanceable {
 	/**
 	 * Did the bite occur successfully?
 	 * 
-	 * @return true or false depending on hit probability
+	 * @return damage or 0 depending on hit probability
 	 */
-	public boolean isSuccessful() {
+	
+	public int damage() {
 		double rand = (new Random()).nextDouble();
 		if (rand < HIT_PROBABILITY) {
 			heal();
-			return true;
+			return super.damage();
 		}
-		return false;
+		return 0;
 	}
-
 	/**
 	 * Restore health point to the Actor if the bite is happened
 	 */

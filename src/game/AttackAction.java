@@ -35,12 +35,11 @@ public class AttackAction extends Action {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		Weapon weapon = actor.getWeapon();
-		
-		if (weapon instanceof Chanceable && !((Chanceable) weapon).isSuccessful()) {
+		int damage = weapon.damage();
+		if (damage == 0) {
 			return actor + " misses " + target + ".";
 		}
 		
-		int damage = weapon.damage();
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
 		target.hurt(damage);
