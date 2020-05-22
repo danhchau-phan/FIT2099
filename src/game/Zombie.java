@@ -15,6 +15,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.PickUpItemAction;
 import edu.monash.fit2099.engine.Weapon;
 
@@ -82,6 +83,10 @@ public class Zombie extends ZombieActor {
 		if (num < 0 || num > this.numLegs)
 			throw new IllegalArgumentException("Lost legs is more than current legs");
 		this.numLegs = this.numLegs - num;
+		if (numLegs == 0) {
+			this.behaviours = new Behaviour[1];
+			this.behaviours[0] = new AttackBehaviour(ZombieCapability.ALIVE);
+		}
 	}
 
 	@Override
@@ -119,24 +124,24 @@ public class Zombie extends ZombieActor {
 		if (numArms > 0) {
 			List<Item> items = map.locationOf(this).getItems();
 			Collections.shuffle(items);
-			for (Item item : items) {
-				if (!(item instanceof ZombieArm || item instanceof ZombieLeg))
+			for (Item item : items) 
+				if (item.asWeapon() != null) {
 					(new PickUpItemAction(item)).execute(this, map);
 					break;
-			}
+				}
 		}
-		if (numLegs == 1 && !(lastAction instanceof DoNothingAction))
-			return new DoNothingAction();
+		
 		for (Behaviour behaviour : behaviours) {
-			if (numLegs == 0 && (behaviour instanceof HuntBehaviour || behaviour instanceof WanderBehaviour)) {
-				continue;
-			}
 			Action action = behaviour.getAction(this, map);
-			if (action != null)
-				return action;
+			if (action != null) {
+				if (numLegs == 1 && action instanceof MoveActorAction && lastAction instanceof MoveActorAction)
+					continue;
+				else return action;
+			}
 		}
 		return new DoNothingAction();
 	}
+	
 
 	/**
 	 * Get the weapon the Zombie will use for attack.
