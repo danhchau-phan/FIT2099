@@ -24,6 +24,6 @@ public class Tree extends Ground {
 		if (age == 10)
 			displayChar = DisplayChar.YOUNGTREE.toChar();
 		if (age == 20)
-			displayChar = DisplayChar.OLDTREE.toChar();
+			displayChar = DisplayChar.GROWNTREE.toChar();
 	}
 }
