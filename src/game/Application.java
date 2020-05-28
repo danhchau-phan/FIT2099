@@ -141,8 +141,8 @@ public class Application {
 //			}
 //		}
 		
-		// Town level Testing
-//		gameMap.at(42, 14).addItem(new Vehicle(townMap));
+//		// Town level Testing
+//		gameMap.at(42, 14).addItem(new Vehicle(gameMap, townMap));
 //		world.run();
 	}
 }
