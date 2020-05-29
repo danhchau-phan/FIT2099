@@ -22,7 +22,6 @@ public class ChangeMapAction extends Action {
 		do {
 			x = (int) Math.floor(Math.random() * (xRange.max() - xRange.min()+2) + xRange.min());
 			y = (int) Math.floor(Math.random() * (yRange.max() - yRange.min()+2) + yRange.min());
-			System.out.println(x+"     "+y);
 		} while (destination.at(x,y).containsAnActor());
 		map.moveActor(actor, destination.at(x,y));
 		destination.at(x,y).addItem(new Vehicle(destination, start));
