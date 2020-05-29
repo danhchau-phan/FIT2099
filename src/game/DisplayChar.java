@@ -8,6 +8,7 @@ public enum DisplayChar {
     FENCE('#'),
     FOOD('o'),
     HUMAN('H'),
+    MAMBOMARIE('M'),
     PLANK(')'),
     PLAYER('@'),
     RIPECROP('$'),
