@@ -13,7 +13,7 @@ public class MamboMarie extends ZombieActor {
 	private Behaviour[] behaviours = {new WanderBehaviour()};
 	private boolean appeared = false;
 	private int turns;
-	private final static double APPEAR_PROBABILITY = 1;
+	private final static double APPEAR_PROBABILITY = 0.05;
 	private final static int VANISH_TURN = 31;
 	private final static int CHANTING_INTERVAL = 10;
 
