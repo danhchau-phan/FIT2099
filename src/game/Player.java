@@ -56,11 +56,10 @@ public class Player extends Human {
 				if (this.getInventory().get(i).getDisplayChar() == DisplayChar.FOOD.toChar()){
 					Item food = this.getInventory().get(i);
 					actions.add(new EatAction(this,food));
-					this.removeItemFromInventory(food);
 				}
 			}
 		}
-
+		actions.add(new QuitGameAction());
 		return menu.showMenu(this, actions, display);
 
 
