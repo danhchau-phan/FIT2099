@@ -37,6 +37,7 @@ public class EatAction extends Action {
         if (actor.isConscious()){
             actor.heal(health);
         }
+        actor.removeItemFromInventory(food);
         return actor + " recovered 10 hitpoints";
     }
 
