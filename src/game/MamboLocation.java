@@ -1,9 +1,7 @@
 package game;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
@@ -11,8 +9,6 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
-import edu.monash.fit2099.engine.MoveActorAction;
-import edu.monash.fit2099.engine.Printable;
 
 public class MamboLocation extends Location {
 	
