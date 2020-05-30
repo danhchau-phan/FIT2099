@@ -71,7 +71,6 @@ public class AttackAction extends Action {
 		}
 
 		map.removeActor(target);
-		
 		return System.lineSeparator() + target + " is killed.";
 	}
 	@Override
