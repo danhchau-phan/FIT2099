@@ -9,6 +9,7 @@ public class VanishAction extends Action {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		map.removeActor(actor);
+		actor.updatePopulation();
 		return menuDescription(actor);
 	}
 
