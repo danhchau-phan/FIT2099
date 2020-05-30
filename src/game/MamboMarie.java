@@ -14,7 +14,7 @@ public class MamboMarie extends ZombieActor {
 	private Behaviour[] behaviours = {new WanderBehaviour()};
 	private boolean appeared = false;
 	private int turns;
-	private final static double APPEAR_PROBABILITY = 0.05;
+	private final static double APPEAR_PROBABILITY = 1;
 	private final static int VANISH_TURN = 31;
 	private final static int CHANTING_INTERVAL = 10;
 
@@ -41,13 +41,8 @@ public class MamboMarie extends ZombieActor {
 				} 
 		} else if (!appeared && rand < APPEAR_PROBABILITY) {
 			appeared = true;
-			turns = 0;
-			int x, y;
-			do {
-				x = (int) Math.floor(Math.random() * (xRange.max() - xRange.min()+2) + xRange.min());
-				y = 0;
-			} while (map.at(x,y).containsAnActor());
-			map.moveActor(this, map.at(x,y));
+			turns = 1;
+			return new AppearAtMapEdgeAction();
 		}
 		return new DoNothingAction();
 	}
