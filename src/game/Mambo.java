@@ -32,6 +32,7 @@ public class Mambo extends ZombieActor {
 			if (turns % CHANTING_INTERVAL == 1)
 				return new ChantAction();
 			else if (turns == VANISH_TURN) {
+				updatePopulation();
 				return new VanishAction();
 			}
 			else
@@ -53,4 +54,7 @@ public class Mambo extends ZombieActor {
 		population -=1;
 	}
 	
+	public static int getPopulation() {
+		return population;
+	}
 }

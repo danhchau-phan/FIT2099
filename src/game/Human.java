@@ -65,5 +65,9 @@ public class Human extends ZombieActor {
 	public void updatePopulation() {
 		population -=1;
 	}
+	
+	public static int getPopulation() {
+		return population;
+	}
 
 }
