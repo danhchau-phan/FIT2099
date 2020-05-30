@@ -15,13 +15,13 @@ public class Mambo extends ZombieActor {
 	private Behaviour[] behaviours = {new WanderBehaviour()};
 	private boolean appeared = false;
 	private int turns;
-	private final static double APPEAR_PROBABILITY = 0.05;
+	private final static double APPEAR_PROBABILITY = 1;
 	private final static int VANISH_TURN = 31;
 	private final static int CHANTING_INTERVAL = 10;
 	private static int population;
 
 	public Mambo(GameMap map) {
-		super("Marie", DisplayChar.MAMBOMARIE.toChar(), 50, ZombieCapability.UNDEAD);
+		super("MamboMarie", DisplayChar.MAMBOMARIE.toChar(), 50, ZombieCapability.UNDEAD);
 		map.addActor(this, new MamboLocation(map));
 		Mambo.population += 1;
 	}
@@ -60,8 +60,7 @@ public class Mambo extends ZombieActor {
 		return population;
 	}
 	
-	class AppearAtMapEdgeAction extends Action {
-
+	private class AppearAtMapEdgeAction extends Action {
 		@Override
 		public String execute(Actor actor, GameMap map) {
 			int xMax, xMin, yMax, yMin;
@@ -82,17 +81,15 @@ public class Mambo extends ZombieActor {
 				}
 			} while (map.at(x,y).containsAnActor());
 			map.moveActor(actor, map.at(x,y));
-			return actor + "appears at "+ x + "," + y;
+			return actor + " appears at "+ x + "," + y;
 		}
 
 		@Override
 		public String menuDescription(Actor actor) {
-			return actor + "appears.";
+			return actor + " appears.";
 		}
-
 	}
-	
-	class ChantAction extends Action {
+	private class ChantAction extends Action {
 		private static final int NUM_ZOMBIES_ADDED = 5;
 		
 		public String execute(Actor actor, GameMap map) {
@@ -100,9 +97,14 @@ public class Mambo extends ZombieActor {
 			NumberRange yRange = map.getYRange();
 			for (int i = 0; i < NUM_ZOMBIES_ADDED; i++) {
 				int x, y;
+				int xMax, xMin, yMax, yMin;
+				xMax = map.getXRange().max();
+				xMin = map.getXRange().min();
+				yMax = map.getYRange().max();
+				yMin = map.getYRange().min();
 				do {
-					x = (int) Math.floor(Math.random() * (xRange.max() - xRange.min()+2) + xRange.min());
-					y = (int) Math.floor(Math.random() * (yRange.max() - yRange.min()+2) + yRange.min());
+					x = new Random().nextInt(xMax - xMin) + xMin;
+					y = new Random().nextInt(yMax - yMin) + yMin;
 				} while (map.at(x,y).containsAnActor());
 				map.at(x,y).addActor(new Zombie("Chant"));
 			}
@@ -110,10 +112,10 @@ public class Mambo extends ZombieActor {
 		};
 		
 		public String menuDescription(Actor actor) {
-			return actor + "chants";
+			return actor + " chants";
 		};
 	}
-	public class VanishAction extends Action {
+	private class VanishAction extends Action {
 		@Override
 		public String execute(Actor actor, GameMap map) {
 			map.removeActor(actor);
@@ -122,7 +124,7 @@ public class Mambo extends ZombieActor {
 
 		@Override
 		public String menuDescription(Actor actor) {
-			return actor + "vanishes";
+			return actor + " vanishes";
 		}
 	}
 
