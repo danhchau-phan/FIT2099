@@ -12,9 +12,7 @@ import java.util.List;
 public class Player extends Human {
 
 	private Menu menu = new Menu();
-	private Behaviour[] behaviours = {
-			new AttackBehaviour(ZombieCapability.ALIVE)
-	};
+	private Behaviour[] behaviours = {new AttackBehaviour(ZombieCapability.ALIVE)};
 
 
 	/**
@@ -86,5 +84,25 @@ public class Player extends Human {
     		// TODO Auto-generated method stub
     		return "Quit game";
     	}
+    }
+    
+    private class EndGame extends Action {
+    	
+    	String result;
+    	public EndGame(String result) {
+    		super();
+    		this.result = result;
+    	}
+    	@Override
+    	public String execute(Actor actor, GameMap map) {
+    		map.removeActor(actor);
+    		return actor + " " + result;
+    	}
+
+    	@Override
+    	public String menuDescription(Actor actor) {
+    		return null;
+    	}
+    	
     }
 }
