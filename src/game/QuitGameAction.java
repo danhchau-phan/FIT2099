@@ -8,14 +8,14 @@ public class QuitGameAction extends Action{
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		// TODO Auto-generated method stub
-		return null;
+		map.removeActor(actor);
+		return actor + " quits game";
 	}
 
 	@Override
 	public String menuDescription(Actor actor) {
 		// TODO Auto-generated method stub
-		return null;
+		return "Quit game";
 	}
 
 
