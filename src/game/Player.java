@@ -27,10 +27,20 @@ public class Player extends Human {
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 	}
-
+	
+//	private boolean loseGame() {
+//		if (Human.getPopulation() == 1)
+//			return true;
+//		return false;
+//	}
+//	
+//	private boolean winGame() {
+//		if (Zombie.getPopulation() == 0 && Mambo.getPopulation() == 0)
+//			return true;
+//		return false;
+//	}
     @Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
@@ -61,7 +71,20 @@ public class Player extends Human {
 		}
 		actions.add(new QuitGameAction());
 		return menu.showMenu(this, actions, display);
-
-
 	}
+    
+    private class QuitGameAction extends Action{
+
+    	@Override
+    	public String execute(Actor actor, GameMap map) {
+    		map.removeActor(actor);
+    		return actor + " quits game";
+    	}
+
+    	@Override
+    	public String menuDescription(Actor actor) {
+    		// TODO Auto-generated method stub
+    		return "Quit game";
+    	}
+    }
 }
