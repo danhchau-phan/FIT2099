@@ -15,6 +15,7 @@ import edu.monash.fit2099.engine.Item;
  */
 public class Human extends ZombieActor {
 	private Behaviour behaviour = new WanderBehaviour();
+	private static int population;
 
 	/**
 	 * The default constructor creates default Humans
@@ -23,6 +24,7 @@ public class Human extends ZombieActor {
 	 */
 	public Human(String name) {
 		super(name, game.DisplayChar.HUMAN.toChar(), 50, ZombieCapability.ALIVE);
+		population += 1;
 	}
 	
 	/**
@@ -35,6 +37,7 @@ public class Human extends ZombieActor {
 	 */
 	protected Human(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints, ZombieCapability.ALIVE);
+		population += 1;
 	}
 
 	@Override
@@ -56,6 +59,11 @@ public class Human extends ZombieActor {
 			}
 		}
 		return behaviour.getAction(this, map);
+	}
+
+	@Override
+	public void updatePopulation() {
+		population -=1;
 	}
 
 }

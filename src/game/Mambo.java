@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 
-public class MamboMarie extends ZombieActor {
+public class Mambo extends ZombieActor {
 	
 	private Behaviour[] behaviours = {new WanderBehaviour()};
 	private boolean appeared = false;
@@ -16,10 +16,12 @@ public class MamboMarie extends ZombieActor {
 	private final static double APPEAR_PROBABILITY = 0.05;
 	private final static int VANISH_TURN = 31;
 	private final static int CHANTING_INTERVAL = 10;
+	private static int population;
 
-	public MamboMarie(GameMap map) {
-		super("MamboMarie", DisplayChar.MAMBOMARIE.toChar(), 50, ZombieCapability.UNDEAD);
+	public Mambo(GameMap map) {
+		super("Marie", DisplayChar.MAMBOMARIE.toChar(), 50, ZombieCapability.UNDEAD);
 		map.addActor(this, new MamboLocation(map));
+		Mambo.population += 1;
 	}
 
 	@Override
@@ -44,6 +46,11 @@ public class MamboMarie extends ZombieActor {
 			return new AppearAtMapEdgeAction();
 		}
 		return new DoNothingAction();
+	}
+
+	@Override
+	public void updatePopulation() {
+		population -=1;
 	}
 	
 }

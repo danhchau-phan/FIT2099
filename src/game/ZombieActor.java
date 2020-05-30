@@ -24,4 +24,11 @@ public abstract class ZombieActor extends Actor {
 			list.add(new AttackAction(this));
 		return list;
 	}
+	
+	public void hurt(int points) {
+		super.hurt(points);
+		if (!isConscious()) {
+			this.updatePopulation();
+		}
+	}
 }

@@ -28,6 +28,8 @@ import edu.monash.fit2099.engine.Weapon;
  *
  */
 public class Zombie extends ZombieActor {
+	
+	private static int population;
 	private Behaviour[] behaviours = { new AttackBehaviour(ZombieCapability.ALIVE), new HuntBehaviour(Human.class, 10),
 			new WanderBehaviour() };
 	/**
@@ -49,6 +51,7 @@ public class Zombie extends ZombieActor {
 
 	public Zombie(String name) {
 		super(name, game.DisplayChar.ZOMBIE.toChar(), 100, ZombieCapability.UNDEAD);
+		Zombie.population += 1;
 	}
 
 	/**
@@ -194,5 +197,10 @@ public class Zombie extends ZombieActor {
 			}
 		} catch (IllegalArgumentException e) {
 		} 
+	}
+
+	@Override
+	public void updatePopulation() {
+		population -= 1;
 	}
 }
