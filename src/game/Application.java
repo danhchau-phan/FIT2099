@@ -143,6 +143,9 @@ public class Application {
 		
 //		// Town level Testing
 //		gameMap.at(42, 14).addItem(new Vehicle(gameMap, townMap));
-//		world.run();
+		// MamboMarie Testing
+		MamboMarie mambo = new MamboMarie(gameMap);
+		
+		world.run();
 	}
 }
