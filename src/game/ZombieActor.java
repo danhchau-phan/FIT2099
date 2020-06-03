@@ -31,4 +31,5 @@ public abstract class ZombieActor extends Actor {
 			this.updatePopulation();
 		}
 	}
+	
 }

@@ -104,13 +104,13 @@ public class Application {
 		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
 		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
 
-		
+		// add Actor to TownMap
 		for (String name : humans) {
 			do {
 				x = (int) Math.floor(Math.random() * 20.0 + 30.0);
 				y = (int) Math.floor(Math.random() * 7.0 + 5.0);
 			} 
-			while (townMap.at(x, y).containsAnActor());
+			while (!townMap.at(x, y).canActorEnter(player));
 			townMap.at(x,  y).addActor(new Human(name));	
 		}
 		
@@ -120,6 +120,7 @@ public class Application {
 		townMap.at(50, 9).addActor(new Zombie("Mortalis"));
 		townMap.at(1, 5).addActor(new Zombie("Gaaaah"));
 		townMap.at(62, 6).addActor(new Zombie("Aaargh"));
+		
 //		//Zombie picking up Weapon Testing
 //		for (x = 29; x <= 31; x++){
 //			for (y = 19; y <= 21; y++){

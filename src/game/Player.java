@@ -26,19 +26,33 @@ public class Player extends Human {
 		super(name, displayChar, hitPoints);
 	}
 	
-//	private boolean loseGame() {
-//		if (Human.getPopulation() == 1)
-//			return true;
-//		return false;
-//	}
-//	
-//	private boolean winGame() {
-//		if (Zombie.getPopulation() == 0 && Mambo.getPopulation() == 0)
-//			return true;
-//		return false;
-//	}
+	private enum Result {
+    	WIN ("Player wins"),
+    	LOSE ("Player loses");
+    	
+    	private final String result;
+    	
+    	private Result(String res) {
+    		this.result = res;
+    	}
+    	
+    	public String toString() {
+    		return this.result;
+    	}
+    }
+	
+	private <T extends ZombieActor> Result gameResult() {
+		if (Human.getPopulation() == 1)
+			return Result.LOSE;
+		if (Zombie.getPopulation() == 0 && Mambo.getPopulation() == 0)
+			return Result.WIN;
+		return null;
+	}
+	
     @Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+    	if (gameResult() != null)
+    		return new EndGame(gameResult());
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
@@ -88,21 +102,22 @@ public class Player extends Human {
     
     private class EndGame extends Action {
     	
-    	String result;
-    	public EndGame(String result) {
+    	Result result;
+    	public EndGame(Result result) {
     		super();
     		this.result = result;
     	}
+    	
     	@Override
     	public String execute(Actor actor, GameMap map) {
     		map.removeActor(actor);
-    		return actor + " " + result;
+    		return this.result.toString();
     	}
-
-    	@Override
-    	public String menuDescription(Actor actor) {
-    		return null;
-    	}
+    	
+		@Override
+		public String menuDescription(Actor actor) {
+			return null;
+		}
     	
     }
 }
