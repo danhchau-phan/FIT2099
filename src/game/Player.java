@@ -13,6 +13,7 @@ public class Player extends Human {
 
 	private Menu menu = new Menu();
 	private Behaviour[] behaviours = {new AttackBehaviour(ZombieCapability.ALIVE)};
+	private boolean firstTurn;
 
 
 	/**
@@ -41,7 +42,7 @@ public class Player extends Human {
     	}
     }
 	
-	private <T extends ZombieActor> Result gameResult() {
+	private Result gameResult() {
 		if (Human.getPopulation() == 1)
 			return Result.LOSE;
 		if (Zombie.getPopulation() == 0 && Mambo.getPopulation() == 0)

@@ -48,7 +48,7 @@ public class Application {
 		"................................................................................");
 		GameMap gameMap = new GameMap(groundFactory, map );
 		
-		List<String> town = Arrays.asList(
+		map = Arrays.asList(
 		"####################################################################################",
 		"#..................................................................................#",
 		"#..................................................................................#",
@@ -69,7 +69,7 @@ public class Application {
 		"#..................................................................................#",
 		"#..................................................................................#",
 		"####################################################################################");
-		TownMap townMap = new TownMap(groundFactory, town);
+		GameMap townMap = new GameMap(groundFactory, map);
 		world.addGameMap(gameMap);
 		world.addGameMap(townMap);
 		
@@ -143,7 +143,7 @@ public class Application {
 //		}
 		
 //		// Town level Testing
-//		gameMap.at(42, 14).addItem(new Vehicle(gameMap, townMap));
+		gameMap.at(42, 14).addItem(new Vehicle(gameMap, townMap));
 		// MamboMarie Testing
 		Mambo mambo = new Mambo(gameMap);
 		

@@ -20,8 +20,8 @@ public class ChangeMapAction extends Action {
 		NumberRange yRange = destination.getYRange();
 		int x, y;
 		do {
-			x = (int) Math.floor(Math.random() * (xRange.max() - xRange.min()+2) + xRange.min());
-			y = (int) Math.floor(Math.random() * (yRange.max() - yRange.min()+2) + yRange.min());
+			x = (int) Math.floor(Math.random() * (xRange.max() - xRange.min()-2) + xRange.min());
+			y = (int) Math.floor(Math.random() * (yRange.max() - yRange.min()-2) + yRange.min());
 		} while (destination.at(x,y).containsAnActor());
 		map.moveActor(actor, destination.at(x,y));
 		destination.at(x,y).addItem(new Vehicle(destination, start));
@@ -30,10 +30,7 @@ public class ChangeMapAction extends Action {
 
 	@Override
 	public String menuDescription(Actor actor) {
-		if (this.destination instanceof TownMap)
-			return actor + " moves to Town";
-		else
-			return actor + " moves out of Town";
+		return actor + " changes map";
 	}
 	
 }
