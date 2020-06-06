@@ -86,7 +86,7 @@ public class Player extends Human {
 		return menu.showMenu(this, actions, display);
 	}
     
-    private class QuitGameAction extends Action{
+    class QuitGameAction extends Action{
 
     	@Override
     	public String execute(Actor actor, GameMap map) {
@@ -101,7 +101,7 @@ public class Player extends Human {
     	}
     }
     
-    private class EndGame extends Action {
+    class EndGame extends Action {
     	
     	Result result;
     	public EndGame(Result result) {
