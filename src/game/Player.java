@@ -13,7 +13,6 @@ public class Player extends Human {
 
 	private Menu menu = new Menu();
 	private Behaviour[] behaviours = {new AttackBehaviour(ZombieCapability.ALIVE)};
-	private boolean firstTurn;
 
 
 	/**
