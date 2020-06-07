@@ -57,9 +57,10 @@ public class Player extends Human {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
-		if (this.getInventory().size() != 0){
-            actions.add(new CraftWeaponAction(this));
-        }
+//		if (this.getInventory().size() != 0){
+//            actions.add(new CraftWeaponAction(this));
+//        }
+		actions.add(new CraftWeaponAction(this));
 
 		// Checking if Food is available around Player
 		List<Exit> exits = new ArrayList<Exit>(map.locationOf(this).getExits());

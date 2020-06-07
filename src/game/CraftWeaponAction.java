@@ -34,30 +34,34 @@ public class CraftWeaponAction extends Action{
         String result = null;
 
         if (target.getInventory().size() == 0){
-            result = "Required materials not available";
+            result = "Inventory is empty";
         }
 
-        for (int i = 0; i < actor.getInventory().size(); i++){
-            if (actor.getInventory().get(i).getDisplayChar() == DisplayChar.ZOMBIEARM.toChar()){
-                Item newItem = actor.getInventory().get(i);
-                actor.removeItemFromInventory(newItem);
-                item = (new ZombieClub());
-                actor.addItemToInventory(item);
-                return "Player crafted Zombie Club";
+        else {
+            for (int i = 0; i < actor.getInventory().size(); i++){
+                if (actor.getInventory().get(i).getDisplayChar() == DisplayChar.ZOMBIEARM.toChar()){
+                    Item newItem = actor.getInventory().get(i);
+                    actor.removeItemFromInventory(newItem);
+                    item = (new ZombieClub());
+                    actor.addItemToInventory(item);
+                    return "Player crafted Zombie Club";
+                }
+
+
+                else if (actor.getInventory().get(i).getDisplayChar() == DisplayChar.ZOMBIELEG.toChar()){
+                    Item newItem = actor.getInventory().get(i);
+                    actor.removeItemFromInventory(newItem);
+                    item = (new ZombieMaze());
+                    actor.addItemToInventory(item);
+                    return "Player crafted Zombie Maze";
+                }
+
+                else
+                    result = "Correct items not present";
             }
-
-
-            else if (actor.getInventory().get(i).getDisplayChar() == DisplayChar.ZOMBIELEG.toChar()){
-                Item newItem = actor.getInventory().get(i);
-                actor.removeItemFromInventory(newItem);
-                item = (new ZombieMaze());
-                actor.addItemToInventory(item);
-                return "Player crafted Zombie Maze";
-            }
-
-            else
-                result = "Required Materials not available";
         }
+
+
 
         return result;
     }
