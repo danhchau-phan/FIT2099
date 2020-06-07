@@ -12,6 +12,8 @@ public enum DisplayChar {
     PLANK(')'),
     PLAYER('@'),
     RIPECROP('$'),
+    SHOTGUNAMMO('s'),
+    SNIPERAMMO('x'),
     TREE('+'),
     YOUNGTREE('t'),
     GROWNTREE('T'),
