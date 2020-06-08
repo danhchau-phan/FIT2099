@@ -172,7 +172,7 @@ public class Application {
 		Mambo mambo = new Mambo(gameMap);
 
 		// Weapons testing
-//		player.addItemToInventory(new Shotgun());
+		player.addItemToInventory(new Shotgun());
 //		player.addItemToInventory(new SniperRifle());
 
 		world.run();
