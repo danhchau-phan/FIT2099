@@ -23,6 +23,11 @@ public class ShootingAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        if (weapon.getDisplayChar() == DisplayChar.SHOTGUN.toChar()){
+            return "Fire Shotgun";
+        }
+
+        else return "Fire Sniper Rifle";
+
     }
 }
