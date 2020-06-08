@@ -164,13 +164,17 @@ public class Application {
 //			}
 //		}
 
-		// ASSIGNMENT 3
 
+		// ASSIGNMENT 3
 //		// Town level Testing
 		gameMap.at(42, 14).addItem(new Vehicle(gameMap, townMap));
 		// MamboMarie Testing
 		Mambo mambo = new Mambo(gameMap);
-		
+
+		// Weapons testing
+//		player.addItemToInventory(new Shotgun());
+//		player.addItemToInventory(new SniperRifle());
+
 		world.run();
 	}
 }

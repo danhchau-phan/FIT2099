@@ -76,14 +76,18 @@ public class Player extends Human {
         // Enables user to craft weapons
         actions.add(new CraftWeaponAction(this));
 
-		// Enables user to quit the game
-		actions.add(new QuitGameAction());
-
 		// Check if player has a shotgun or sniper rifle in their inventory
-        for (int i = 0; i < this.getInventory().size(); i++){
-            if (this.getInventory().get(i).getDisplayChar() == DisplayChar.SHOTGUN.toChar()){
-                actions.add(new ShootingAction(this.getInventory().get(i)))
+        for (int i = 0; i < this.getInventory().size(); i++) {
+            if (this.getInventory().get(i).getDisplayChar() == DisplayChar.SHOTGUN.toChar()) {
+                actions.add(new ShootingAction(this, this.getInventory().get(i)));
+            } else if (this.getInventory().get(i).getDisplayChar() == DisplayChar.SNIPER.toChar()) {
+                actions.add(new ShootingAction(this, this.getInventory().get(i)));
             }
+        }
+
+        // Enables user to quit the game
+        actions.add(new QuitGameAction());
+
         // Handle multi-turn Actions
         if (lastAction.getNextAction() != null)
             return lastAction.getNextAction();
