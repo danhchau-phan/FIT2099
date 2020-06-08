@@ -12,10 +12,8 @@ import java.util.List;
 public class Player extends Human {
 
 	private Menu menu = new Menu();
-	private Behaviour[] behaviours = {new AttackBehaviour(ZombieCapability.ALIVE)};
 
-
-	/**
+    /**
 	 * Constructor.
 	 *
 	 * @param name        Name to call the player in the UI
@@ -53,14 +51,6 @@ public class Player extends Human {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
     	if (gameResult() != null)
     		return new EndGame(gameResult());
-		// Handle multi-turn Actions
-		if (lastAction.getNextAction() != null)
-			return lastAction.getNextAction();
-
-//		if (this.getInventory().size() != 0){
-//            actions.add(new CraftWeaponAction(this));
-//        }
-		actions.add(new CraftWeaponAction(this));
 
 		// Checking if Food is available around Player
 		List<Exit> exits = new ArrayList<Exit>(map.locationOf(this).getExits());
@@ -82,7 +72,21 @@ public class Player extends Human {
 				}
 			}
 		}
+
+        // Enables user to craft weapons
+        actions.add(new CraftWeaponAction(this));
+
+		// Enables user to quit the game
 		actions.add(new QuitGameAction());
+
+		// Check if player has a shotgun or sniper rifle in their inventory
+        for (int i = 0; i < this.getInventory().size(); i++){
+            if (this.getInventory().get(i).getDisplayChar() == DisplayChar.SHOTGUN.toChar()){
+                actions.add(new ShootingAction(this.getInventory().get(i)))
+            }
+        // Handle multi-turn Actions
+        if (lastAction.getNextAction() != null)
+            return lastAction.getNextAction();
 		return menu.showMenu(this, actions, display);
 	}
     
