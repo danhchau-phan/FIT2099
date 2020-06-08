@@ -10,4 +10,8 @@ public interface ItemInterface {
 		return 0;
 	}
 
+	default int getDamage(){
+		return 0;
+	}
+
 }
