@@ -17,31 +17,39 @@ public class ShotgunSubMenu {
         display.println("7. West");
 
         int choice = display.readChar();
+        int direction = 0;
+
         switch (choice){
 
-            case 1:
-                return 1;
+            case '1':
+                direction = 1;
+                break;
 
-            case 2:
-                return 2;
+            case '2':
+                direction = 2;
+                break;
 
-            case 3:
-                return 3;
+            case '3':
+                direction = 3;
+                break;
 
-            case 4:
-                return 4;
+            case '4':
+                direction = 4;
+                break;
 
-            case 5:
-                return 5;
+            case '5':
+                direction = 5;
+                break;
 
-            case 6:
-                return 6;
+            case '6':
+                direction = 6;
+                break;
 
-            case 7:
-                return 7;
-
+            case '7':
+                direction = 7;
+                break;
         }
 
-        return 0;
+        return direction;
     }
 }

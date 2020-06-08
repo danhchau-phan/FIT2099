@@ -19,6 +19,7 @@ public class ShotgunShootingAction extends Action {
     public String execute(Actor actor, GameMap map) {
 
         int direction = menu.showMenu();
+        int ponz = 2;
         return null;
     }
 

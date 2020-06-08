@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f7780e3-8434-4bb5-8171-77ebf4927977" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/ShootingAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/ShotgunShootingAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/ShotgunShootingAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/ShotgunShootingAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/ShotgunSubMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/ShotgunSubMenu.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,23 +27,23 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="121" />
+          <entry key="java" value="122" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="121" />
+          <entry key="JAVA" value="122" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="22" />
-          <entry key="java" value="2860" />
+          <entry key="java" value="3059" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2860" />
+          <entry key="JAVA" value="3059" />
           <entry key="PLAIN_TEXT" value="22" />
         </counts>
       </usages-collector>
@@ -53,10 +51,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="766">
+            <state relative-caret-position="1630">
               <caret line="180" lean-forward="true" selection-start-line="180" selection-end-line="180" />
             </state>
           </provider>
@@ -71,25 +69,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game/ShotgunShootingAction.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/game/ShotgunSubMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#302#303#0" expanded="true" />
-                <element signature="e#328#329#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="270">
+              <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game/ShotgunSubMenu.java">
+        <entry file="file://$PROJECT_DIR$/game/ShotgunShootingAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+            <state relative-caret-position="324">
+              <caret line="20" column="40" lean-forward="true" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -136,8 +132,8 @@
         <option value="$PROJECT_DIR$/edu/monash/fit2099/interfaces/ItemInterface.java" />
         <option value="$PROJECT_DIR$/game/Player.java" />
         <option value="$PROJECT_DIR$/game/Application.java" />
-        <option value="$PROJECT_DIR$/game/ShotgunSubMenu.java" />
         <option value="$PROJECT_DIR$/game/ShotgunShootingAction.java" />
+        <option value="$PROJECT_DIR$/game/ShotgunSubMenu.java" />
       </list>
     </option>
   </component>
@@ -198,7 +194,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="log&#9;ACTION&#9;Log.KeymapGroup" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1591611989929" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1591612640548" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -249,7 +245,7 @@
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17270789" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17270789" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -259,7 +255,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.8308026" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.40567377" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.40563992" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -279,6 +275,18 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/game/ShotgunShootingAction.java</url>
+          <line>20</line>
+          <properties />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/util/Iterator.java">
@@ -647,13 +655,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/edu/monash/fit2099/engine/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
@@ -671,29 +672,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/game/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1630">
+          <caret line="180" lean-forward="true" selection-start-line="180" selection-end-line="180" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/game/ShotgunShootingAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+        <state relative-caret-position="324">
+          <caret line="20" column="40" lean-forward="true" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#302#303#0" expanded="true" />
-            <element signature="e#328#329#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game/ShotgunSubMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="766">
-          <caret line="180" lean-forward="true" selection-start-line="180" selection-end-line="180" />
+        <state relative-caret-position="270">
+          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
         </state>
       </provider>
     </entry>
