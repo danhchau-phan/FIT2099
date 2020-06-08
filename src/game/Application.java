@@ -86,7 +86,7 @@ public class Application {
 		int x, y;
 		for (String name : humans) {
 			do {
-				x = (int) Math.floor(Math.random() * 20.0 + 30.0); //30
+				x = (int) Math.floor(Math.random() * 20.0 + 30.0);
 				y = (int) Math.floor(Math.random() * 7.0 + 5.0);
 			} 
 			while (gameMap.at(x, y).containsAnActor());
@@ -97,7 +97,7 @@ public class Application {
         gameMap.at(39,10).addActor(new Farmer("George"));
         gameMap.at(47,12).addActor(new Farmer("July"));
 
-		// place a simple weapon
+		// Place a simple weapon
 		gameMap.at(74, 20).addItem(new Plank());
 
 		// FIXME: Add more zombies!
@@ -108,7 +108,7 @@ public class Application {
 		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
 		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
 
-		// add Actor to TownMap
+		// Place some random humans to town map
 		for (String name : humans) {
 			do {
 				x = (int) Math.floor(Math.random() * 20.0 + 45.0);
@@ -117,7 +117,8 @@ public class Application {
 			while (!townMap.at(x, y).canActorEnter(player));
 			townMap.at(x,  y).addActor(new Human(name));	
 		}
-		
+
+		// Add Zombies to town map
 		townMap.at(30, 10).addActor(new Zombie("Groan"));
 		townMap.at(30,  9).addActor(new Zombie("Boo"));
 		townMap.at(10,  2).addActor(new Zombie("Uuuurgh"));
@@ -125,7 +126,7 @@ public class Application {
 		townMap.at(1, 5).addActor(new Zombie("Gaaaah"));
 		townMap.at(12, 10).addActor(new Zombie("Aaargh"));
 
-		// Adding ammo to compound and town maps.
+		// Add shotgun and sniper ammo to compound and town maps.
 		gameMap.at(37, 3).addItem(new ShotgunAmmo());
 		gameMap.at(3, 3).addItem(new ShotgunAmmo());
 		gameMap.at(67, 24).addItem(new ShotgunAmmo());
@@ -139,6 +140,9 @@ public class Application {
 		townMap.at(52, 5).addItem(new SniperAmmo());
 
 
+		// TESTING
+
+		// ASSIGNMENT 2
 //		//Zombie picking up Weapon Testing
 //		for (x = 29; x <= 31; x++){
 //			for (y = 19; y <= 21; y++){
@@ -159,7 +163,9 @@ public class Application {
 //				gameMap.at(x,y).setGround(new Crop());
 //			}
 //		}
-		
+
+		// ASSIGNMENT 3
+
 //		// Town level Testing
 		gameMap.at(42, 14).addItem(new Vehicle(gameMap, townMap));
 		// MamboMarie Testing

@@ -10,6 +10,6 @@ import edu.monash.fit2099.engine.WeaponItem;
 public class ZombieMaze extends WeaponItem {
 
     public ZombieMaze() {
-        super("Zombie Maze", DisplayChar.ZOMBIEMAZE.toChar(), 50, "sliced");
+        super("Zombie Maze", DisplayChar.ZOMBIEMAZE.toChar(), 40, "sliced");
     }
 }
