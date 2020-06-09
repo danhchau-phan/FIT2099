@@ -226,6 +226,7 @@ public class ShotgunShootingAction extends Action {
             }
         }
 
+        // For NORTH EAST direction
         if (direction == 2){
             int[] xRange = new int[4];
             int[] yRange = new int[4];
@@ -270,6 +271,7 @@ public class ShotgunShootingAction extends Action {
             }
         }
 
+        // For SOUTH EAST direction
         if (direction == 4){
             int[] xRange = new int[4];
             int[] yRange = new int[4];
@@ -314,6 +316,7 @@ public class ShotgunShootingAction extends Action {
             }
         }
 
+        // For SOUTH WEST direction
         if (direction == 6){
             int[] xRange = new int[4];
             int[] yRange = new int[4];
@@ -358,6 +361,7 @@ public class ShotgunShootingAction extends Action {
             }
         }
 
+        // For NORTH WEST direction
         if (direction == 8){
             int[] xRange = new int[4];
             int[] yRange = new int[4];
