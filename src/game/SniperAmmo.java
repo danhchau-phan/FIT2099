@@ -6,11 +6,10 @@ public class SniperAmmo extends PortableItem{
      * Sniper Ammo can be used to refill and fire the sniper rifle.
      *
      */
-
     private static final int ROUNDS = 5;
 
     /**
-     * Default constructor of Food
+     * Default constructor of Sniper ammo
      */
     public SniperAmmo() {
         super("Sniper Ammo", DisplayChar.SNIPERAMMO.toChar());

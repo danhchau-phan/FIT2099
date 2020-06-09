@@ -10,7 +10,7 @@ public class ShotgunAmmo extends PortableItem {
     private static final int ROUNDS = 12;
 
     /**
-     * Default constructor of Food
+     * Default constructor of Shotgun ammo
      */
     public ShotgunAmmo() {
         super("Shotgun Ammo", DisplayChar.SHOTGUNAMMO.toChar());
