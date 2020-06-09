@@ -63,37 +63,8 @@ public class Player extends Human {
 			}
 		}
 
-		// If health is low and player has food in their inventory
-		if (this.hitPoints < this.maxHitPoints){
-			for (int i = 0; i < this.getInventory().size(); i++){
-				if (this.getInventory().get(i).getDisplayChar() == DisplayChar.FOOD.toChar()){
-					Item food = this.getInventory().get(i);
-					actions.add(new EatAction(this,food));
-				}
-			}
-		}
-
         // Enables user to craft weapons
         actions.add(new CraftWeaponAction(this));
-
-		// Check if player has a shotgun or sniper rifle in their inventory
-        for (int i = 0; i < this.getInventory().size(); i++) {
-            if (this.getInventory().get(i).getDisplayChar() == DisplayChar.SHOTGUN.toChar()) {
-                // If the weapon is empty, player is given the choice of reloading
-                if (this.getInventory().get(i).getClipSize() == 0){
-                    actions.add(new ReloadAction(this.getInventory().get(i), this.getInventory()));
-                }
-                Weapon weapon = this.getInventory().get(i).asWeapon();
-                actions.add(new ShotgunShootingAction(map.locationOf(this), weapon));
-            } else if (this.getInventory().get(i).getDisplayChar() == DisplayChar.SNIPER.toChar()) {
-                // If the weapon is empty, player is given the choice of reloading
-                if (this.getInventory().get(i).getClipSize() == 0){
-                    actions.add(new ReloadAction(this.getInventory().get(i), this.getInventory()));
-                }
-                Weapon weapon = this.getInventory().get(i).asWeapon();
-                actions.add(new ShotgunShootingAction(map.locationOf(this), weapon));
-            }
-        }
 
         // Enables user to quit the game
         actions.add(new QuitGameAction());

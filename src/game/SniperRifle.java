@@ -1,5 +1,9 @@
 package game;
 
+import java.util.Arrays;
+import java.util.List;
+
+import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.WeaponItem;
 
 
@@ -39,5 +43,12 @@ public class SniperRifle extends WeaponItem {
     public void reload(int rounds){
         clipSize += rounds;
     }
-
+    
+    public List<Action> getAllowableActions() {
+    	if (clipSize == 0) {
+    		return Arrays.asList(new ReloadAction(this), new ShotgunShootingAction(this));
+    	}
+		return Arrays.asList(new ShotgunShootingAction(this));
+    	
+    }
 }

@@ -19,4 +19,6 @@ public interface ItemInterface {
 	default int getRounds(){
 		return 0;
 	}
+	
+	default void fire() {}
 }

@@ -15,7 +15,7 @@ public class ShotgunShootingAction extends Action {
      * menu        : Shotgun sub menu for actor to choose the direction to fire.
      */
     private Location location;
-    private Shotgun weapon;
+    private WeaponItem weapon;
     private static final double PROBABILITY = 0.75;
     private ShotgunSubMenu menu = new ShotgunSubMenu();
 
@@ -24,9 +24,8 @@ public class ShotgunShootingAction extends Action {
      * @param location location of the actor (player)
      * @param weapon weapon used
      */
-    public ShotgunShootingAction(Location location, Weapon weapon) {
-        this.location = location;
-        this.weapon = (Shotgun) weapon;
+    public ShotgunShootingAction(WeaponItem weapon) {
+        this.weapon = weapon;
     }
 
     /**
@@ -39,7 +38,7 @@ public class ShotgunShootingAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-
+    	location = map.locationOf(actor);
         int direction = menu.showMenu();
         int x = location.x();
         int y = location.y();

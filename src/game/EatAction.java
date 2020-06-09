@@ -10,7 +10,6 @@ import edu.monash.fit2099.engine.Item;
  */
 public class EatAction extends Action {
 
-    protected Actor actor;
     protected Item food;
 
     /**
@@ -18,8 +17,7 @@ public class EatAction extends Action {
      * @param actor actor
      * @param food food
      */
-    public EatAction(Actor actor, Item food) {
-        this.actor = actor;
+    public EatAction(Item food) {
         this.food = food;
     }
 

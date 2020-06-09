@@ -17,9 +17,8 @@ public class ReloadAction extends Action {
      * @param weapon weapon to be reloaded
      * @param inventory actor's inventory to find ammo
      */
-    public ReloadAction(Item weapon, List<Item> inventory) {
+    public ReloadAction(Item weapon) {
         this.weapon = weapon;
-        this.inventory = inventory;
     }
 
     /**
@@ -31,7 +30,8 @@ public class ReloadAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-
+    	inventory = actor.getInventory();
+    	
         for (Item item : inventory){
 
             if ((item.getDisplayChar() == 's' || item.getDisplayChar() == 'x') && item.getRounds() == 0){
