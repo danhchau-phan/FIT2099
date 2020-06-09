@@ -10,4 +10,5 @@ public class SniperRifle extends WeaponItem {
     public SniperRifle() {
         super("Sniper Rifle", DisplayChar.SNIPER.toChar(), DAMAGE, "SNIPED");
     }
+
 }

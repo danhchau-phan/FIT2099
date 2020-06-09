@@ -1,24 +1,42 @@
 package game;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
 
+import java.util.ArrayList;
 
+/**
+ * Special Action for shooting zombies with a shotgun.
+ */
 public class ShotgunShootingAction extends Action {
-
+    /**
+     * damage      : damage inflicted by shotgun.
+     * location    : location of actor.
+     * PROBABILITY : 75% chance of shotgun dealing damage.
+     * menu        : Shotgun sub menu for actor to choose the direction to fire.
+     */
     private int damage;
     private Location location;
     private static final double PROBABILITY = 0.75;
     private ShotgunSubMenu menu = new ShotgunSubMenu();
 
-
+    /**
+     * Default constructor for ShotgunShootingAction class
+     * @param location location of the actor (player)
+     * @param damage damage dealt by shotgun
+     */
     public ShotgunShootingAction(Location location, int damage) {
         this.location = location;
         this.damage = damage;
     }
 
+    /**
+     * Based on the directional input of the user, appropriate calculations are done to find the x and y coordinates
+     * of the attack area of the shotgun. Then appropriate attack method for that direction is implemented to
+     * hurt the actors in the area with a 75% chance of the attack being successful. If the actors is not conscious
+     * the actor is removed from the map using killTarget() method
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
 
@@ -26,6 +44,7 @@ public class ShotgunShootingAction extends Action {
         int x = location.x();
         int y = location.y();
 
+        // For north direction
         if (direction == 1){
             x -= 4;
             int[] xRange = new int[7];
@@ -36,14 +55,34 @@ public class ShotgunShootingAction extends Action {
                 xRange[i] = x;
             }
 
-            for (int i = 0; i < yRange.length; i++){
+            for (int j = 0; j < yRange.length; j++){
                 y -= 1;
-                yRange[i] = y;
+                yRange[j] = y;
             }
 
-            fireY(xRange, yRange, map);
+            ArrayList<Actor> zombies = fireYDirection(xRange, yRange, map);
+
+            if (zombies.size() != 0){
+                String output = "";
+
+                for (Actor zombie : zombies){
+                    output += System.lineSeparator() + zombie.toString() + "was shot by Shotgun for 50 damage";
+                }
+
+                for (Actor zombie : zombies){
+                    if (!zombie.isConscious()){
+                        output += killTarget(zombie, map);
+                    }
+                }
+
+                return output;
+            }
+            else {
+                return "Player missed";
+            }
         }
 
+        // For south direction
         if (direction == 5){
             x -= 4;
             int[] xRange = new int[7];
@@ -59,7 +98,31 @@ public class ShotgunShootingAction extends Action {
                 yRange[i] = y;
             }
 
-            fireY(xRange, yRange, map);
+            fireYDirection(xRange, yRange, map);
+
+
+            ArrayList<Actor> zombies = fireYDirection(xRange, yRange, map);
+
+
+            if (zombies.size() != 0){
+                String output = "";
+
+                for (Actor zombie : zombies){
+                    output += System.lineSeparator() + zombie.toString() + "was shot by Shotgun for 50 damage";
+                }
+
+                for (Actor zombie : zombies){
+                    if (!zombie.isConscious()){
+                        output += killTarget(zombie, map);
+                    }
+                }
+
+                return output;
+            }
+            else {
+                return "Player missed";
+            }
+
         }
         return null;
     }
@@ -67,29 +130,34 @@ public class ShotgunShootingAction extends Action {
     @Override
     public String menuDescription(Actor actor) {
         return "Fire Shotgun";
-
     }
 
-    public void fireY(int[] x, int[] y, GameMap map){
+    /**
+     * Used for north and south direction. Only 3 y values to iterate through.
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param map map where the actor
+     */
+    public ArrayList<Actor> fireYDirection(int[] x, int[] y, GameMap map){
 
         int start = 3;
         int end = 3;
-        int counter = -1;
         int raise = 1;
+        ArrayList<Actor> hurtActors = new ArrayList<>();
 
         for (int i = 0; i < y.length; i++){
-            counter += 2;
             start -= raise;
             end += raise;
 
             while (start <= end){
                 int xDirection = x[start];
-                map.at(xDirection, y[i]).setGround(new Crop());
-//                if (map.at(xDirection,y[i]).containsAnActor()){
-//                    if (Math.random() >= PROBABILITY){
-//                        map.at(xDirection,y[i]).getActor().hurt(damage);
-//                        }
-//                }
+                if (map.at(xDirection,y[i]).containsAnActor()){
+                    Actor target = map.at(xDirection,y[i]).getActor();
+                    if (Math.random() <= PROBABILITY){
+                        target.hurt(damage);
+                        hurtActors.add(map.at(xDirection,y[i]).getActor());
+                        }
+                }
 
                 start += 1;
 
@@ -98,5 +166,26 @@ public class ShotgunShootingAction extends Action {
             start = 3;
             end = 3;
         }
+
+        return hurtActors;
+    }
+
+    /**
+     * Method to kill a zombie, remove it from its location and drop an items in its inventory
+     * @param target zombie to be killed
+     * @param map map the actor is on
+     * @return a string output
+     */
+    public String killTarget(Actor target, GameMap map){
+
+        // Drops inventory items
+        Actions dropActions = new Actions();
+        for (Item item : target.getInventory())
+            dropActions.add(item.getDropAction());
+        for (Action drop : dropActions)
+            drop.execute(target, map);
+
+        map.removeActor(target);
+        return System.lineSeparator() + target + " is killed.";
     }
 }
