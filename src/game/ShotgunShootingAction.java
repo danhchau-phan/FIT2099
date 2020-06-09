@@ -50,7 +50,7 @@ public class ShotgunShootingAction extends Action {
         }
         weapon.fire();
 
-        // For north direction
+        // For NORTH direction
         if (direction == 1){
             x -= 4;
             int[] xRange = new int[7];
@@ -72,13 +72,13 @@ public class ShotgunShootingAction extends Action {
                 }
             }
 
-            ArrayList<Actor> zombies = fireYDirection(xRange, yRange, map); // actors that were hurt
+            ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // actors that were hurt
 
             if (zombies.size() != 0 || (zombies != null)){
                 String output = "";
 
                 for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for 50 damage";
+                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for" + weapon.damage() + " damage";
                 }
 
                 for (Actor zombie : zombies){
@@ -89,12 +89,9 @@ public class ShotgunShootingAction extends Action {
 
                 return output;
             }
-            else {
-                return "Player missed";
-            }
         }
 
-        // For south direction
+        // For SOUTH direction
         if (direction == 5){
             x -= 4;
             int[] xRange = new int[7];
@@ -116,15 +113,15 @@ public class ShotgunShootingAction extends Action {
                 }
             }
 
-            fireYDirection(xRange, yRange, map);
+            fireXYDirection(xRange, yRange, map);
 
-            ArrayList<Actor> zombies = fireYDirection(xRange, yRange, map); // Actors that were hurt
+            ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // Actors that were hurt
 
             if (zombies.size() != 0 || (zombies != null)){
                 String output = "";
 
                 for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for 50 damage";
+                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for" + weapon.damage() + " damage";
                 }
 
                 for (Actor zombie : zombies){
@@ -135,12 +132,94 @@ public class ShotgunShootingAction extends Action {
 
                 return output;
             }
-            else {
-                return "Player missed";
+        }
+
+        // For EAST direction
+        if (direction == 3){
+            int[] xRange = new int[3];
+            int[] yRange = new int[7];
+            y -= 4;
+
+            // Calculating x range
+            for (int i = 0; i < xRange.length; i++){
+                x += 1;
+                if (x >= 0 && x < 80) {
+                    xRange[i] = x;
+                }
             }
 
+            // Calculating y range
+            for (int i = 0; i < yRange.length; i++){
+                y += 1;
+                if (y >= 0 && y < 25) {
+                    yRange[i] = y;
+                }
+            }
+
+            fireXYDirection(xRange, yRange, map);
+
+            ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // Actors that were hurt
+
+            if (zombies.size() != 0 || (zombies != null)){
+                String output = "";
+
+                for (Actor zombie : zombies){
+                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for" + weapon.damage() + " damage";
+                }
+
+                for (Actor zombie : zombies){
+                    if (!zombie.isConscious()){
+                        output += killTarget(zombie, map);
+                    }
+                }
+
+                return output;
+            }
         }
-        return null;
+
+        // For WEST direction
+        if (direction == 7){
+            int[] xRange = new int[3];
+            int[] yRange = new int[7];
+            y -= 4;
+
+            // Calculating x range
+            for (int i = 0; i < xRange.length; i++){
+                x -= 1;
+                if (x >= 0 && x < 80) {
+                    xRange[i] = x;
+                }
+            }
+
+            // Calculating y range
+            for (int i = 0; i < yRange.length; i++){
+                y += 1;
+                if (y >= 0 && y < 25) {
+                    yRange[i] = y;
+                }
+            }
+
+            fireXYDirection(xRange, yRange, map);
+
+            ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // Actors that were hurt
+
+            if (zombies.size() != 0 || (zombies != null)){
+                String output = "";
+
+                for (Actor zombie : zombies){
+                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for" + weapon.damage() + " damage";
+                }
+
+                for (Actor zombie : zombies){
+                    if (!zombie.isConscious()){
+                        output += killTarget(zombie, map);
+                    }
+                }
+
+                return output;
+            }
+        }
+        return "Player missed";
     }
 
     @Override
@@ -155,30 +234,51 @@ public class ShotgunShootingAction extends Action {
      * @param y y coordinate
      * @param map map where the actor
      */
-    public ArrayList<Actor> fireYDirection(int[] x, int[] y, GameMap map){
+    public ArrayList<Actor> fireXYDirection(int[] x, int[] y, GameMap map){
 
         int start = 3;
         int end = 3;
         int raise = 1;
+        int pointer;
+        int range;
         ArrayList<Actor> hurtActors = new ArrayList<>();
 
-        for (int i = 0; i < y.length; i++){
+        // checks if area of effect is in X direction or Y direction
+        if (x.length == 3){
+            range = x.length;
+        }
+        else {
+            range = y.length;
+        }
+
+        for (int i = 0; i < range; i++){
             start -= raise;
             end += raise;
 
             while (start <= end){
-                int xDirection = x[start];
-//                map.at(xDirection, y[i]).setGround(new Crop()); // Testing
-                if (map.at(xDirection,y[i]).containsAnActor()){
-                    Actor target = map.at(xDirection,y[i]).getActor();
-                    if (Math.random() <= PROBABILITY){
-                        target.hurt(weapon.damage());
-                        hurtActors.add(map.at(xDirection,y[i]).getActor());
+                if (x.length == 3){
+                    pointer = y[start];
+//                    map.at(x[i], pointer).setGround(new Crop()); // Testing
+                    if (map.at(x[i],pointer).containsAnActor()){
+                        Actor target = map.at(x[i],pointer).getActor();
+                        if (Math.random() <= PROBABILITY){
+                            target.hurt(weapon.damage());
+                            hurtActors.add(map.at(x[i],pointer).getActor());
                         }
+                    }
                 }
-
+                else {
+                    pointer = x[start];
+//                    map.at(pointer, y[i]).setGround(new Crop()); // Testing
+                    if (map.at(pointer,y[i]).containsAnActor()){
+                        Actor target = map.at(pointer,y[i]).getActor();
+                        if (Math.random() <= PROBABILITY){
+                            target.hurt(weapon.damage());
+                            hurtActors.add(map.at(pointer,y[i]).getActor());
+                        }
+                    }
+                }
                 start += 1;
-
             }
             raise += 1;
             start = 3;
