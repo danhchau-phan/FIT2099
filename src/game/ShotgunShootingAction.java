@@ -78,7 +78,7 @@ public class ShotgunShootingAction extends Action {
                 String output = "";
 
                 for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for" + weapon.damage() + " damage";
+                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
                 }
 
                 for (Actor zombie : zombies){
@@ -88,6 +88,9 @@ public class ShotgunShootingAction extends Action {
                 }
 
                 return output;
+            }
+            else {
+                return "Player missed";
             }
         }
 
@@ -121,7 +124,7 @@ public class ShotgunShootingAction extends Action {
                 String output = "";
 
                 for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for" + weapon.damage() + " damage";
+                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
                 }
 
                 for (Actor zombie : zombies){
@@ -131,6 +134,9 @@ public class ShotgunShootingAction extends Action {
                 }
 
                 return output;
+            }
+            else {
+                return "Player missed";
             }
         }
 
@@ -164,7 +170,7 @@ public class ShotgunShootingAction extends Action {
                 String output = "";
 
                 for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for" + weapon.damage() + " damage";
+                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
                 }
 
                 for (Actor zombie : zombies){
@@ -174,6 +180,9 @@ public class ShotgunShootingAction extends Action {
                 }
 
                 return output;
+            }
+            else {
+                return "Player missed";
             }
         }
 
@@ -207,7 +216,7 @@ public class ShotgunShootingAction extends Action {
                 String output = "";
 
                 for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for" + weapon.damage() + " damage";
+                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
                 }
 
                 for (Actor zombie : zombies){
@@ -217,6 +226,9 @@ public class ShotgunShootingAction extends Action {
                 }
 
                 return output;
+            }
+            else {
+                return "Player missed";
             }
         }
         return "Player missed";
@@ -260,10 +272,12 @@ public class ShotgunShootingAction extends Action {
                     pointer = y[start];
 //                    map.at(x[i], pointer).setGround(new Crop()); // Testing
                     if (map.at(x[i],pointer).containsAnActor()){
-                        Actor target = map.at(x[i],pointer).getActor();
-                        if (Math.random() <= PROBABILITY){
-                            target.hurt(weapon.damage());
-                            hurtActors.add(map.at(x[i],pointer).getActor());
+                        if (map.at(x[i],pointer).getActor().hasCapability(ZombieCapability.UNDEAD)){
+                            Actor target = map.at(x[i],pointer).getActor();
+                            if (Math.random() <= PROBABILITY){
+                                target.hurt(weapon.damage());
+                                hurtActors.add(map.at(x[i],pointer).getActor());
+                            }
                         }
                     }
                 }
@@ -271,10 +285,12 @@ public class ShotgunShootingAction extends Action {
                     pointer = x[start];
 //                    map.at(pointer, y[i]).setGround(new Crop()); // Testing
                     if (map.at(pointer,y[i]).containsAnActor()){
-                        Actor target = map.at(pointer,y[i]).getActor();
-                        if (Math.random() <= PROBABILITY){
-                            target.hurt(weapon.damage());
-                            hurtActors.add(map.at(pointer,y[i]).getActor());
+                        if (map.at(pointer,y[i]).getActor().hasCapability(ZombieCapability.UNDEAD)){
+                            Actor target = map.at(pointer,y[i]).getActor();
+                            if (Math.random() <= PROBABILITY){
+                                target.hurt(weapon.damage());
+                                hurtActors.add(map.at(pointer,y[i]).getActor());
+                            }
                         }
                     }
                 }
