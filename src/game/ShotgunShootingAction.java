@@ -110,9 +110,7 @@ public class ShotgunShootingAction extends Action {
 
             fireYDirection(xRange, yRange, map);
 
-
             ArrayList<Actor> zombies = fireYDirection(xRange, yRange, map); // Actors that were hurt
-
 
             if (zombies.size() != 0 || (zombies != null)){
                 String output = "";
