@@ -116,8 +116,6 @@ public class ShotgunShootingAction extends Action {
                 }
             }
 
-            fireXYDirection(xRange, yRange, map);
-
             ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // Actors that were hurt
 
             if (zombies.size() != 0 || (zombies != null)){
@@ -161,8 +159,6 @@ public class ShotgunShootingAction extends Action {
                     yRange[i] = y;
                 }
             }
-
-            fireXYDirection(xRange, yRange, map);
 
             ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // Actors that were hurt
 
@@ -208,8 +204,6 @@ public class ShotgunShootingAction extends Action {
                 }
             }
 
-            fireXYDirection(xRange, yRange, map);
-
             ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // Actors that were hurt
 
             if (zombies.size() != 0 || (zombies != null)){
@@ -231,7 +225,184 @@ public class ShotgunShootingAction extends Action {
                 return "Player missed";
             }
         }
+
+        if (direction == 2){
+            int[] xRange = new int[4];
+            int[] yRange = new int[4];
+            x -= 1;
+            y += 1;
+
+            // Calculating x range
+            for (int i = 0; i < xRange.length; i++){
+                x += 1;
+                if (x >= 0 && x < 80) {
+                    xRange[i] = x;
+                }
+            }
+
+            // Calculating y range
+            for (int i = 0; i < yRange.length; i++){
+                y -= 1;
+                if (y >= 0 && y < 25) {
+                    yRange[i] = y;
+                }
+            }
+
+            ArrayList<Actor> zombies = fireCardinalDirection(xRange, yRange, map); // Actors that were hurt
+
+            if (zombies.size() != 0 || (zombies != null)){
+                String output = "";
+
+                for (Actor zombie : zombies){
+                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
+                }
+
+                for (Actor zombie : zombies){
+                    if (!zombie.isConscious()){
+                        output += killTarget(zombie, map);
+                    }
+                }
+
+                return output;
+            }
+            else {
+                return "Player missed";
+            }
+        }
+
+        if (direction == 4){
+            int[] xRange = new int[4];
+            int[] yRange = new int[4];
+            x -= 1;
+            y -= 1;
+
+            // Calculating x range
+            for (int i = 0; i < xRange.length; i++){
+                x += 1;
+                if (x >= 0 && x < 80) {
+                    xRange[i] = x;
+                }
+            }
+
+            // Calculating y range
+            for (int i = 0; i < yRange.length; i++){
+                y += 1;
+                if (y >= 0 && y < 25) {
+                    yRange[i] = y;
+                }
+            }
+
+            ArrayList<Actor> zombies = fireCardinalDirection(xRange, yRange, map); // Actors that were hurt
+
+            if (zombies.size() != 0 || (zombies != null)){
+                String output = "";
+
+                for (Actor zombie : zombies){
+                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
+                }
+
+                for (Actor zombie : zombies){
+                    if (!zombie.isConscious()){
+                        output += killTarget(zombie, map);
+                    }
+                }
+
+                return output;
+            }
+            else {
+                return "Player missed";
+            }
+        }
+
+        if (direction == 6){
+            int[] xRange = new int[4];
+            int[] yRange = new int[4];
+            x += 1;
+            y -= 1;
+
+            // Calculating x range
+            for (int i = 0; i < xRange.length; i++){
+                x -= 1;
+                if (x >= 0 && x < 80) {
+                    xRange[i] = x;
+                }
+            }
+
+            // Calculating y range
+            for (int i = 0; i < yRange.length; i++){
+                y += 1;
+                if (y >= 0 && y < 25) {
+                    yRange[i] = y;
+                }
+            }
+
+            ArrayList<Actor> zombies = fireCardinalDirection(xRange, yRange, map); // Actors that were hurt
+
+            if (zombies.size() != 0 || (zombies != null)){
+                String output = "";
+
+                for (Actor zombie : zombies){
+                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
+                }
+
+                for (Actor zombie : zombies){
+                    if (!zombie.isConscious()){
+                        output += killTarget(zombie, map);
+                    }
+                }
+
+                return output;
+            }
+            else {
+                return "Player missed";
+            }
+        }
+
+        if (direction == 8){
+            int[] xRange = new int[4];
+            int[] yRange = new int[4];
+            x += 1;
+            y += 1;
+
+            // Calculating x range
+            for (int i = 0; i < xRange.length; i++){
+                x -= 1;
+                if (x >= 0 && x < 80) {
+                    xRange[i] = x;
+                }
+            }
+
+            // Calculating y range
+            for (int i = 0; i < yRange.length; i++){
+                y -= 1;
+                if (y >= 0 && y < 25) {
+                    yRange[i] = y;
+                }
+            }
+
+            ArrayList<Actor> zombies = fireCardinalDirection(xRange, yRange, map); // Actors that were hurt
+
+            if (zombies.size() != 0 || (zombies != null)){
+                String output = "";
+
+                for (Actor zombie : zombies){
+                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
+                }
+
+                for (Actor zombie : zombies){
+                    if (!zombie.isConscious()){
+                        output += killTarget(zombie, map);
+                    }
+                }
+
+                return output;
+            }
+            else {
+                return "Player missed";
+            }
+        }
         return "Player missed";
+
     }
 
     @Override
@@ -276,7 +447,7 @@ public class ShotgunShootingAction extends Action {
                             Actor target = map.at(x[i],pointer).getActor();
                             if (Math.random() <= PROBABILITY){
                                 target.hurt(weapon.damage());
-                                hurtActors.add(map.at(x[i],pointer).getActor());
+                                hurtActors.add(target);
                             }
                         }
                     }
@@ -289,7 +460,7 @@ public class ShotgunShootingAction extends Action {
                             Actor target = map.at(pointer,y[i]).getActor();
                             if (Math.random() <= PROBABILITY){
                                 target.hurt(weapon.damage());
-                                hurtActors.add(map.at(pointer,y[i]).getActor());
+                                hurtActors.add(target);
                             }
                         }
                     }
@@ -304,6 +475,26 @@ public class ShotgunShootingAction extends Action {
         return hurtActors;
     }
 
+    public ArrayList<Actor> fireCardinalDirection(int[] x, int[] y, GameMap map){
+        ArrayList<Actor> hurtActors = new ArrayList<>();
+
+        for (int xValue : x){
+            for (int yValue : y){
+//                map.at(xValue,yValue).setGround(new Crop()); / Testing
+                if (map.at(xValue,yValue).containsAnActor()){
+                    if (map.at(xValue,yValue).getActor().hasCapability(ZombieCapability.UNDEAD)){
+                        Actor target = map.at(xValue,yValue).getActor();
+                        if (Math.random() <= PROBABILITY){
+                            target.hurt(weapon.damage());
+                            hurtActors.add(target);
+                        }
+                    }
+                }
+            }
+        }
+
+        return hurtActors;
+    }
     /**
      * Method to kill a zombie, remove it from its location and drop an items in its inventory.
      * @param target zombie to be killed

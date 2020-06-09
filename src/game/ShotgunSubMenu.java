@@ -15,6 +15,7 @@ public class ShotgunSubMenu {
         display.println("5. South");
         display.println("6. South West");
         display.println("7. West");
+        display.println("8. North West");
 
         int choice = display.readChar();
         int direction = 0;
@@ -47,6 +48,10 @@ public class ShotgunSubMenu {
 
             case '7':
                 direction = 7;
+                break;
+
+            case '8':
+                direction = 8;
                 break;
         }
 
