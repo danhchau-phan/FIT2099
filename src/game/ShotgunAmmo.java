@@ -24,12 +24,4 @@ public class ShotgunAmmo extends PortableItem {
     public int getRounds() {
         return rounds;
     }
-
-    /**
-     * When the ammo is used, this method sets the rounds to 0. Prevents clip being reused.
-     */
-    @Override
-    public void emptyClip() {
-        rounds = 0;
-    }
 }
