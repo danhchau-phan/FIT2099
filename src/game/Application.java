@@ -176,7 +176,6 @@ public class Application {
 		player.addItemToInventory(new ShotgunAmmo());
 //		player.addItemToInventory(new SniperRifle());
 //		player.addItemToInventory(new SniperRifeAmmo());
-
 		world.run();
 	}
 }

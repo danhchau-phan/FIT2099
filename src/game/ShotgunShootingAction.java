@@ -59,13 +59,17 @@ public class ShotgunShootingAction extends Action {
             // calculating x range
             for (int i = 0; i < xRange.length; i++){
                 x += 1;
-                xRange[i] = x;
+                if (x >= 0 && x < 80) {
+                    xRange[i] = x;
+                }
             }
 
             // calculating y range
             for (int j = 0; j < yRange.length; j++){
                 y -= 1;
-                yRange[j] = y;
+                if (y >= 0 && y < 25) {
+                    yRange[j] = y;
+                }
             }
 
             ArrayList<Actor> zombies = fireYDirection(xRange, yRange, map); // actors that were hurt
@@ -99,13 +103,17 @@ public class ShotgunShootingAction extends Action {
             // Calculating x range
             for (int i = 0; i < xRange.length; i++){
                 x += 1;
-                xRange[i] = x;
+                if (x >= 0 && x < 80) {
+                    xRange[i] = x;
+                }
             }
 
             // Calculating y range
             for (int i = 0; i < yRange.length; i++){
                 y += 1;
-                yRange[i] = y;
+                if (y >= 0 && y < 25) {
+                    yRange[i] = y;
+                }
             }
 
             fireYDirection(xRange, yRange, map);
@@ -160,6 +168,7 @@ public class ShotgunShootingAction extends Action {
 
             while (start <= end){
                 int xDirection = x[start];
+//                map.at(xDirection, y[i]).setGround(new Crop()); // Testing
                 if (map.at(xDirection,y[i]).containsAnActor()){
                     Actor target = map.at(xDirection,y[i]).getActor();
                     if (Math.random() <= PROBABILITY){

@@ -21,7 +21,7 @@ public class Mambo extends ZombieActor {
 	private static int population;
 
 	public Mambo(GameMap map) {
-		super("MamboMarie", DisplayChar.MAMBOMARIE.toChar(), 50, ZombieCapability.UNDEAD);
+		super("MamboMarie", DisplayChar.MAMBOMARIE.toChar(), 150, ZombieCapability.UNDEAD);
 		map.addActor(this, new MamboLocation(map));
 		Mambo.population += 1;
 	}

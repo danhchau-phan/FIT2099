@@ -40,11 +40,14 @@ public class ReloadAction extends Action {
 
             if (item.getDisplayChar() == 's'){
                 weapon.reload(item.getRounds());
+                item.getDropAction().execute(actor, map);
+                map.at(map.locationOf(actor).x(),map.locationOf(actor).y()).removeItem(item);
                 item.emptyClip();
                 return weapon.toString() + " reloaded with 12 rounds";
             }
             else if(item.getDisplayChar() == 'x'){
                 weapon.reload(item.getRounds());
+                map.at(map.locationOf(actor).x(),map.locationOf(actor).y()).removeItem(item);
                 item.emptyClip();
                 return weapon.toString() +  " reloaded with 12 rounds";
             }

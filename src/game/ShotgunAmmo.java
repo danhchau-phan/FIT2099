@@ -7,7 +7,7 @@ package game;
 
 public class ShotgunAmmo extends PortableItem {
 
-    private int rounds = 2;
+    private int rounds = 1;
 
     /**
      * Default constructor of Shotgun ammo

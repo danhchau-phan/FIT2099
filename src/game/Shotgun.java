@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.WeaponItem;
 
 public class Shotgun extends WeaponItem {
 
-    private static final int DAMAGE = 50;
+    private static final int DAMAGE = 40;
     private int clipSize = 0;
 
     /**
