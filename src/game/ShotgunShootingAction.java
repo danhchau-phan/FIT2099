@@ -45,6 +45,9 @@ public class ShotgunShootingAction extends Action {
         int y = location.y();
 
         // every time player fires, clip size reduces by 1
+        if (weapon.getClipSize() == 0){
+            return "No ammo!";
+        }
         weapon.fire();
 
         // For north direction
@@ -67,7 +70,7 @@ public class ShotgunShootingAction extends Action {
 
             ArrayList<Actor> zombies = fireYDirection(xRange, yRange, map); // actors that were hurt
 
-            if (zombies.size() != 0){
+            if (zombies.size() != 0 || (zombies != null)){
                 String output = "";
 
                 for (Actor zombie : zombies){
@@ -111,7 +114,7 @@ public class ShotgunShootingAction extends Action {
             ArrayList<Actor> zombies = fireYDirection(xRange, yRange, map); // Actors that were hurt
 
 
-            if (zombies.size() != 0){
+            if (zombies.size() != 0 || (zombies != null)){
                 String output = "";
 
                 for (Actor zombie : zombies){

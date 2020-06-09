@@ -131,13 +131,13 @@ public class Application {
 		gameMap.at(3, 3).addItem(new ShotgunAmmo());
 		gameMap.at(67, 24).addItem(new ShotgunAmmo());
 		gameMap.at(3, 20).addItem(new ShotgunAmmo());
-		gameMap.at(42, 24).addItem(new SniperAmmo());
-		gameMap.at(14, 16).addItem(new SniperAmmo());
+		gameMap.at(42, 24).addItem(new SniperRifeAmmo());
+		gameMap.at(14, 16).addItem(new SniperRifeAmmo());
 		townMap.at(37, 3).addItem(new ShotgunAmmo());
 		townMap.at(70, 4).addItem(new ShotgunAmmo());
 		townMap.at(67, 20).addItem(new ShotgunAmmo());
-		townMap.at(13, 20).addItem(new SniperAmmo());
-		townMap.at(52, 5).addItem(new SniperAmmo());
+		townMap.at(13, 20).addItem(new SniperRifeAmmo());
+		townMap.at(52, 5).addItem(new SniperRifeAmmo());
 
 
 		// TESTING
@@ -173,7 +173,9 @@ public class Application {
 
 		// Weapons testing
 		player.addItemToInventory(new Shotgun());
+		player.addItemToInventory(new ShotgunAmmo());
 //		player.addItemToInventory(new SniperRifle());
+//		player.addItemToInventory(new SniperRifeAmmo());
 
 		world.run();
 	}

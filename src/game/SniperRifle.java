@@ -18,6 +18,7 @@ public class SniperRifle extends WeaponItem {
     /**
      * Returns remaining ammo
      */
+    @Override
     public int getClipSize() {
         return clipSize;
     }
@@ -34,6 +35,7 @@ public class SniperRifle extends WeaponItem {
      * Reloading adds ammo to the sniper rifle clip.
      * @param rounds number of ammo added
      */
+    @Override
     public void reload(int rounds){
         clipSize += rounds;
     }

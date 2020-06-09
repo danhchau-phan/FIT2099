@@ -7,7 +7,7 @@ package game;
 
 public class ShotgunAmmo extends PortableItem {
 
-    private static final int ROUNDS = 12;
+    private int rounds = 2;
 
     /**
      * Default constructor of Shotgun ammo
@@ -20,7 +20,13 @@ public class ShotgunAmmo extends PortableItem {
      * Returns the refill amount of the ammo
      * @return number of rounds
      */
-    public static int getROUNDS() {
-        return ROUNDS;
+    @Override
+    public int getRounds() {
+        return rounds;
+    }
+
+    @Override
+    public void emptyClip() {
+        rounds = 0;
     }
 }

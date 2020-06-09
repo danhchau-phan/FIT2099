@@ -1,17 +1,17 @@
 package game;
 
-public class SniperAmmo extends PortableItem{
+public class SniperRifeAmmo extends PortableItem{
 
     /**
      * Sniper Ammo can be used to refill and fire the sniper rifle.
      *
      */
-    private static final int ROUNDS = 5;
+    private int rounds = 5;
 
     /**
      * Default constructor of Sniper ammo
      */
-    public SniperAmmo() {
+    public SniperRifeAmmo() {
         super("Sniper Ammo", DisplayChar.SNIPERAMMO.toChar());
     }
 
@@ -19,7 +19,13 @@ public class SniperAmmo extends PortableItem{
      * Returns the refill amount of the ammo
      * @return number of rounds
      */
-    public static int getROUNDS() {
-        return ROUNDS;
+    @Override
+    public int getRounds() {
+        return rounds;
+    }
+
+    @Override
+    public void emptyClip() {
+        rounds = 0;
     }
 }

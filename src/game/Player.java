@@ -79,6 +79,9 @@ public class Player extends Human {
 		// Check if player has a shotgun or sniper rifle in their inventory
         for (int i = 0; i < this.getInventory().size(); i++) {
             if (this.getInventory().get(i).getDisplayChar() == DisplayChar.SHOTGUN.toChar()) {
+                if (this.getInventory().get(i).getClipSize() == 0){
+                    actions.add(new ReloadAction(this.getInventory().get(i), this.getInventory()));
+                }
                 Weapon weapon = this.getInventory().get(i).asWeapon();
                 actions.add(new ShotgunShootingAction(map.locationOf(this), weapon));
             } else if (this.getInventory().get(i).getDisplayChar() == DisplayChar.SNIPER.toChar()) {
