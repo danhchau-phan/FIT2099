@@ -411,11 +411,11 @@ public class ShotgunShootingAction extends Action {
     }
 
     /**
-     * Used for north and south direction. Only 3 y values to iterate through.
+     * Used for north and south direction. Attack are is a triangle.
      * For a 75% chance of success, if there is a actor in the area of damage, damage is dealt.
      * @param x x coordinate
      * @param y y coordinate
-     * @param map map where the actor
+     * @param map map where the actor is
      */
     public ArrayList<Actor> fireXYDirection(int[] x, int[] y, GameMap map){
 
@@ -475,6 +475,13 @@ public class ShotgunShootingAction extends Action {
         return hurtActors;
     }
 
+    /**
+     * Used for cardinal directions (North west, North east etc...). Attack area is a square.
+     * For a 75% chance of success, if there is a actor in the area of damage, damage is dealt.
+     * @param x x coordinate of player
+     * @param y y coordinate of player
+     * @param map map where actor is
+     */
     public ArrayList<Actor> fireCardinalDirection(int[] x, int[] y, GameMap map){
         ArrayList<Actor> hurtActors = new ArrayList<>();
 
