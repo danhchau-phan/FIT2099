@@ -53,268 +53,195 @@ public class ShotgunShootingAction extends Action {
 
         // For NORTH direction
         if (direction == 1){
-            shootingXY(x,y,"n",map);
+            return shootingXY(x,y,"n",map);
         }
 
         // For SOUTH direction
         if (direction == 5){
-            shootingXY(x,y,"s",map);
+            return shootingXY(x,y,"s",map);
         }
 
         // For EAST direction
         if (direction == 3){
-            shootingXY(x,y,"e",map);
+            return shootingXY(x,y,"e",map);
         }
 
         // For WEST direction
         if (direction == 7){
-            shootingXY(x,y,"w",map);
+            return shootingXY(x,y,"w",map);
         }
 
         // For NORTH EAST direction
         if (direction == 2){
-            int[] xRange = new int[4];
-            int[] yRange = new int[4];
-            x -= 1;
-            y += 1;
-
-            // Calculating x range
-            for (int i = 0; i < xRange.length; i++){
-                x += 1;
-                if (x >= 0 && x < 80) {
-                    xRange[i] = x;
-                }
-            }
-
-            // Calculating y range
-            for (int i = 0; i < yRange.length; i++){
-                y -= 1;
-                if (y >= 0 && y < 25) {
-                    yRange[i] = y;
-                }
-            }
-
-            ArrayList<Actor> zombies = fireCardinalDirection(xRange, yRange, map); // Actors that were hurt
-
-            if (zombies.size() != 0 || (zombies != null)){
-                String output = "";
-
-                for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
-                }
-
-                for (Actor zombie : zombies){
-                    if (!zombie.isConscious()){
-                        output += killTarget(zombie, map);
-                    }
-                }
-
-                return output;
-            }
-            else {
-                return "Player missed";
-            }
+            return shootingCardinal(x,y,"ne",map);
         }
 
         // For SOUTH EAST direction
         if (direction == 4){
-            int[] xRange = new int[4];
-            int[] yRange = new int[4];
-            x -= 1;
-            y -= 1;
-
-            // Calculating x range
-            for (int i = 0; i < xRange.length; i++){
-                x += 1;
-                if (x >= 0 && x < 80) {
-                    xRange[i] = x;
-                }
-            }
-
-            // Calculating y range
-            for (int i = 0; i < yRange.length; i++){
-                y += 1;
-                if (y >= 0 && y < 25) {
-                    yRange[i] = y;
-                }
-            }
-
-            ArrayList<Actor> zombies = fireCardinalDirection(xRange, yRange, map); // Actors that were hurt
-
-            if (zombies.size() != 0 || (zombies != null)){
-                String output = "";
-
-                for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
-                }
-
-                for (Actor zombie : zombies){
-                    if (!zombie.isConscious()){
-                        output += killTarget(zombie, map);
-                    }
-                }
-
-                return output;
-            }
-            else {
-                return "Player missed";
-            }
+            return shootingCardinal(x,y,"se",map);
         }
 
         // For SOUTH WEST direction
         if (direction == 6){
-            int[] xRange = new int[4];
-            int[] yRange = new int[4];
-            x += 1;
-            y -= 1;
-
-            // Calculating x range
-            for (int i = 0; i < xRange.length; i++){
-                x -= 1;
-                if (x >= 0 && x < 80) {
-                    xRange[i] = x;
-                }
-            }
-
-            // Calculating y range
-            for (int i = 0; i < yRange.length; i++){
-                y += 1;
-                if (y >= 0 && y < 25) {
-                    yRange[i] = y;
-                }
-            }
-
-            ArrayList<Actor> zombies = fireCardinalDirection(xRange, yRange, map); // Actors that were hurt
-
-            if (zombies.size() != 0 || (zombies != null)){
-                String output = "";
-
-                for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
-                }
-
-                for (Actor zombie : zombies){
-                    if (!zombie.isConscious()){
-                        output += killTarget(zombie, map);
-                    }
-                }
-
-                return output;
-            }
-            else {
-                return "Player missed";
-            }
+            return shootingCardinal(x,y,"sw",map);
         }
 
         // For NORTH WEST direction
         if (direction == 8){
-            int[] xRange = new int[4];
-            int[] yRange = new int[4];
-            x += 1;
-            y += 1;
-
-            // Calculating x range
-            for (int i = 0; i < xRange.length; i++){
-                x -= 1;
-                if (x >= 0 && x < 80) {
-                    xRange[i] = x;
-                }
-            }
-
-            // Calculating y range
-            for (int i = 0; i < yRange.length; i++){
-                y -= 1;
-                if (y >= 0 && y < 25) {
-                    yRange[i] = y;
-                }
-            }
-
-            ArrayList<Actor> zombies = fireCardinalDirection(xRange, yRange, map); // Actors that were hurt
-
-            if (zombies.size() != 0 || (zombies != null)){
-                String output = "";
-
-                for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
-                }
-
-                for (Actor zombie : zombies){
-                    if (!zombie.isConscious()){
-                        output += killTarget(zombie, map);
-                    }
-                }
-
-                return output;
-            }
-            else {
-                return "Player missed";
-            }
+            return shootingCardinal(x,y,"nw",map);
         }
         return "Player missed";
 
     }
 
+    /**
+     * Method to execute firing action towards the four main directions; north, south, east and west. x and y positions
+     * are determined based on input direction and the range of x,y coordinates of attack are determined accordingly.
+     * Once x,y coordinates are collected, fireXYDirection method is executed, firing the shotgun.
+     * @param x player's x coordinate
+     * @param y player's y coordinate
+     * @param direction direction fired
+     * @param map map where the actor is
+     */
     private String shootingXY(int x, int y, String direction, GameMap map) {
+        // Selecting length of arrays based on direction of attack.
+        if (direction.equalsIgnoreCase("n") || direction.equalsIgnoreCase("s")){
+            x -= 4;
+            xRange = new int[7];
+            yRange = new int[3];
+        }
+        else if (direction.equalsIgnoreCase("e") || direction.equalsIgnoreCase("w")){
+            y -= 4;
+            xRange = new int[3];
+            yRange = new int[7];
+        }
 
-            // Selecting length of arrays based on direction of attack.
-            if (direction.equalsIgnoreCase("n") || direction.equalsIgnoreCase("s")){
-                x -= 4;
-                xRange = new int[7];
-                yRange = new int[3];
-            }
-            else if (direction.equalsIgnoreCase("e") || direction.equalsIgnoreCase("w")){
-                y -= 4;
-                xRange = new int[3];
-                yRange = new int[7];
-            }
-
-            // Calculating x range
-            for (int i = 0; i < xRange.length; i++){
-                if (direction.equalsIgnoreCase("w")){
-                    x -= 1;
-                }
-                else {
-                    x += 1;
-                }
-
-                if (x >= 0 && x < width) {
-                    xRange[i] = x;
-                }
-            }
-
-            // Calculating y range
-            for (int i = 0; i < yRange.length; i++){
-                if (direction.equalsIgnoreCase("n")){
-                    y -= 1;
-                }
-                else {
-                    y += 1;
-                }
-                if (y >= 0 && y < height) {
-                    yRange[i] = y;
-                }
-            }
-
-            ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // Actors that were hurt
-
-            if (zombies.size() != 0 || (zombies != null)){
-                String output = "";
-
-                for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
-                }
-
-                for (Actor zombie : zombies){
-                    if (!zombie.isConscious()){
-                        output += killTarget(zombie, map);
-                    }
-                }
-
-                return output;
+        // Calculating x range
+        for (int i = 0; i < xRange.length; i++){
+            if (direction.equalsIgnoreCase("w")){
+                x -= 1;
             }
             else {
-                return "Player missed";
+                x += 1;
             }
+
+            if (x >= 0 && x < width) {
+                xRange[i] = x;
+            }
+        }
+
+        // Calculating y range
+        for (int i = 0; i < yRange.length; i++){
+            if (direction.equalsIgnoreCase("n")){
+                y -= 1;
+            }
+            else {
+                y += 1;
+            }
+            if (y >= 0 && y < height) {
+                yRange[i] = y;
+            }
+        }
+
+        ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // Actors that were hurt
+
+        if (zombies.size() != 0 || (zombies != null)){
+            String output = "";
+
+            for (Actor zombie : zombies){
+                output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
+            }
+
+            for (Actor zombie : zombies){
+                if (!zombie.isConscious()){
+                    output += killTarget(zombie, map);
+                }
+            }
+
+            return output;
+        }
+        else {
+            return "Player missed";
+        }
+    }
+
+    /**
+     * Method to execute firing action towards the cardinal positions; north east, south east, north west and south
+     * west. x and y positions are determined based on input direction and the range of x,y coordinates of attack are
+     * determined accordingly. Once x,y coordinates are collected, fireCardinalDirection method is executed, firing the
+     * shotgun.
+     * @param x x coordinate of the player
+     * @param y y coordinate of the player
+     * @param direction direction fired
+     * @param map map where the actor is
+     */
+    private String shootingCardinal(int x, int y, String direction, GameMap map){
+        xRange = new int[4];
+        yRange = new int[4];
+
+        // Setting x position
+        if (direction.equalsIgnoreCase("ne") || direction.equalsIgnoreCase("se")){
+            x -= 1;
+        }
+        else {
+            x += 1;
+        }
+
+        // Setting y position
+        if (direction.equalsIgnoreCase("ne") || direction.equalsIgnoreCase("nw")){
+            y += 1;
+        }
+        else {
+            y -= 1;
+        }
+
+        // Calculating x range
+        for (int i = 0; i < xRange.length; i++){
+            if (direction.equalsIgnoreCase("ne") || direction.equalsIgnoreCase("se")){
+                x += 1;
+            }
+            else {
+                x -= 1;
+            }
+
+            if (x >= 0 && x < width) {
+                xRange[i] = x;
+            }
+        }
+
+        // Calculating y range
+        for (int i = 0; i < yRange.length; i++){
+            if (direction.equalsIgnoreCase("ne") || direction.equalsIgnoreCase("nw")){
+                y -= 1;
+            }
+            else {
+                y += 1;
+            }
+            if (y >= 0 && y < height) {
+                yRange[i] = y;
+            }
+        }
+
+        ArrayList<Actor> zombies = fireCardinalDirection(xRange, yRange, map); // Actors that were hurt
+
+        if (zombies.size() != 0 || (zombies != null)){
+            String output = "";
+
+            for (Actor zombie : zombies){
+                output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
+            }
+
+            for (Actor zombie : zombies){
+                if (!zombie.isConscious()){
+                    output += killTarget(zombie, map);
+                }
+            }
+
+            return output;
+        }
+        else {
+            return "Player missed";
+        }
     }
     @Override
     public String menuDescription(Actor actor) {
@@ -398,7 +325,7 @@ public class ShotgunShootingAction extends Action {
 
         for (int xValue : x){
             for (int yValue : y){
-//                map.at(xValue,yValue).setGround(new Crop()); / Testing
+//                map.at(xValue,yValue).setGround(new Crop()); // Testing
                 if (map.at(xValue,yValue).containsAnActor()){
                     if (map.at(xValue,yValue).getActor().hasCapability(ZombieCapability.UNDEAD)){
                         Actor target = map.at(xValue,yValue).getActor();
