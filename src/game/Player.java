@@ -52,10 +52,6 @@ public class Player extends Human {
 	
     @Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-
-		// Checking if Food is available around Player
-		List<Exit> exits = new ArrayList<Exit>(map.locationOf(this).getExits());
-		Collections.shuffle(exits);
 		
 		if (gameResult() != null)
     		return new EndGame(gameResult());
