@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class ShotgunShootingAction extends Action {
     /**
      * weapon      : shotgun
-     * location    : location of actor.
      * PROBABILITY : 75% chance of shotgun dealing damage.
      * menu        : Shotgun sub menu for actor to choose the direction to fire.
      * width       : X end of the map
@@ -19,7 +18,6 @@ public class ShotgunShootingAction extends Action {
      * yRange      : Y coordinates of the attack area
      * zombies     : Zombie actors that were hurt during firing
      */
-    private Location location;
     private WeaponItem weapon;
     private static final double PROBABILITY = 0.75;
     private ShotgunSubMenu menu = new ShotgunSubMenu();
@@ -41,14 +39,14 @@ public class ShotgunShootingAction extends Action {
     /**
      * Based on the directional input of the user, appropriate calculations are done to find the x and y coordinates
      * of the attack area of the shotgun. Then appropriate attack method for that direction is implemented to
-     * hurt the actors in the area with a 75% chance of the attack being successful. If the actors is not conscious
+     * hurt the actors(zombies) in the area with a 75% chance of the attack being successful. If the actors is not conscious
      * the actor is removed from the map using killTarget() method. For every shot fired, player loses 1 ammo
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-    	location = map.locationOf(actor);
+    	Location location = map.locationOf(actor);
         int direction = menu.showMenu();
         width = map.getXRange().max();
         height = map.getYRange().max();
@@ -136,7 +134,6 @@ public class ShotgunShootingAction extends Action {
             return "Player missed";
         }
     }
-
     /**
      * Method to execute firing action towards the four main directions; north, south, east and west. x and y positions
      * are determined based on input direction. Using these positions, x and y coordinate ranges are obtained and

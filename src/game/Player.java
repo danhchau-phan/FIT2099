@@ -12,6 +12,9 @@ import java.util.List;
 public class Player extends Human {
 
 	private Menu menu = new Menu();
+	private Actor target = null;
+	private int concentration = 0;
+	private boolean playerDamage = false;
 
     /**
 	 * Constructor.
@@ -38,7 +41,7 @@ public class Player extends Human {
     		return this.result;
     	}
     }
-	
+
 	private Result gameResult() {
 		if (Human.getPopulation() == 1)
 			return Result.LOSE;
@@ -59,13 +62,50 @@ public class Player extends Human {
         // Enables user to quit the game
         actions.add(new QuitGameAction());
 
+        // If player takes damage, target is lost
+        if (this.playerDamage){
+        	deleteZombieTarget();
+        	setConcentration(0);
+        	playerDamage = false;
+		}
+
         // Handle multi-turn Actions
         if (lastAction.getNextAction() != null)
             return lastAction.getNextAction();
 		return menu.showMenu(this, actions, display);
 	}
-    
-    class QuitGameAction extends Action{
+
+	@Override
+	public void setZombieTarget(Actor actor) {
+		target = actor;
+	}
+
+	@Override
+	public Actor getZombieTarget() {
+		return target;
+	}
+
+	@Override
+	public void deleteZombieTarget() {
+		target = null;
+	}
+
+	@Override
+	public void setConcentration(int aim) {
+		concentration = aim;
+	}
+
+	@Override
+	public int getConcentration() {
+		return concentration;
+	}
+
+	@Override
+	public void setPlayerDamage(boolean attack) {
+		playerDamage = attack;
+	}
+
+	class QuitGameAction extends Action{
 
     	@Override
     	public String execute(Actor actor, GameMap map) {
