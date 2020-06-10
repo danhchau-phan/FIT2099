@@ -43,10 +43,6 @@ public class ShotgunShootingAction extends Action {
         int x = location.x();
         int y = location.y();
 
-        // every time player fires, clip size reduces by 1
-        if (weapon.getClipSize() == 0){
-            return "No ammo!";
-        }
         weapon.fire();
 
         // For NORTH direction
@@ -58,7 +54,7 @@ public class ShotgunShootingAction extends Action {
             // calculating x range
             for (int i = 0; i < xRange.length; i++){
                 x += 1;
-                if (x >= 0 && x < 80) {
+                if (x >= map.getXRange().min() && x < map.getXRange().max()) {
                     xRange[i] = x;
                 }
             }
@@ -66,7 +62,7 @@ public class ShotgunShootingAction extends Action {
             // calculating y range
             for (int j = 0; j < yRange.length; j++){
                 y -= 1;
-                if (y >= 0 && y < 25) {
+                if (y >= map.getYRange().min() && y < map.getYRange().max()) {
                     yRange[j] = y;
                 }
             }
