@@ -15,8 +15,7 @@ public class CraftWeaponAction extends Action{
      * @param target the actor performing the action
      */
 
-    public CraftWeaponAction(Actor target) {
-        this.target = target;
+    public CraftWeaponAction() {
     }
 
     /**
@@ -33,33 +32,28 @@ public class CraftWeaponAction extends Action{
 
         String result = null;
 
-        if (target.getInventory().size() == 0){
-            result = "Inventory is empty";
-        }
-
-        else {
-            for (int i = 0; i < actor.getInventory().size(); i++){
-                if (actor.getInventory().get(i).getDisplayChar() == DisplayChar.ZOMBIEARM.toChar()){
-                    Item newItem = actor.getInventory().get(i);
-                    actor.removeItemFromInventory(newItem);
-                    item = (new ZombieClub());
-                    actor.addItemToInventory(item);
-                    return "Player crafted Zombie Club";
-                }
-
-
-                else if (actor.getInventory().get(i).getDisplayChar() == DisplayChar.ZOMBIELEG.toChar()){
-                    Item newItem = actor.getInventory().get(i);
-                    actor.removeItemFromInventory(newItem);
-                    item = (new ZombieMaze());
-                    actor.addItemToInventory(item);
-                    return "Player crafted Zombie Maze";
-                }
-
-                else
-                    result = "Correct items not present";
+        for (int i = 0; i < actor.getInventory().size(); i++){
+            if (actor.getInventory().get(i).getDisplayChar() == DisplayChar.ZOMBIEARM.toChar()){
+                Item newItem = actor.getInventory().get(i);
+                actor.removeItemFromInventory(newItem);
+                item = (new ZombieClub());
+                actor.addItemToInventory(item);
+                return "Player crafted Zombie Club";
             }
+
+
+            else if (actor.getInventory().get(i).getDisplayChar() == DisplayChar.ZOMBIELEG.toChar()){
+                Item newItem = actor.getInventory().get(i);
+                actor.removeItemFromInventory(newItem);
+                item = (new ZombieMaze());
+                actor.addItemToInventory(item);
+                return "Player crafted Zombie Maze";
+            }
+
+            else
+                result = "Correct items not present";
         }
+        
 
 
 

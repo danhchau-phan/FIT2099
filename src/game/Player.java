@@ -63,9 +63,6 @@ public class Player extends Human {
 			}
 		}
 
-        // Enables user to craft weapons
-        actions.add(new CraftWeaponAction(this));
-
         // Enables user to quit the game
         actions.add(new QuitGameAction());
 
