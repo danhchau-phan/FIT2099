@@ -49,20 +49,13 @@ public class Player extends Human {
 	
     @Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-    	if (gameResult() != null)
-    		return new EndGame(gameResult());
 
 		// Checking if Food is available around Player
 		List<Exit> exits = new ArrayList<Exit>(map.locationOf(this).getExits());
 		Collections.shuffle(exits);
-
-		for (Exit e: exits){
-			if (e.getDestination().getGround().getDisplayChar() == DisplayChar.RIPECROP.toChar()){
-				Location location = e.getDestination();
-				actions.add(new HarvestAction(this,location));
-			}
-		}
-
+		
+		if (gameResult() != null)
+    		return new EndGame(gameResult());
         // Enables user to quit the game
         actions.add(new QuitGameAction());
 

@@ -1,5 +1,9 @@
 package game;
 
+import java.util.Arrays;
+import java.util.List;
+
+import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 
@@ -53,7 +57,7 @@ public class Crop extends Ground {
         ripe = Math.min(ripe,MAXRIPE);
 
 
-        if (ripe == 20){
+        if (ripe == MAXRIPE){
             displayChar = DisplayChar.RIPECROP.toChar(); // new displayChar indicates ripe Crop
         }
 
@@ -68,5 +72,11 @@ public class Crop extends Ground {
         }
 
         else this.setRipe(20);
+    }
+    
+    public List<Action> getAllowableActions() {
+    	if (ripe == MAXRIPE)
+    		return Arrays.asList(new HarvestAction());
+    	return Arrays.asList();
     }
 }

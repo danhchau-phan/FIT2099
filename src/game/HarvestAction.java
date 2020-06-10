@@ -11,7 +11,6 @@ import edu.monash.fit2099.engine.Location;
 
 public class HarvestAction extends Action {
 
-    protected Actor actor;
     protected Location location;
 
     /**
@@ -20,9 +19,7 @@ public class HarvestAction extends Action {
      * @param actor actor performing the action
      * @param location location of ripe crop.
      */
-    public HarvestAction(Actor actor, Location location) {
-        this.actor = actor;
-        this.location = location;
+    public HarvestAction() {
     }
 
     /**
@@ -35,7 +32,7 @@ public class HarvestAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-
+    	location = map.locationOf(actor);
         // Harvesting
         location.setGround(new Dirt());
         actor.addItemToInventory(new Food());
