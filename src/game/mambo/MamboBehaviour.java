@@ -6,9 +6,9 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
-import game.AppearAction;
+import game.mambo.AppearAction;
 import game.Behaviour;
-import game.ChantAction;
+import game.mambo.ChantAction;
 
 public class MamboBehaviour implements Behaviour {
 	private int turns = 0;

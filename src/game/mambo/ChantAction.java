@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.NumberRange;
+import game.Zombie;
 
 class ChantAction extends Action{
 	private static final int NUM_ZOMBIES_ADDED = 5;

@@ -172,10 +172,10 @@ public class Application {
 		Mambo mambo = new Mambo(gameMap);
 
 		// Weapons testing
-//		player.addItemToInventory(new Shotgun());
-//		player.addItemToInventory(new ShotgunAmmo());
-		player.addItemToInventory(new SniperRifle());
-		player.addItemToInventory(new SniperRifeAmmo());
+		player.addItemToInventory(new Shotgun());
+		player.addItemToInventory(new ShotgunAmmo());
+//		player.addItemToInventory(new SniperRifle());
+//		player.addItemToInventory(new SniperRifeAmmo());
 		world.run();
 	}
 }

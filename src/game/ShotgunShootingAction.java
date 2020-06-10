@@ -171,7 +171,7 @@ public class ShotgunShootingAction extends Action {
         }
 
         // Calculating y range
-        for (int i = 0; i <= yRange.length; i++){
+        for (int i = 0; i < yRange.length; i++){
             if (direction.equalsIgnoreCase("n")){
                 y -= 1;
             }

@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.GameMap;
 import game.Behaviour;
 import game.DisplayChar;
 import game.Mambo;
-import game.MamboBehaviour;
+import game.mambo.MamboBehaviour;
 import game.MamboLocation;
 import game.WanderBehaviour;
 import game.ZombieActor;
