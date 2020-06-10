@@ -19,9 +19,13 @@ public class ShotgunShootingAction extends Action {
     private static final double PROBABILITY = 0.75;
     private ShotgunSubMenu menu = new ShotgunSubMenu();
 
+    private int width;
+    private int height;
+    private int[] xRange;
+    private int[] yRange;
+
     /**
      * Default constructor for ShotgunShootingAction class
-     * @param location location of the actor (player)
      * @param weapon weapon used
      */
     public ShotgunShootingAction(WeaponItem weapon) {
@@ -40,6 +44,8 @@ public class ShotgunShootingAction extends Action {
     public String execute(Actor actor, GameMap map) {
     	location = map.locationOf(actor);
         int direction = menu.showMenu();
+        width = map.getXRange().max();
+        height = map.getYRange().max();
         int x = location.x();
         int y = location.y();
 
@@ -47,178 +53,22 @@ public class ShotgunShootingAction extends Action {
 
         // For NORTH direction
         if (direction == 1){
-            x -= 4;
-            int[] xRange = new int[7];
-            int[] yRange = new int[3];
-
-            // calculating x range
-            for (int i = 0; i < xRange.length; i++){
-                x += 1;
-                if (x >= map.getXRange().min() && x < map.getXRange().max()) {
-                    xRange[i] = x;
-                }
-            }
-
-            // calculating y range
-            for (int j = 0; j < yRange.length; j++){
-                y -= 1;
-                if (y >= map.getYRange().min() && y < map.getYRange().max()) {
-                    yRange[j] = y;
-                }
-            }
-
-            ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // actors that were hurt
-
-            if (zombies.size() != 0 || (zombies != null)){
-                String output = "";
-
-                for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
-                }
-
-                for (Actor zombie : zombies){
-                    if (!zombie.isConscious()){
-                        output += killTarget(zombie, map);
-                    }
-                }
-
-                return output;
-            }
-            else {
-                return "Player missed";
-            }
+            shootingXY(x,y,"n",map);
         }
 
         // For SOUTH direction
         if (direction == 5){
-            x -= 4;
-            int[] xRange = new int[7];
-            int[] yRange = new int[3];
-
-            // Calculating x range
-            for (int i = 0; i < xRange.length; i++){
-                x += 1;
-                if (x >= 0 && x < 80) {
-                    xRange[i] = x;
-                }
-            }
-
-            // Calculating y range
-            for (int i = 0; i < yRange.length; i++){
-                y += 1;
-                if (y >= 0 && y < 25) {
-                    yRange[i] = y;
-                }
-            }
-
-            ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // Actors that were hurt
-
-            if (zombies.size() != 0 || (zombies != null)){
-                String output = "";
-
-                for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
-                }
-
-                for (Actor zombie : zombies){
-                    if (!zombie.isConscious()){
-                        output += killTarget(zombie, map);
-                    }
-                }
-
-                return output;
-            }
-            else {
-                return "Player missed";
-            }
+            shootingXY(x,y,"s",map);
         }
 
         // For EAST direction
         if (direction == 3){
-            int[] xRange = new int[3];
-            int[] yRange = new int[7];
-            y -= 4;
-
-            // Calculating x range
-            for (int i = 0; i < xRange.length; i++){
-                x += 1;
-                if (x >= 0 && x < 80) {
-                    xRange[i] = x;
-                }
-            }
-
-            // Calculating y range
-            for (int i = 0; i < yRange.length; i++){
-                y += 1;
-                if (y >= 0 && y < 25) {
-                    yRange[i] = y;
-                }
-            }
-
-            ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // Actors that were hurt
-
-            if (zombies.size() != 0 || (zombies != null)){
-                String output = "";
-
-                for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
-                }
-
-                for (Actor zombie : zombies){
-                    if (!zombie.isConscious()){
-                        output += killTarget(zombie, map);
-                    }
-                }
-
-                return output;
-            }
-            else {
-                return "Player missed";
-            }
+            shootingXY(x,y,"e",map);
         }
 
         // For WEST direction
         if (direction == 7){
-            int[] xRange = new int[3];
-            int[] yRange = new int[7];
-            y -= 4;
-
-            // Calculating x range
-            for (int i = 0; i < xRange.length; i++){
-                x -= 1;
-                if (x >= 0 && x < 80) {
-                    xRange[i] = x;
-                }
-            }
-
-            // Calculating y range
-            for (int i = 0; i < yRange.length; i++){
-                y += 1;
-                if (y >= 0 && y < 25) {
-                    yRange[i] = y;
-                }
-            }
-
-            ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // Actors that were hurt
-
-            if (zombies.size() != 0 || (zombies != null)){
-                String output = "";
-
-                for (Actor zombie : zombies){
-                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
-                }
-
-                for (Actor zombie : zombies){
-                    if (!zombie.isConscious()){
-                        output += killTarget(zombie, map);
-                    }
-                }
-
-                return output;
-            }
-            else {
-                return "Player missed";
-            }
+            shootingXY(x,y,"w",map);
         }
 
         // For NORTH EAST direction
@@ -404,6 +254,68 @@ public class ShotgunShootingAction extends Action {
 
     }
 
+    private String shootingXY(int x, int y, String direction, GameMap map) {
+
+            // Selecting length of arrays based on direction of attack.
+            if (direction.equalsIgnoreCase("n") || direction.equalsIgnoreCase("s")){
+                x -= 4;
+                xRange = new int[7];
+                yRange = new int[3];
+            }
+            else if (direction.equalsIgnoreCase("e") || direction.equalsIgnoreCase("w")){
+                y -= 4;
+                xRange = new int[3];
+                yRange = new int[7];
+            }
+
+            // Calculating x range
+            for (int i = 0; i < xRange.length; i++){
+                if (direction.equalsIgnoreCase("w")){
+                    x -= 1;
+                }
+                else {
+                    x += 1;
+                }
+
+                if (x >= 0 && x < width) {
+                    xRange[i] = x;
+                }
+            }
+
+            // Calculating y range
+            for (int i = 0; i < yRange.length; i++){
+                if (direction.equalsIgnoreCase("n")){
+                    y -= 1;
+                }
+                else {
+                    y += 1;
+                }
+                if (y >= 0 && y < height) {
+                    yRange[i] = y;
+                }
+            }
+
+            ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // Actors that were hurt
+
+            if (zombies.size() != 0 || (zombies != null)){
+                String output = "";
+
+                for (Actor zombie : zombies){
+                    output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
+                }
+
+                for (Actor zombie : zombies){
+                    if (!zombie.isConscious()){
+                        output += killTarget(zombie, map);
+                    }
+                }
+
+                return output;
+            }
+            else {
+                return "Player missed";
+            }
+    }
     @Override
     public String menuDescription(Actor actor) {
         return "Fire Shotgun";
