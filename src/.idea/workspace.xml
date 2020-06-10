@@ -37,12 +37,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="27" />
-          <entry key="java" value="12884" />
+          <entry key="java" value="13700" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="12884" />
+          <entry key="JAVA" value="13700" />
           <entry key="PLAIN_TEXT" value="27" />
         </counts>
       </usages-collector>
@@ -92,12 +92,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game/ShotgunShootingAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1810">
-              <caret line="176" selection-start-line="176" selection-end-line="176" />
+            <state relative-caret-position="723">
+              <caret line="148" column="19" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7150#7151#0" expanded="true" />
-                <element signature="e#7187#7188#0" expanded="true" />
+                <element signature="e#8698#8699#0" expanded="true" />
+                <element signature="e#8735#8736#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -196,7 +196,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="getAllo&#9;PSI&#9;JAVA://edu.monash.fit2099.engine.Actor#getAllowableActions&#10;log&#9;ACTION&#9;Log.KeymapGroup" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1591778240975" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1591779403978" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -247,7 +247,7 @@
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13113007" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13113007" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -257,7 +257,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.73752713" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.24295011" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.29609543" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -702,12 +702,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game/ShotgunShootingAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1810">
-          <caret line="176" selection-start-line="176" selection-end-line="176" />
+        <state relative-caret-position="723">
+          <caret line="148" column="19" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7150#7151#0" expanded="true" />
-            <element signature="e#7187#7188#0" expanded="true" />
+            <element signature="e#8698#8699#0" expanded="true" />
+            <element signature="e#8735#8736#0" expanded="true" />
           </folding>
         </state>
       </provider>

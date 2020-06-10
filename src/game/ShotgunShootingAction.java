@@ -13,16 +13,22 @@ public class ShotgunShootingAction extends Action {
      * location    : location of actor.
      * PROBABILITY : 75% chance of shotgun dealing damage.
      * menu        : Shotgun sub menu for actor to choose the direction to fire.
+     * width       : X end of the map
+     * height      : Y end of the map
+     * xRange      : X coordinates of the attack area
+     * yRange      : Y coordinates of the attack area
+     * zombies     : Zombie actors that were hurt during firing
      */
     private Location location;
     private WeaponItem weapon;
     private static final double PROBABILITY = 0.75;
     private ShotgunSubMenu menu = new ShotgunSubMenu();
-
     private int width;
     private int height;
     private int[] xRange;
     private int[] yRange;
+    private ArrayList<Actor> zombies;
+
 
     /**
      * Default constructor for ShotgunShootingAction class
@@ -95,9 +101,46 @@ public class ShotgunShootingAction extends Action {
     }
 
     /**
+     * Execute the firing action that actually kills or hurts zombie actors in the area of damage.
+     * @param xRange player's x coordinate
+     * @param yRange player's y coordinate
+     * @param map map actor is in
+     * @param direction 0 = XY direction, 1 = CardinalDirection
+     */
+    private String executeFiring(int[] xRange, int[] yRange, GameMap map, int direction){
+
+        // Actors that were hurt
+        if (direction == 0){
+            zombies = fireXYDirection(xRange, yRange, map);
+        }
+        else if (direction == 1){
+            zombies = fireCardinalDirection(xRange, yRange, map);
+        }
+
+        if (zombies.size() != 0 || (zombies != null)){
+            String output = "";
+
+            for (Actor zombie : zombies){
+                output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
+            }
+
+            for (Actor zombie : zombies){
+                if (!zombie.isConscious()){
+                    output += killTarget(zombie, map);
+                }
+            }
+
+            return output;
+        }
+        else {
+            return "Player missed";
+        }
+    }
+
+    /**
      * Method to execute firing action towards the four main directions; north, south, east and west. x and y positions
-     * are determined based on input direction and the range of x,y coordinates of attack are determined accordingly.
-     * Once x,y coordinates are collected, fireXYDirection method is executed, firing the shotgun.
+     * are determined based on input direction. Using these positions, x and y coordinate ranges are obtained and
+     * passed into the executeFiring() method.
      * @param x player's x coordinate
      * @param y player's y coordinate
      * @param direction direction fired
@@ -131,45 +174,25 @@ public class ShotgunShootingAction extends Action {
         }
 
         // Calculating y range
-        for (int i = 0; i < yRange.length; i++){
+        for (int i = 0; i <= yRange.length; i++){
             if (direction.equalsIgnoreCase("n")){
                 y -= 1;
             }
             else {
                 y += 1;
             }
-            if (y >= 0 && y < height) {
+            if (y >= 0 && y <= height) {
                 yRange[i] = y;
             }
         }
-
-        ArrayList<Actor> zombies = fireXYDirection(xRange, yRange, map); // Actors that were hurt
-
-        if (zombies.size() != 0 || (zombies != null)){
-            String output = "";
-
-            for (Actor zombie : zombies){
-                output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
-            }
-
-            for (Actor zombie : zombies){
-                if (!zombie.isConscious()){
-                    output += killTarget(zombie, map);
-                }
-            }
-
-            return output;
-        }
-        else {
-            return "Player missed";
-        }
+        // Fire Shotgun!
+        return executeFiring(xRange, yRange, map,0);
     }
 
     /**
      * Method to execute firing action towards the cardinal positions; north east, south east, north west and south
-     * west. x and y positions are determined based on input direction and the range of x,y coordinates of attack are
-     * determined accordingly. Once x,y coordinates are collected, fireCardinalDirection method is executed, firing the
-     * shotgun.
+     * west. x and y positions are determined based on input direction. Using these positions, x and y coordinate
+     * ranges are obtained and passed into the executeFiring() method.
      * @param x x coordinate of the player
      * @param y y coordinate of the player
      * @param direction direction fired
@@ -204,7 +227,7 @@ public class ShotgunShootingAction extends Action {
                 x -= 1;
             }
 
-            if (x >= 0 && x < width) {
+            if (x >= 0 && x <= width) {
                 xRange[i] = x;
             }
         }
@@ -217,31 +240,12 @@ public class ShotgunShootingAction extends Action {
             else {
                 y += 1;
             }
-            if (y >= 0 && y < height) {
+            if (y >= 0 && y <= height) {
                 yRange[i] = y;
             }
         }
-
-        ArrayList<Actor> zombies = fireCardinalDirection(xRange, yRange, map); // Actors that were hurt
-
-        if (zombies.size() != 0 || (zombies != null)){
-            String output = "";
-
-            for (Actor zombie : zombies){
-                output += System.lineSeparator() + zombie.toString() + " was shot by Shotgun for " + weapon.damage() + " damage";
-            }
-
-            for (Actor zombie : zombies){
-                if (!zombie.isConscious()){
-                    output += killTarget(zombie, map);
-                }
-            }
-
-            return output;
-        }
-        else {
-            return "Player missed";
-        }
+        // Fire Shotgun!
+        return executeFiring(xRange, yRange, map,1);
     }
     @Override
     public String menuDescription(Actor actor) {
@@ -250,7 +254,7 @@ public class ShotgunShootingAction extends Action {
 
     /**
      * Used for north and south direction. Attack are is a triangle.
-     * For a 75% chance of success, if there is a actor in the area of damage, damage is dealt.
+     * For a 75% chance of success, if there is a zombie in the area of damage, damage is dealt.
      * @param x x coordinate
      * @param y y coordinate
      * @param map map where the actor is
@@ -315,7 +319,7 @@ public class ShotgunShootingAction extends Action {
 
     /**
      * Used for cardinal directions (North west, North east etc...). Attack area is a square.
-     * For a 75% chance of success, if there is a actor in the area of damage, damage is dealt.
+     * For a 75% chance of success, if there is a zombie in the area of damage, damage is dealt.
      * @param x x coordinate of player
      * @param y y coordinate of player
      * @param map map where actor is
