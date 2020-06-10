@@ -46,7 +46,7 @@ public class SniperRifle extends WeaponItem {
     
     public List<Action> getAllowableActions() {
     	if (clipSize == 0) {
-    		return Arrays.asList(new ReloadAction(this), new ShotgunShootingAction(this));
+    		return Arrays.asList(new ReloadAction(this));
     	}
 		return Arrays.asList(new ShotgunShootingAction(this));
     	

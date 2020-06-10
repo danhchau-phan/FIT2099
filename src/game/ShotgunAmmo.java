@@ -24,4 +24,6 @@ public class ShotgunAmmo extends PortableItem {
     public int getRounds() {
         return rounds;
     }
+    
+    
 }
