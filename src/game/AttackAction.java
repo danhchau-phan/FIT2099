@@ -24,12 +24,15 @@ public class AttackAction extends Action {
 	protected Random rand = new Random();
 
 	/**
+	 * Default constructor
+	 */
+	public AttackAction() {}
+
+	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param target the Actor to attack
 	 */
-	
-	public AttackAction() {}
 	public AttackAction(Actor target) {
 		this.target = target;
 	}

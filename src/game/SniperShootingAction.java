@@ -179,7 +179,7 @@ public class SniperShootingAction extends AttackAction {
     	}
 
         /**
-         * Aim increments per turn spent by the actor.
+         * Aim increments per turn spent by the actor aiming.
          *
          * @param actor The actor performing the action.
          * @param map The map the actor is on.
@@ -211,11 +211,22 @@ public class SniperShootingAction extends AttackAction {
     private class RetreatAction extends Action {
     	
     	Actor target;
+
+        /**
+         * Default constructor for RetreatAction
+         */
     	RetreatAction() {}
-    	
+
     	public void setTarget(Actor target) {
     		this.target = target;
     	}
+
+        /**
+         * If player retreats, he loses his concentration, i,e player's aim becomes 0 and player loses target.
+         *
+         * @param actor The actor performing the action.
+         * @param map The map the actor is on.
+         */
 		@Override
 		public String execute(Actor actor, GameMap map) {
 			actor.deleteZombieTarget();
@@ -231,7 +242,9 @@ public class SniperShootingAction extends AttackAction {
     	
     }
 
-    // Testing
+    /**
+     * Repeats shooting action, if the player decide to aim. Breaks loop if player fires or retreat.
+     */
     public Action getNextAction() {
     	if (aim != 0)
     		return this;
