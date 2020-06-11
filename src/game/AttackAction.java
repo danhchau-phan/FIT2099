@@ -28,6 +28,8 @@ public class AttackAction extends Action {
 	 * 
 	 * @param target the Actor to attack
 	 */
+	
+	public AttackAction() {}
 	public AttackAction(Actor target) {
 		this.target = target;
 	}
@@ -64,20 +66,27 @@ public class AttackAction extends Action {
 		if (target.isConscious()) {
 			throw new Exception(this.target.toString() + " is still conscious. Cannot terminate.");
 		}
-		Actions dropActions = new Actions();
-		for (Item item : target.getInventory())
-			dropActions.add(item.getDropAction());
-		for (Action drop : dropActions)		
-			drop.execute(target, map); 
 		
 		if (target.hasCapability(ZombieCapability.ALIVE)) {
 			Corpse corpse = new Corpse("dead" + target);
 			map.locationOf(target).addItem(corpse);
 		}
-
-		map.removeActor(target);
-		return System.lineSeparator() + target + " is killed.";
+		
+		return killTarget(target);
 	}
+	
+	protected String killTarget(Actor target){
+
+        // Drops inventory items
+        Actions dropActions = new Actions();
+        for (Item item : target.getInventory())
+            dropActions.add(item.getDropAction());
+        for (Action drop : dropActions)
+            drop.execute(target, map);
+
+        map.removeActor(target);
+        return System.lineSeparator() + target + " was killed.";
+    }
 	@Override
 	public String menuDescription(Actor actor) {
 		return actor + " attacks " + target;
