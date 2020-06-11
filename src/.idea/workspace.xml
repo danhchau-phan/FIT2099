@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8f7780e3-8434-4bb5-8171-77ebf4927977" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/Mambo.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/Mambo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game/ShotgunShootingAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/ShotgunShootingAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/mambo/ChantAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/mambo/ChantAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/mambo/MamboBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/mambo/MamboBehaviour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/ShotgunSubMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/ShotgunSubMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/SniperShootingAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/SniperShootingAction.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,34 +18,34 @@
     <session id="-315983830">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.5" value="3" />
           <entry key="project.open.time.6" value="3" />
-          <entry key="project.open.time.8" value="1" />
+          <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="261" />
+          <entry key="java" value="271" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="261" />
+          <entry key="JAVA" value="271" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="27" />
-          <entry key="java" value="17181" />
+          <entry key="java" value="18327" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="17181" />
+          <entry key="JAVA" value="18327" />
           <entry key="PLAIN_TEXT" value="27" />
         </counts>
       </usages-collector>
@@ -58,20 +56,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="167" column="23" lean-forward="true" selection-start-line="167" selection-start-column="23" selection-end-line="167" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/game/ShotgunShootingAction.java">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-9">
-              <caret line="173" column="27" selection-start-line="173" selection-start-column="27" selection-end-line="173" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="78" column="8" lean-forward="true" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -79,23 +65,70 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-54">
-              <caret line="64" column="33" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
+            <state relative-caret-position="81">
+              <caret line="105" column="17" lean-forward="true" selection-start-line="105" selection-start-column="17" selection-end-line="105" selection-end-column="17" />
               <folding>
+                <element signature="e#2151#2152#0" expanded="true" />
+                <element signature="e#2179#2180#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/game/SniperShootingAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="29" column="9" lean-forward="true" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#491#492#0" expanded="true" />
                 <element signature="e#527#528#0" expanded="true" />
-                <element signature="e#569#570#0" expanded="true" />
-                <element signature="e#1752#1753#0" expanded="true" />
-                <element signature="e#1773#1774#0" expanded="true" />
-                <element signature="e#1819#1820#0" expanded="true" />
-                <element signature="e#1839#1840#0" expanded="true" />
-                <element signature="e#1887#1888#0" expanded="true" />
-                <element signature="e#1907#1908#0" expanded="true" />
-                <element signature="e#1960#1961#0" expanded="true" />
-                <element signature="e#1986#1987#0" expanded="true" />
-                <element signature="e#2031#2032#0" expanded="true" />
-                <element signature="e#2058#2059#0" expanded="true" />
-                <element signature="e#2220#2221#0" expanded="true" />
-                <element signature="e#2232#2233#0" expanded="true" />
+                <element signature="e#2199#2200#0" expanded="true" />
+                <element signature="e#2241#2242#0" expanded="true" />
+                <element signature="e#2383#2384#0" expanded="true" />
+                <element signature="e#2418#2419#0" expanded="true" />
+                <element signature="e#3850#3851#0" expanded="true" />
+                <element signature="e#3872#3873#0" expanded="true" />
+                <element signature="e#4022#4023#0" expanded="true" />
+                <element signature="e#4057#4058#0" expanded="true" />
+                <element signature="e#4507#4508#0" expanded="true" />
+                <element signature="e#4528#4529#0" expanded="true" />
+                <element signature="e#4686#4687#0" expanded="true" />
+                <element signature="e#4721#4722#0" expanded="true" />
+                <element signature="e#4977#4978#0" expanded="true" />
+                <element signature="e#5002#5003#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/SniperSubMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1089">
+              <caret line="69" column="42" lean-forward="true" selection-start-line="69" selection-start-column="42" selection-end-line="69" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#764#775#0" expanded="true" />
+                <element signature="e#840#858#0" expanded="true" />
+                <element signature="e#1633#1652#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/ShotgunShootingAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="20" column="56" lean-forward="true" selection-start-line="20" selection-start-column="56" selection-end-line="20" selection-end-column="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2437#2438#0" expanded="true" />
+                <element signature="e#2465#2466#0" expanded="true" />
+                <element signature="e#3352#3353#0" expanded="true" />
+                <element signature="e#3370#3371#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,24 +137,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/AttackAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
+            <state relative-caret-position="720">
               <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game/SniperShootingAction.java">
+        <entry file="file://$PROJECT_DIR$/game/Shotgun.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="982">
-              <caret line="65" selection-start-line="65" selection-end-line="65" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#289#290#0" expanded="true" />
-                <element signature="e#325#326#0" expanded="true" />
-                <element signature="e#4052#4053#0" expanded="true" />
-                <element signature="e#4094#4095#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="711">
+              <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
             </state>
           </provider>
         </entry>
@@ -163,26 +189,26 @@
         <option value="$PROJECT_DIR$/edu/monash/fit2099/interfaces/ItemInterface.java" />
         <option value="$PROJECT_DIR$/game/ReloadAction.java" />
         <option value="$PROJECT_DIR$/game/ShotgunAmmo.java" />
-        <option value="$PROJECT_DIR$/game/ShotgunSubMenu.java" />
         <option value="$PROJECT_DIR$/game/SniperRifle.java" />
         <option value="$PROJECT_DIR$/edu/monash/fit2099/interfaces/ActorInterface.java" />
         <option value="$PROJECT_DIR$/game/Player.java" />
         <option value="$PROJECT_DIR$/game/AttackAction.java" />
-        <option value="$PROJECT_DIR$/game/SniperShootingAction.java" />
         <option value="$PROJECT_DIR$/game/SniperSubMenu.java" />
-        <option value="$PROJECT_DIR$/game/Application.java" />
         <option value="$PROJECT_DIR$/game/mambo/MamboBehaviour.java" />
         <option value="$PROJECT_DIR$/game/Mambo.java" />
         <option value="$PROJECT_DIR$/game/mambo/ChantAction.java" />
+        <option value="$PROJECT_DIR$/game/Application.java" />
+        <option value="$PROJECT_DIR$/game/ShotgunSubMenu.java" />
         <option value="$PROJECT_DIR$/game/ShotgunShootingAction.java" />
+        <option value="$PROJECT_DIR$/game/SniperShootingAction.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2069" />
-    <option name="y" value="-19" />
-    <option name="width" value="407" />
-    <option name="height" value="222" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -191,6 +217,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -220,22 +247,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="game" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="src" type="b2602c69:ProjectViewProjectNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="mambo" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="getAllo&#9;PSI&#9;JAVA://edu.monash.fit2099.engine.Actor#getAllowableActions&#10;log&#9;ACTION&#9;Log.KeymapGroup" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1591805518588" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1591806401450" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -283,10 +303,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13113007" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1328859" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -295,8 +315,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.40347072" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.21475054" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.99132323" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.21475054" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -317,24 +337,6 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/game/ShotgunShootingAction.java</url>
-          <line>181</line>
-          <properties />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/game/ShotgunShootingAction.java</url>
-          <line>147</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/game/Corpse.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -354,20 +356,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="373">
           <caret line="115" selection-start-line="115" selection-end-line="115" />
-          <folding>
-            <element signature="e#3249#3250#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/monash/fit2099/engine/Action.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#1392#1393#0" expanded="true" />
-            <element signature="e#1410#1411#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -403,10 +391,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2196">
           <caret line="138" column="41" selection-start-line="138" selection-start-column="41" selection-end-line="138" selection-end-column="41" />
-          <folding>
-            <element signature="e#3374#3375#0" expanded="true" />
-            <element signature="e#3425#3426#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -463,10 +447,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="591">
           <caret line="78" column="26" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
-          <folding>
-            <element signature="e#2738#2739#0" expanded="true" />
-            <element signature="e#2797#2798#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -474,10 +454,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-          <folding>
-            <element signature="e#478#479#0" expanded="true" />
-            <element signature="e#507#508#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -499,22 +475,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
           <caret line="54" column="45" lean-forward="true" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1955#1956#0" expanded="true" />
-            <element signature="e#2007#2008#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/monash/fit2099/interfaces/ItemInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding>
-            <element signature="e#299#300#0" expanded="true" />
-            <element signature="e#314#315#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -522,9 +482,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="406">
           <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -532,10 +489,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="291" column="19" selection-start-line="291" selection-start-column="19" selection-end-line="291" selection-end-column="19" />
-          <folding>
-            <element signature="e#10805#10806#0" expanded="true" />
-            <element signature="e#10837#10838#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -546,34 +499,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/edu/monash/fit2099/engine/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="36" column="42" lean-forward="true" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
-          <folding>
-            <element signature="e#688#707#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game/Shotgun.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="49" column="62" lean-forward="true" selection-start-line="46" selection-start-column="8" selection-end-line="49" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/edu/monash/fit2099/engine/GameMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="178" selection-start-line="178" selection-end-line="178" />
-          <folding>
-            <element signature="e#5267#5268#0" expanded="true" />
-            <element signature="e#6016#6017#0" expanded="true" />
-            <element signature="e#6037#6038#0" expanded="true" />
-            <element signature="e#7986#7987#0" expanded="true" />
-            <element signature="e#8032#8033#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -581,12 +510,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="461">
           <caret line="136" column="4" lean-forward="true" selection-start-line="136" selection-start-column="4" selection-end-line="136" selection-end-column="4" />
-          <folding>
-            <element signature="e#2725#2726#0" expanded="true" />
-            <element signature="e#2759#2760#0" expanded="true" />
-            <element signature="e#3931#3932#0" expanded="true" />
-            <element signature="e#3998#3999#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -594,13 +517,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game/ShotgunSubMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="49" column="30" lean-forward="true" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -629,18 +545,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-          <folding>
-            <element signature="e#1111#1112#0" expanded="true" />
-            <element signature="e#1137#1138#0" expanded="true" />
-            <element signature="e#1282#1283#0" expanded="true" />
-            <element signature="e#1311#1312#0" expanded="true" />
-            <element signature="e#1460#1461#0" expanded="true" />
-            <element signature="e#1513#1514#0" expanded="true" />
-            <element signature="e#2455#2456#0" expanded="true" />
-            <element signature="e#2482#2483#0" expanded="true" />
-            <element signature="e#2885#2886#0" expanded="true" />
-            <element signature="e#2912#2913#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -648,13 +552,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#378#379#0" expanded="true" />
-            <element signature="e#396#397#0" expanded="true" />
-            <element signature="e#528#529#0" expanded="true" />
-            <element signature="e#542#543#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -676,10 +573,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="789">
           <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
-          <folding>
-            <element signature="e#780#781#0" expanded="true" />
-            <element signature="e#823#824#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -697,36 +590,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/AttackAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-54">
-          <caret line="64" column="33" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
-          <folding>
-            <element signature="e#527#528#0" expanded="true" />
-            <element signature="e#569#570#0" expanded="true" />
-            <element signature="e#1752#1753#0" expanded="true" />
-            <element signature="e#1773#1774#0" expanded="true" />
-            <element signature="e#1819#1820#0" expanded="true" />
-            <element signature="e#1839#1840#0" expanded="true" />
-            <element signature="e#1887#1888#0" expanded="true" />
-            <element signature="e#1907#1908#0" expanded="true" />
-            <element signature="e#1960#1961#0" expanded="true" />
-            <element signature="e#1986#1987#0" expanded="true" />
-            <element signature="e#2031#2032#0" expanded="true" />
-            <element signature="e#2058#2059#0" expanded="true" />
-            <element signature="e#2220#2221#0" expanded="true" />
-            <element signature="e#2232#2233#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game/mambo/AppearAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -734,37 +597,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/SniperSubMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="43" column="40" lean-forward="true" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game/SniperShootingAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="982">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#289#290#0" expanded="true" />
-            <element signature="e#325#326#0" expanded="true" />
-            <element signature="e#4052#4053#0" expanded="true" />
-            <element signature="e#4094#4095#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game/mambo/ChantAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" column="53" lean-forward="true" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -772,9 +608,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="26" column="44" lean-forward="true" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -782,25 +615,132 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
           <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9">
+          <caret line="78" column="8" lean-forward="true" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="105" column="17" lean-forward="true" selection-start-line="105" selection-start-column="17" selection-end-line="105" selection-end-column="17" />
+          <folding>
+            <element signature="e#2151#2152#0" expanded="true" />
+            <element signature="e#2179#2180#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/monash/fit2099/engine/Action.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+          <folding>
+            <element signature="e#1392#1393#0" expanded="true" />
+            <element signature="e#1410#1411#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/monash/fit2099/interfaces/ItemInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="e#299#300#0" expanded="true" />
+            <element signature="e#314#315#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/Shotgun.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="711">
+          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/AttackAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/ShotgunSubMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="846">
+          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/Application.java">
+    <entry file="file://$PROJECT_DIR$/edu/monash/fit2099/engine/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="167" column="23" lean-forward="true" selection-start-line="167" selection-start-column="23" selection-end-line="167" selection-end-column="23" />
+        <state relative-caret-position="576">
+          <caret line="40" column="17" lean-forward="true" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+          <folding>
+            <element signature="e#688#707#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game/ShotgunShootingAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="173" column="27" selection-start-line="173" selection-start-column="27" selection-end-line="173" selection-end-column="27" />
+        <state relative-caret-position="144">
+          <caret line="20" column="56" lean-forward="true" selection-start-line="20" selection-start-column="56" selection-end-line="20" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2437#2438#0" expanded="true" />
+            <element signature="e#2465#2466#0" expanded="true" />
+            <element signature="e#3352#3353#0" expanded="true" />
+            <element signature="e#3370#3371#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/SniperSubMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1089">
+          <caret line="69" column="42" lean-forward="true" selection-start-line="69" selection-start-column="42" selection-end-line="69" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#764#775#0" expanded="true" />
+            <element signature="e#840#858#0" expanded="true" />
+            <element signature="e#1633#1652#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/SniperShootingAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="29" column="9" lean-forward="true" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#491#492#0" expanded="true" />
+            <element signature="e#527#528#0" expanded="true" />
+            <element signature="e#2199#2200#0" expanded="true" />
+            <element signature="e#2241#2242#0" expanded="true" />
+            <element signature="e#2383#2384#0" expanded="true" />
+            <element signature="e#2418#2419#0" expanded="true" />
+            <element signature="e#3850#3851#0" expanded="true" />
+            <element signature="e#3872#3873#0" expanded="true" />
+            <element signature="e#4022#4023#0" expanded="true" />
+            <element signature="e#4057#4058#0" expanded="true" />
+            <element signature="e#4507#4508#0" expanded="true" />
+            <element signature="e#4528#4529#0" expanded="true" />
+            <element signature="e#4686#4687#0" expanded="true" />
+            <element signature="e#4721#4722#0" expanded="true" />
+            <element signature="e#4977#4978#0" expanded="true" />
+            <element signature="e#5002#5003#0" expanded="true" />
           </folding>
         </state>
       </provider>

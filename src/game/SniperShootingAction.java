@@ -12,8 +12,8 @@ public class SniperShootingAction extends AttackAction {
     private static final double PROBABILITYx2 = 0.90;
     private ArrayList<Actor> zombies = new ArrayList<>();
     private Menu menu;
+    private Actor target;
     private int aim;
-    Actor target;
 
     public SniperShootingAction(WeaponItem weapon) {
         this.weapon = weapon;
@@ -23,8 +23,6 @@ public class SniperShootingAction extends AttackAction {
     public String execute(Actor actor, GameMap map) {
         int x = map.locationOf(actor).x();
         int middle = (map.getXRange().max() - map.getYRange().min()) / 2; 
-
-        int r = map.getXRange().max();
 
         // Based on player's position, zombies capable of being shot are added to a list
         if (x <= middle){

@@ -11,16 +11,18 @@ import java.util.Random;
  */
 public class ShotgunShootingAction extends AttackAction {
 	/**
-	 * weapon : shotgun PROBABILITY : 75% chance of shotgun dealing damage. menu :
-	 * Shotgun sub menu for actor to choose the direction to fire. width : X end of
-	 * the map height : Y end of the map xRange : X coordinates of the attack area
-	 * yRange : Y coordinates of the attack area zombies : Zombie actors that were
-	 * hurt during firing
+	 * weapon      : shotgun
+	 * PROBABILITY : 75% chance of shotgun dealing damage.
+	 * menu 	   : Shotgun sub menu for actor to choose the direction to fire.
+	 * width       : X end of the map
+	 * height      : Y end of the map
+	 * xRange      : X coordinates of the attack area
+	 * yRange      : Y coordinates of the attack area zombies :
+	 * Zombie      : actors that were hurt during firing
 	 */
 	private WeaponItem weapon;
 	private static final double PROBABILITY = 1;
 	private Menu menu = new ShotgunSubMenu();
-
 	private int[] xRange;
 	private int[] yRange;
 	private ArrayList<Actor> zombies;
@@ -30,7 +32,7 @@ public class ShotgunShootingAction extends AttackAction {
 	}
 
 	/**
-	 * Default constructor for ShotgunShootingAction class
+	 * Default constructor for ShotgunShootingAction class.
 	 * 
 	 * @param weapon weapon used
 	 */
@@ -39,13 +41,9 @@ public class ShotgunShootingAction extends AttackAction {
 	}
 
 	/**
-	 * Based on the directional input of the user, appropriate calculations are done
-	 * to find the x and y coordinates of the attack area of the shotgun. Then
-	 * appropriate attack method for that direction is implemented to hurt the
-	 * actors(zombies) in the area with a 75% chance of the attack being successful.
-	 * If the actors is not conscious the actor is removed from the map using
-	 * killTarget() method. For every shot fired, player loses 1 ammo
-	 * 
+	 * During execution, user is prompted directions to choose from to fire at. Once selected, FireAction is executed
+	 * that calculates the area of damage and hurts or kills zombies in the area.
+	 *
 	 * @param actor The actor performing the action.
 	 * @param map   The map the actor is on.
 	 */
@@ -73,6 +71,9 @@ public class ShotgunShootingAction extends AttackAction {
 		return "Fire Shotgun";
 	}
 
+	/**
+	 * Special action for shooting zombies in a specific direction.
+	 */
 	private class FireAction extends Action {
 		private static final int RANGE = 3;
 		private Direction direction;
@@ -82,12 +83,26 @@ public class ShotgunShootingAction extends AttackAction {
 		private WeaponItem weapon;
 		private GameMap map;
 
+		/**
+		 * Base constructor for FireAction.
+		 *
+		 * @param weapon weapon of attack
+		 * @param direction direction of attack
+		 * @param cardinal boolean check; true if cardinal, false if not.
+		 */
 		public FireAction(WeaponItem weapon, Direction direction, boolean cardinal) {
 			this.weapon = weapon;
 			this.direction = direction;
 			this.cardinal = cardinal;
 		}
 
+		/**
+		 * Checks if the direction selected by player is a cardinal direction or one of the four main directions to
+		 * calculate the area of damage and execute relative shooting methods.
+		 *
+		 * @param actor The actor performing the action.
+		 * @param gameMap map where actor is in
+		 */
 		@Override
 		public String execute(Actor actor, GameMap gameMap) {
 			this.map = gameMap;
@@ -112,8 +127,7 @@ public class ShotgunShootingAction extends AttackAction {
 		 * 
 		 * @param xRange    player's x coordinate
 		 * @param yRange    player's y coordinate
-		 * @param map       map actor is in
-		 * @param direction 0 = XY direction, 1 = CardinalDirection
+		 * @param cardinal  if the direction is a cardinal direction, true, else false
 		 */
 		private String executeFiring(int[] xRange, int[] yRange, boolean cardinal) {
 
@@ -152,7 +166,6 @@ public class ShotgunShootingAction extends AttackAction {
 		 * @param x         player's x coordinate
 		 * @param y         player's y coordinate
 		 * @param direction direction fired
-		 * @param map       map where the actor is
 		 */
 		private String shootingXY(int x, int y, Direction direction) {
 			// Selecting length of arrays based on direction of attack.
@@ -204,7 +217,6 @@ public class ShotgunShootingAction extends AttackAction {
 		 * @param x         x coordinate of the player
 		 * @param y         y coordinate of the player
 		 * @param direction direction fired
-		 * @param map       map where the actor is
 		 */
 		private String shootingCardinal(int x, int y, Direction direction) {
 			xRange = new int[RANGE + 1];
@@ -259,7 +271,6 @@ public class ShotgunShootingAction extends AttackAction {
 		 * 
 		 * @param x   x coordinate
 		 * @param y   y coordinate
-		 * @param map map where the actor is
 		 */
 		private ArrayList<Actor> fireXYDirection(int[] x, int[] y) {
 
@@ -303,7 +314,6 @@ public class ShotgunShootingAction extends AttackAction {
 		 * 
 		 * @param x   x coordinate of player
 		 * @param y   y coordinate of player
-		 * @param map map where actor is
 		 */
 		private ArrayList<Actor> fireCardinalDirection(int[] x, int[] y) {
 			ArrayList<Actor> hurtActors = new ArrayList<>();
@@ -326,6 +336,5 @@ public class ShotgunShootingAction extends AttackAction {
 				}
 			}
 		}
-
 	}
 }

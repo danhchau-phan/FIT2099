@@ -20,18 +20,25 @@ public class ShotgunSubMenu extends Menu {
 			'6', "South West",
 			'7', "West",
 			'8', "North West");
+
+	/**
+	 * Display a menu to the user and have them select an option.
+	 *
+	 * @param actor the Actor representing the player
+	 * @param actions the Actions that the user can choose from
+	 * @param display the I/O object that will display the map
+	 * @return returns the Action associated to the selection made.
+	 */
     public Action showMenu(Actor actor, Actions actions, Display display){
 		display.println("Select direction to fire\n");
 
-        
         HashMap<Character, Action> keyToActionMap = new HashMap<Character, Action>();
 		for (int i = 0; i < DIRECTIONS.size(); i++) {
 			char c = Character.forDigit(i+1, REDIX);
 			keyToActionMap.put(c, actions.get(i));
 			display.println(c + ": " + DIRECTIONS.get(c));
 		}
-        
-        
+
         char choice;
         do {
         	choice = display.readChar();
