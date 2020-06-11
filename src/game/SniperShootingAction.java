@@ -3,6 +3,7 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SniperShootingAction extends AttackAction {
 
@@ -10,7 +11,8 @@ public class SniperShootingAction extends AttackAction {
     private static final double PROBABILITY = 0.75;
     private static final double PROBABILITYx2 = 0.90;
     private ArrayList<Actor> zombies = new ArrayList<>();
-    private SniperSubMenu menu = new SniperSubMenu();
+    private Menu menu;
+    private int aim;
     Actor target;
 
     public SniperShootingAction(WeaponItem weapon) {
@@ -19,7 +21,6 @@ public class SniperShootingAction extends AttackAction {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        Location location = map.locationOf(actor);
         int x = map.locationOf(actor).x();
         int middle = (map.getXRange().max() - map.getYRange().min()) / 2; 
 
@@ -27,64 +28,64 @@ public class SniperShootingAction extends AttackAction {
 
         // Based on player's position, zombies capable of being shot are added to a list
         if (x <= middle){
-            for (int i = 0; i <= middle; i++){
-                for (int j = 0; j <= map.getYRange().max(); j++){
-                    if (map.at(i,j).containsAnActor() && map.at(i,j).getActor().hasCapability(ZombieCapability.UNDEAD)){
-                        zombies.add(map.at(i,j).getActor());
-                    }
-                }
-            }
+        	zombies = getZombies(middle, map.getYRange().max(), map);
         }
-
         else if (x > middle){
-            for (int i = middle; i <= map.getXRange().max(); i++){
-                for (int j = 0; j <= map.getYRange().max(); j++){
-                    if (map.at(i,j).containsAnActor()){
-                        if (map.at(i,j).getActor().hasCapability(ZombieCapability.UNDEAD)){
-                            zombies.add(map.at(i,j).getActor());
-                        }
-                    }
-                }
-            }
+        	zombies = getZombies(map.getXRange().max(), map.getYRange().max(), map);
         }
 
         // Ask the player to select a target to concentrate on
         // If player has already concentrated, player cannot select another target
         if (actor.getZombieTarget() == null){
-            actor.setZombieTarget(menu.showTargets(zombies));
-            target = actor.getZombieTarget();
+        	menu = new SniperSubMenu(zombies, actor);
         }
         else {
-            target = actor.getZombieTarget();
+            menu = new SniperSubMenu(actor.getZombieTarget());
         }
-
+        
         // Prompts the player his options executes the related action
-        return fire(actor,map);
+        Actions actions = new Actions();
+        actions.add(Arrays.asList(new FireAction(), new AimAction(), new RetreatAction()));
+        return menu.showMenu(actor, actions, new Display()).execute(actor, map);
 
     }
-
+    
+    private ArrayList<Actor> getZombies(int iRange, int jRange, GameMap map) {
+    	ArrayList<Actor> zombies = new ArrayList<>();
+    	for (int i = 0; i <= iRange; i++){
+            for (int j = 0; j <= jRange; j++){
+                if (map.at(i,j).containsAnActor() && map.at(i,j).getActor().hasCapability(ZombieCapability.UNDEAD)){
+                    zombies.add(map.at(i,j).getActor());
+                }
+            }
+        }
+    	return zombies;
+    }
     @Override
     public String menuDescription(Actor actor) {
         return "Fire Sniper Rifle";
     }
 
-    public String fire(Actor actor, GameMap map){
-        int aim = actor.getConcentration();
-        int selection = menu.showMenu();
-        int damage;
-        String result = "";
-
-        // Fire
-        if (selection == 1) {
-            if (aim == 1){
+    private class FireAction extends Action {
+    	
+    	Actor target;
+    	FireAction() {}
+    	
+    	public void setTarget(Actor target) {
+    		this.target = target;
+    	}
+		@Override
+		public String execute(Actor actor, GameMap map) {
+			String result = ""; 
+			int damage;
+			if (aim == 1){
                 damage = weapon.damage() * 2;
                 if (Math.random() <= PROBABILITYx2){
                     target.hurt(damage);
                     if (!target.isConscious()){
                         actor.deleteZombieTarget();
-                        return killTarget(target, map);
-                    }
-                    else {
+                        result = killTarget(target, map);
+                    } else {
                         result = target + " was " + weapon.verb() + " by a " + weapon.toString() + " for " + damage + " damage.";
                     }
                 }
@@ -106,10 +107,27 @@ public class SniperShootingAction extends AttackAction {
                     }
                 }
             }
-        }
+            aim = 0;
+			return result;
+		}
 
-        // Aim
-        if (selection == 2){
+		@Override
+		public String menuDescription(Actor actor) {
+			return "Fire";
+		}
+    }
+    
+    private class AimAction extends Action {
+    	
+    	Actor target;
+    	AimAction() {}
+    	
+    	public void setTarget(Actor target) {
+    		this.target = target;
+    	}
+		@Override
+		public String execute(Actor actor, GameMap map) {
+			String result = "";
             aim += 1;
             actor.setConcentration(aim);
 
@@ -119,19 +137,41 @@ public class SniperShootingAction extends AttackAction {
             else {
                 result = "Player is aiming at " + target;
             }
-        }
+			return result;
+		}
 
-        // Do nothing
-        if (selection == 3){
-            actor.deleteZombieTarget();
-            actor.setConcentration(0);
-            result = actor + " lost " + target;
-        }
-
-        return result;
+		@Override
+		public String menuDescription(Actor actor) {
+			return "Aim";
+		}
     }
     
-//    public Action getNextAction() {
-//		return this;
-//	}
+    private class RetreatAction extends Action {
+    	
+    	Actor target;
+    	RetreatAction() {}
+    	
+    	public void setTarget(Actor target) {
+    		this.target = target;
+    	}
+		@Override
+		public String execute(Actor actor, GameMap map) {
+			actor.deleteZombieTarget();
+            actor.setConcentration(0);
+            aim = 0;
+			return actor + " lost " + target;
+		}
+
+		@Override
+		public String menuDescription(Actor actor) {
+			return "Retreat";
+		}
+    	
+    }
+    
+    public Action getNextAction() {
+    	if (aim != 0)
+    		return this;
+    	return null;
+	}
 }
