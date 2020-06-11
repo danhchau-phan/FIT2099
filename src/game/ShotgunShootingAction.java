@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Special Action for shooting zombies with a shotgun.
  */
-public class ShotgunShootingAction extends Action {
+public class ShotgunShootingAction extends AttackAction {
 	/**
 	 * weapon : shotgun PROBABILITY : 75% chance of shotgun dealing damage. menu :
 	 * Shotgun sub menu for actor to choose the direction to fire. width : X end of
@@ -19,7 +19,7 @@ public class ShotgunShootingAction extends Action {
 	 */
 	private WeaponItem weapon;
 	private static final double PROBABILITY = 1;
-	private ShotgunSubMenu menu = new ShotgunSubMenu();
+	private Menu menu = new ShotgunSubMenu();
 
 	private int[] xRange;
 	private int[] yRange;
@@ -326,25 +326,5 @@ public class ShotgunShootingAction extends Action {
 			}
 		}
 
-		/**
-		 * Method to kill a zombie, remove it from its location and drop an items in its
-		 * inventory.
-		 * 
-		 * @param target zombie to be killed
-		 * @param map    map the actor is on
-		 * @return a string output
-		 */
-		private String killTarget(Actor target) {
-
-			// Drops inventory items
-			Actions dropActions = new Actions();
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction());
-			for (Action drop : dropActions)
-				drop.execute(target, map);
-
-			map.removeActor(target);
-			return System.lineSeparator() + target + " is killed.";
-		}
 	}
 }

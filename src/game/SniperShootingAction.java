@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.*;
 
 import java.util.ArrayList;
 
-public class SniperShootingAction extends Action {
+public class SniperShootingAction extends AttackAction {
 
     private WeaponItem weapon;
     private static final double PROBABILITY = 0.75;
@@ -20,13 +20,13 @@ public class SniperShootingAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         Location location = map.locationOf(actor);
-        int x = location.x();
-        int middle = 39;
+        int x = map.locationOf(actor).x();
+        int middle = (map.getXRange().max() - map.getYRange().min()) / 2; 
 
         int r = map.getXRange().max();
 
         // Based on player's position, zombies capable of being shot are added to a list
-        if (map.locationOf(actor).x() <= middle){
+        if (x <= middle){
             for (int i = 0; i <= middle; i++){
                 for (int j = 0; j <= map.getYRange().max(); j++){
                     if (map.at(i,j).containsAnActor() && map.at(i,j).getActor().hasCapability(ZombieCapability.UNDEAD)){
@@ -36,7 +36,7 @@ public class SniperShootingAction extends Action {
             }
         }
 
-        else if (map.locationOf(actor).x() > middle){
+        else if (x > middle){
             for (int i = middle; i <= map.getXRange().max(); i++){
                 for (int j = 0; j <= map.getYRange().max(); j++){
                     if (map.at(i,j).containsAnActor()){
@@ -63,7 +63,6 @@ public class SniperShootingAction extends Action {
 
     }
 
-
     @Override
     public String menuDescription(Actor actor) {
         return "Fire Sniper Rifle";
@@ -83,7 +82,7 @@ public class SniperShootingAction extends Action {
                     target.hurt(damage);
                     if (!target.isConscious()){
                         actor.deleteZombieTarget();
-                        return killTarget(target,map);
+                        return killTarget(target);
                     }
                     else {
                         result = target + " was " + weapon.verb() + " by a " + weapon.toString() + " for " + damage + " damage.";
@@ -92,7 +91,7 @@ public class SniperShootingAction extends Action {
             }
             else if (aim >= 2){
                 actor.deleteZombieTarget();
-                result = killTarget(target,map);
+                result = killTarget(target);
             }
             else if (aim == 0){
                 damage = weapon.damage();
@@ -100,7 +99,7 @@ public class SniperShootingAction extends Action {
                     target.hurt(damage);
                     if (!target.isConscious()){
                         actor.deleteZombieTarget();
-                        result = killTarget(target,map);
+                        result = killTarget(target);
                     }
                     else {
                         result = target + " was " + weapon.verb() + " by a " + weapon.toString() + " for " + damage + " damage.";
@@ -131,22 +130,5 @@ public class SniperShootingAction extends Action {
 
         return result;
     }
-    /**
-     * Method to kill a zombie, remove it from its location and drop an items in its inventory.
-     * @param target zombie to be killed
-     * @param map map the actor is on
-     * @return a string output
-     */
-    public String killTarget(Actor target, GameMap map){
-
-        // Drops inventory items
-        Actions dropActions = new Actions();
-        for (Item item : target.getInventory())
-            dropActions.add(item.getDropAction());
-        for (Action drop : dropActions)
-            drop.execute(target, map);
-
-        map.removeActor(target);
-        return System.lineSeparator() + target + " was killed by player.";
-    }
+    
 }
