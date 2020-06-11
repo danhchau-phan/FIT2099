@@ -3,6 +3,8 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 /**
  * Special Action for shooting zombies with a shotgun.
@@ -19,15 +21,23 @@ public class ShotgunShootingAction extends Action {
      * zombies     : Zombie actors that were hurt during firing
      */
     private WeaponItem weapon;
-    private static final double PROBABILITY = 0.75;
+    private static final double PROBABILITY = 1;
     private ShotgunSubMenu menu = new ShotgunSubMenu();
-    private int width;
-    private int height;
+    
     private int[] xRange;
     private int[] yRange;
     private ArrayList<Actor> zombies;
 
-
+    private enum Direction {
+    	NORTH,
+    	NORTHEAST,
+    	EAST,
+    	SOUTHEAST,
+    	SOUTH,
+    	SOUTHWEST,
+    	WEST,
+    	NORTHWEST
+    }
     /**
      * Default constructor for ShotgunShootingAction class
      * @param weapon weapon used
@@ -47,57 +57,64 @@ public class ShotgunShootingAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
     	Location location = map.locationOf(actor);
-        int direction = menu.showMenu();
-        width = map.getXRange().max();
-        height = map.getYRange().max();
+    	Actions actions = new Actions();
+        
         int x = location.x();
         int y = location.y();
 
+        
         weapon.fire();
 
-        // For NORTH direction
-        if (direction == 1){
-            return shootingXY(x,y,"n",map);
-        }
-
-        // For SOUTH direction
-        if (direction == 5){
-            return shootingXY(x,y,"s",map);
-        }
-
-        // For EAST direction
-        if (direction == 3){
-            return shootingXY(x,y,"e",map);
-        }
-
-        // For WEST direction
-        if (direction == 7){
-            return shootingXY(x,y,"w",map);
-        }
-
-        // For NORTH EAST direction
-        if (direction == 2){
-            return shootingCardinal(x,y,"ne",map);
-        }
-
-        // For SOUTH EAST direction
-        if (direction == 4){
-            return shootingCardinal(x,y,"se",map);
-        }
-
-        // For SOUTH WEST direction
-        if (direction == 6){
-            return shootingCardinal(x,y,"sw",map);
-        }
-
-        // For NORTH WEST direction
-        if (direction == 8){
-            return shootingCardinal(x,y,"nw",map);
-        }
-        return "Player missed";
-
+        actions.add(Arrays.asList(
+        		new FireAction(weapon, Direction.NORTH,false),
+        		new FireAction(weapon, Direction.NORTHEAST, true),
+        		new FireAction(weapon, Direction.EAST, false),
+        		new FireAction(weapon, Direction.SOUTHEAST, true),
+        		new FireAction(weapon, Direction.SOUTH, false),
+        		new FireAction(weapon, Direction.SOUTHWEST, false),
+        		new FireAction(weapon, Direction.WEST, true),
+        		new FireAction(weapon, Direction.NORTHWEST, false)
+        		));
+        
+        return menu.showMenu(actor, actions, new Display()).execute(actor, map);
     }
+    
+    @Override
+    public String menuDescription(Actor actor) {
+        return "Fire Shotgun";
+    }
+    
+    private class FireAction extends Action {
+    	private static final int RANGE = 3;
+    	private Direction direction;
+    	private boolean cardinal;
+    	private int width;
+        private int height;
+        private WeaponItem weapon;
+    	private GameMap map;
+    	public FireAction(WeaponItem weapon, Direction direction, boolean cardinal) {
+    		this.weapon = weapon;
+    		this.direction = direction;
+    		this.cardinal = cardinal;
+    	}
+		@Override
+		public String execute(Actor actor, GameMap gameMap) {
+			this.map = gameMap;
+			width = map.getXRange().max();
+	        height = map.getYRange().max();
+			int x = map.locationOf(actor).x();
+			int y = map.locationOf(actor).y();
+			if (!cardinal) {
+				return shootingXY(x,y,direction);
+			} 
+			return shootingCardinal(x,y,direction);
+		}
 
+		@Override
+		public String menuDescription(Actor actor) {
+			return "";
+		}
+    
     /**
      * Execute the firing action that actually kills or hurts zombie actors in the area of damage.
      * @param xRange player's x coordinate
@@ -105,14 +122,13 @@ public class ShotgunShootingAction extends Action {
      * @param map map actor is in
      * @param direction 0 = XY direction, 1 = CardinalDirection
      */
-    private String executeFiring(int[] xRange, int[] yRange, GameMap map, int direction){
+    private String executeFiring(int[] xRange, int[] yRange, boolean cardinal){
 
         // Actors that were hurt
-        if (direction == 0){
-            zombies = fireXYDirection(xRange, yRange, map);
-        }
-        else if (direction == 1){
-            zombies = fireCardinalDirection(xRange, yRange, map);
+        if (!cardinal){
+            zombies = fireXYDirection(xRange, yRange);
+        } else {
+            zombies = fireCardinalDirection(xRange, yRange);
         }
 
         if (zombies.size() != 0 || (zombies != null)){
@@ -124,16 +140,15 @@ public class ShotgunShootingAction extends Action {
 
             for (Actor zombie : zombies){
                 if (!zombie.isConscious()){
-                    output += killTarget(zombie, map);
+                    output += killTarget(zombie);
                 }
             }
 
             return output;
         }
-        else {
-            return "Player missed";
-        }
+        return "Player missed";
     }
+       
     /**
      * Method to execute firing action towards the four main directions; north, south, east and west. x and y positions
      * are determined based on input direction. Using these positions, x and y coordinate ranges are obtained and
@@ -143,36 +158,36 @@ public class ShotgunShootingAction extends Action {
      * @param direction direction fired
      * @param map map where the actor is
      */
-    private String shootingXY(int x, int y, String direction, GameMap map) {
+    private String shootingXY(int x, int y, Direction direction) {
         // Selecting length of arrays based on direction of attack.
-        if (direction.equalsIgnoreCase("n") || direction.equalsIgnoreCase("s")){
-            x -= 4;
-            xRange = new int[7];
-            yRange = new int[3];
+        if (direction == Direction.NORTH || direction == Direction.SOUTH){
+            x -= RANGE+1;
+            xRange = new int[RANGE*2+1];
+            yRange = new int[RANGE];
         }
-        else if (direction.equalsIgnoreCase("e") || direction.equalsIgnoreCase("w")){
-            y -= 4;
-            xRange = new int[3];
-            yRange = new int[7];
+        else if (direction == Direction.EAST || direction == Direction.WEST){
+            y -= RANGE+1;
+            xRange = new int[RANGE];
+            yRange = new int[RANGE*2+1];
         }
 
         // Calculating x range
         for (int i = 0; i < xRange.length; i++){
-            if (direction.equalsIgnoreCase("w")){
+            if (direction == Direction.WEST){
                 x -= 1;
             }
             else {
                 x += 1;
             }
 
-            if (x >= 0 && x < width) {
+            if (x >= 0 && x <= width) {
                 xRange[i] = x;
             }
         }
 
         // Calculating y range
         for (int i = 0; i < yRange.length; i++){
-            if (direction.equalsIgnoreCase("n")){
+            if (direction == Direction.NORTH){
                 y -= 1;
             }
             else {
@@ -183,7 +198,7 @@ public class ShotgunShootingAction extends Action {
             }
         }
         // Fire Shotgun!
-        return executeFiring(xRange, yRange, map,0);
+        return executeFiring(xRange, yRange, false);
     }
 
     /**
@@ -195,32 +210,29 @@ public class ShotgunShootingAction extends Action {
      * @param direction direction fired
      * @param map map where the actor is
      */
-    private String shootingCardinal(int x, int y, String direction, GameMap map){
-        xRange = new int[4];
-        yRange = new int[4];
+    private String shootingCardinal(int x, int y, Direction direction){
+        xRange = new int[RANGE+1];
+        yRange = new int[RANGE+1];
 
         // Setting x position
-        if (direction.equalsIgnoreCase("ne") || direction.equalsIgnoreCase("se")){
+        if (direction == Direction.NORTHEAST || direction == Direction.SOUTHEAST){
             x -= 1;
-        }
-        else {
+        } else {
             x += 1;
         }
 
         // Setting y position
-        if (direction.equalsIgnoreCase("ne") || direction.equalsIgnoreCase("nw")){
+        if (direction == Direction.NORTHEAST || direction == Direction.NORTHWEST){
             y += 1;
-        }
-        else {
+        } else {
             y -= 1;
         }
 
         // Calculating x range
         for (int i = 0; i < xRange.length; i++){
-            if (direction.equalsIgnoreCase("ne") || direction.equalsIgnoreCase("se")){
+            if (direction == Direction.NORTHEAST  || direction == Direction.SOUTHEAST){
                 x += 1;
-            }
-            else {
+            } else {
                 x -= 1;
             }
 
@@ -231,10 +243,9 @@ public class ShotgunShootingAction extends Action {
 
         // Calculating y range
         for (int i = 0; i < yRange.length; i++){
-            if (direction.equalsIgnoreCase("ne") || direction.equalsIgnoreCase("nw")){
+            if (direction == Direction.NORTHEAST || direction == Direction.NORTHWEST){
                 y -= 1;
-            }
-            else {
+            } else {
                 y += 1;
             }
             if (y >= 0 && y <= height) {
@@ -242,13 +253,9 @@ public class ShotgunShootingAction extends Action {
             }
         }
         // Fire Shotgun!
-        return executeFiring(xRange, yRange, map,1);
+        return executeFiring(xRange, yRange, true);
     }
-    @Override
-    public String menuDescription(Actor actor) {
-        return "Fire Shotgun";
-    }
-
+    
     /**
      * Used for north and south direction. Attack are is a triangle.
      * For a 75% chance of success, if there is a zombie in the area of damage, damage is dealt.
@@ -256,20 +263,18 @@ public class ShotgunShootingAction extends Action {
      * @param y y coordinate
      * @param map map where the actor is
      */
-    public ArrayList<Actor> fireXYDirection(int[] x, int[] y, GameMap map){
+    private ArrayList<Actor> fireXYDirection(int[] x, int[] y){
 
-        int start = 3;
-        int end = 3;
+        int start = RANGE;
+        int end = RANGE;
         int raise = 1;
-        int pointer;
         int range;
         ArrayList<Actor> hurtActors = new ArrayList<>();
 
         // checks if area of effect is in X direction or Y direction
-        if (x.length == 3){
+        if (x.length == RANGE){
             range = x.length;
-        }
-        else {
+        } else {
             range = y.length;
         }
 
@@ -278,42 +283,32 @@ public class ShotgunShootingAction extends Action {
             end += raise;
 
             while (start <= end){
-                if (x.length == 3){
-                    pointer = y[start];
-//                    map.at(x[i], pointer).setGround(new Crop()); // Testing
-                    if (map.at(x[i],pointer).containsAnActor()){
-                        if (map.at(x[i],pointer).getActor().hasCapability(ZombieCapability.UNDEAD)){
-                            Actor target = map.at(x[i],pointer).getActor();
-                            if (Math.random() <= PROBABILITY){
-                                target.hurt(weapon.damage());
-                                hurtActors.add(target);
-                            }
-                        }
-                    }
-                }
-                else {
-                    pointer = x[start];
-//                    map.at(pointer, y[i]).setGround(new Crop()); // Testing
-                    if (map.at(pointer,y[i]).containsAnActor()){
-                        if (map.at(pointer,y[i]).getActor().hasCapability(ZombieCapability.UNDEAD)){
-                            Actor target = map.at(pointer,y[i]).getActor();
-                            if (Math.random() <= PROBABILITY){
-                                target.hurt(weapon.damage());
-                                hurtActors.add(target);
-                            }
-                        }
-                    }
+                if (x.length == RANGE){
+                    addTarget(hurtActors, weapon, x[i], y[start]);
+                } else {
+                    addTarget(hurtActors, weapon, x[start], y[i]);
                 }
                 start += 1;
             }
             raise += 1;
-            start = 3;
-            end = 3;
+            start = RANGE;
+            end = RANGE;
         }
 
         return hurtActors;
     }
-
+    
+    private void addTarget(ArrayList<Actor> hurtActors, WeaponItem weapon, int x, int y) {
+    	if (map.at(x,y).containsAnActor()){
+            if (map.at(x,y).getActor().hasCapability(ZombieCapability.UNDEAD)){
+                Actor target = map.at(x,y).getActor();
+                if (Math.random() <= PROBABILITY){
+                    target.hurt(weapon.damage());
+                    hurtActors.add(target);
+                }
+            }
+        }
+    }
     /**
      * Used for cardinal directions (North west, North east etc...). Attack area is a square.
      * For a 75% chance of success, if there is a zombie in the area of damage, damage is dealt.
@@ -321,23 +316,12 @@ public class ShotgunShootingAction extends Action {
      * @param y y coordinate of player
      * @param map map where actor is
      */
-    public ArrayList<Actor> fireCardinalDirection(int[] x, int[] y, GameMap map){
+    private ArrayList<Actor> fireCardinalDirection(int[] x, int[] y){
         ArrayList<Actor> hurtActors = new ArrayList<>();
 
-        for (int xValue : x){
-            for (int yValue : y){
-//                map.at(xValue,yValue).setGround(new Crop()); // Testing
-                if (map.at(xValue,yValue).containsAnActor()){
-                    if (map.at(xValue,yValue).getActor().hasCapability(ZombieCapability.UNDEAD)){
-                        Actor target = map.at(xValue,yValue).getActor();
-                        if (Math.random() <= PROBABILITY){
-                            target.hurt(weapon.damage());
-                            hurtActors.add(target);
-                        }
-                    }
-                }
-            }
-        }
+        for (int xValue : x)
+            for (int yValue : y)
+                addTarget(hurtActors, weapon, xValue, yValue);
 
         return hurtActors;
     }
@@ -347,7 +331,7 @@ public class ShotgunShootingAction extends Action {
      * @param map map the actor is on
      * @return a string output
      */
-    public String killTarget(Actor target, GameMap map){
+    private String killTarget(Actor target){
 
         // Drops inventory items
         Actions dropActions = new Actions();
@@ -358,5 +342,6 @@ public class ShotgunShootingAction extends Action {
 
         map.removeActor(target);
         return System.lineSeparator() + target + " is killed.";
+    }
     }
 }

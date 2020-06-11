@@ -1,29 +1,42 @@
 package game;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import edu.monash.fit2099.engine.Action;
+import edu.monash.fit2099.engine.Actions;
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.Menu;
 
-public class ShotgunSubMenu {
+public class ShotgunSubMenu extends Menu {
+	public static final int REDIX = 10;
+	private static final Map<Character, String> DIRECTIONS = Map.of(
+			'1', "North",
+			'2', "North East",
+			'3', "East",
+			'4', "South East",
+			'5', "South",
+			'6', "South West",
+			'7', "West",
+			'8', "North West");
+    public Action showMenu(Actor actor, Actions actions, Display display){
+		display.println("Select direction to fire\n");
 
-    private Display display = new Display();
-
-    public int showMenu(){
-        display.println("Select direction to fire\n");
-        display.println("1. North");
-        display.println("2. North East");
-        display.println("3. East");
-        display.println("4. South East");
-        display.println("5. South");
-        display.println("6. South West");
-        display.println("7. West");
-        display.println("8. North West");
+        
+        HashMap<Character, Action> keyToActionMap = new HashMap<Character, Action>();
+		for (int i = 0; i < DIRECTIONS.size(); i++) {
+			char c = Character.forDigit(i+1, REDIX);
+			keyToActionMap.put(c, actions.get(i));
+			display.println(c + ": " + DIRECTIONS.get(c));
+		}
+        
         
         char choice;
-        int direction;
         do {
         	choice = display.readChar();
-        	direction = Character.getNumericValue(choice);
-        } while (direction > 8 || direction < 1);
+        } while (!keyToActionMap.containsKey(choice));
 
-        return direction;
+        return keyToActionMap.get(choice);
     }
 }
