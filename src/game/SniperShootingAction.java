@@ -82,7 +82,7 @@ public class SniperShootingAction extends AttackAction {
                     target.hurt(damage);
                     if (!target.isConscious()){
                         actor.deleteZombieTarget();
-                        return killTarget(target);
+                        return killTarget(target, map);
                     }
                     else {
                         result = target + " was " + weapon.verb() + " by a " + weapon.toString() + " for " + damage + " damage.";
@@ -91,7 +91,7 @@ public class SniperShootingAction extends AttackAction {
             }
             else if (aim >= 2){
                 actor.deleteZombieTarget();
-                result = killTarget(target);
+                result = killTarget(target, map);
             }
             else if (aim == 0){
                 damage = weapon.damage();
@@ -99,7 +99,7 @@ public class SniperShootingAction extends AttackAction {
                     target.hurt(damage);
                     if (!target.isConscious()){
                         actor.deleteZombieTarget();
-                        result = killTarget(target);
+                        result = killTarget(target, map);
                     }
                     else {
                         result = target + " was " + weapon.verb() + " by a " + weapon.toString() + " for " + damage + " damage.";
@@ -131,4 +131,7 @@ public class SniperShootingAction extends AttackAction {
         return result;
     }
     
+//    public Action getNextAction() {
+//		return this;
+//	}
 }

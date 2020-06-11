@@ -115,7 +115,7 @@ public class Player extends Human {
     	}
     }
     
-    private class EndGame extends Action {
+    class EndGame extends Action {
     	
     	Result result;
     	public EndGame(Result result) {

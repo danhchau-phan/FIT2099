@@ -62,8 +62,8 @@ public class ShotgunShootingAction extends AttackAction {
 		actions.add(Arrays.asList(new FireAction(weapon, Direction.NORTH, false),
 				new FireAction(weapon, Direction.NORTHEAST, true), new FireAction(weapon, Direction.EAST, false),
 				new FireAction(weapon, Direction.SOUTHEAST, true), new FireAction(weapon, Direction.SOUTH, false),
-				new FireAction(weapon, Direction.SOUTHWEST, false), new FireAction(weapon, Direction.WEST, true),
-				new FireAction(weapon, Direction.NORTHWEST, false)));
+				new FireAction(weapon, Direction.SOUTHWEST, true), new FireAction(weapon, Direction.WEST, false),
+				new FireAction(weapon, Direction.NORTHWEST, true)));
 
 		return menu.showMenu(actor, actions, new Display()).execute(actor, map);
 	}
@@ -134,7 +134,7 @@ public class ShotgunShootingAction extends AttackAction {
 
 				for (Actor zombie : zombies) {
 					if (!zombie.isConscious()) {
-						output += killTarget(zombie);
+						output += killTarget(zombie, map);
 					}
 				}
 
@@ -156,6 +156,7 @@ public class ShotgunShootingAction extends AttackAction {
 		 */
 		private String shootingXY(int x, int y, Direction direction) {
 			// Selecting length of arrays based on direction of attack.
+			
 			if (direction == Direction.NORTH || direction == Direction.SOUTH) {
 				x -= RANGE + 1;
 				xRange = new int[RANGE * 2 + 1];

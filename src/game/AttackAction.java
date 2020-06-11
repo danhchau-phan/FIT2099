@@ -67,10 +67,10 @@ public class AttackAction extends Action {
 			map.locationOf(target).addItem(corpse);
 		}
 		
-		return killTarget(target);
+		return killTarget(target, map);
 	}
 	
-	protected String killTarget(Actor target){
+	protected String killTarget(Actor target, GameMap map){
 
         // Drops inventory items
         Actions dropActions = new Actions();
