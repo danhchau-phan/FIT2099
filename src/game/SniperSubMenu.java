@@ -13,17 +13,35 @@ import java.util.List;
 public class SniperSubMenu extends Menu{
 	public static final int REDIX = 10;
     private Actor target;
-    
+
+    /**
+     * Menu constructor for player to choose whether to fire aim or retreat.
+     *
+     * @param target zombie target
+     */
     public SniperSubMenu(Actor target) {
     	super();
     	this.target = target;
     }
-    
+
+    /**
+     * Menu constructor for player to choose a zombie from a list of zombies.
+     *
+     * @param targets list of zombies the player can snipe
+     * @param actor player
+     */
     public SniperSubMenu(List<Actor> targets, Actor actor) {
     	super();
     	this.target = showTargets(targets);
     	actor.setZombieTarget(target);
-    } 
+    }
+
+    /**
+     * Player is shown a list of zombies in his/her area of vision (half the map). Player can decide which zombie to
+     * snipe.
+     *
+     * @param zombies list of zombies in player's view
+     */
     public Actor showTargets(List<Actor> zombies){
         ArrayList<Character> freeChars = new ArrayList<Character>();
         HashMap<Character, Actor> keyToActorMap = new HashMap<Character, Actor>();
@@ -49,7 +67,14 @@ public class SniperSubMenu extends Menu{
 
         return keyToActorMap.get(key);
     }
-    
+
+    /**
+     * Player is shows options to choose what to do with the target. Player can fire, aim or retreat.
+     *
+     * @param actor the Actor representing the player
+     * @param actions the Actions that the user can choose from
+     * @param display the I/O object that will display the map
+     */
     public Action showMenu(Actor actor, Actions actions, Display display) {
     	display.println("Select an option");
         
@@ -60,8 +85,7 @@ public class SniperSubMenu extends Menu{
 			keyToActionMap.put(c, actions.get(i));
 			display.println(c + ": " + actions.get(i).menuDescription(actor));
 		}
-        
-        
+
         char choice;
         do {
         	choice = display.readChar();
