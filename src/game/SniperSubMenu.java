@@ -42,7 +42,7 @@ public class SniperSubMenu extends Menu{
      *
      * @param zombies list of zombies in player's view
      */
-    public Actor showTargets(List<Actor> zombies){
+    private Actor showTargets(List<Actor> zombies){
         ArrayList<Character> freeChars = new ArrayList<Character>();
         HashMap<Character, Actor> keyToActorMap = new HashMap<Character, Actor>();
         Display display = new Display(); 
