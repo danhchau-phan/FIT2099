@@ -1,18 +1,18 @@
-package game;
+package game.sniper;
 
 import edu.monash.fit2099.engine.*;
+import game.AttackAction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SniperShootingAction extends AttackAction {
+class SniperShootingAction extends AttackAction {
 
 	private WeaponItem weapon;
 	private static final double PROBABILITY = 0.75;
 	private static final double PROBABILITYx2 = 0.90;
 	private ArrayList<Actor> zombies = new ArrayList<>();
 	private Menu menu;
-	private Actor target;
 	private int aim;
 
 	public SniperShootingAction(WeaponItem weapon) {

@@ -1,4 +1,4 @@
-package game;
+package game.shotgun;
 
 import java.util.HashMap;
 import java.util.Map;

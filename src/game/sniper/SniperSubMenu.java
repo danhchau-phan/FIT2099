@@ -1,4 +1,4 @@
-package game;
+package game.sniper;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SniperSubMenu extends Menu{
+class SniperSubMenu extends Menu{
 	public static final int REDIX = 10;
     private Actor target;
 

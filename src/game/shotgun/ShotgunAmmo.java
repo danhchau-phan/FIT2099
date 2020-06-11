@@ -1,4 +1,7 @@
-package game;
+package game.shotgun;
+
+import game.DisplayChar;
+import game.PortableItem;
 
 /**
  * Shotgun Ammo can be used to refill and fire the shotgun.

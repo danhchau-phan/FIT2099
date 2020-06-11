@@ -1,4 +1,7 @@
-package game;
+package game.sniper;
+
+import game.DisplayChar;
+import game.PortableItem;
 
 public class SniperRifeAmmo extends PortableItem{
 

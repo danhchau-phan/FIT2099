@@ -10,7 +10,7 @@ import game.mambo.AppearAction;
 import game.Behaviour;
 import game.mambo.ChantAction;
 
-public class MamboBehaviour implements Behaviour {
+class MamboBehaviour implements Behaviour {
 	private int turns = 0;
 	private boolean appeared = false;
 	private final static double APPEAR_PROBABILITY = 1;

@@ -1,4 +1,4 @@
-package game;
+package game.mambo;
 
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +10,7 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 
-public class MamboLocation extends Location {
+class MamboLocation extends Location {
 	
 	private GameMap map;
 	private int x;

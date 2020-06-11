@@ -1,10 +1,12 @@
-package game;
+package game.shotgun;
 
 import java.util.Arrays;
 import java.util.List;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.WeaponItem;
+import game.DisplayChar;
+import game.ReloadAction;
 
 public class Shotgun extends WeaponItem {
 

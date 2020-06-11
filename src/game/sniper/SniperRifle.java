@@ -1,13 +1,15 @@
-package game;
+package game.sniper;
 
 import java.util.Arrays;
 import java.util.List;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.WeaponItem;
+import game.DisplayChar;
+import game.ReloadAction;
 
 
-public class SniperRifle extends WeaponItem {
+class SniperRifle extends WeaponItem {
 
     private static final int DAMAGE = 60;
     private int clipSize = 0;
