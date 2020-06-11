@@ -25,6 +25,4 @@ public interface ActorInterface {
 	default int getConcentration(){
 		return 0;
 	}
-
-	default void setPlayerDamage(boolean attack){}
 }

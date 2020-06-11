@@ -58,13 +58,6 @@ public class Player extends Human {
         // Enables user to quit the game
         actions.add(new QuitGameAction());
 
-        // If player takes damage, target is lost
-        if (this.playerDamage){
-        	deleteZombieTarget();
-        	setConcentration(0);
-        	playerDamage = false;
-		}
-
         // Handle multi-turn Actions
         if (lastAction.getNextAction() != null)
             return lastAction.getNextAction();
@@ -96,8 +89,15 @@ public class Player extends Human {
 		return concentration;
 	}
 
-	@Override
-	public void setPlayerDamage(boolean attack) {
+	public void hurt(int points) {
+		super.hurt(points);
+		setPlayerDamage(true);
+		deleteZombieTarget();
+    	setConcentration(0);
+    	playerDamage = false;
+	}
+	
+	private void setPlayerDamage(boolean attack) {
 		playerDamage = attack;
 	}
 
@@ -111,7 +111,6 @@ public class Player extends Human {
 
     	@Override
     	public String menuDescription(Actor actor) {
-    		// TODO Auto-generated method stub
     		return "Quit game";
     	}
     }

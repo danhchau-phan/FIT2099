@@ -44,11 +44,6 @@ public class AttackAction extends Action {
 		
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
-		if (target.getDisplayChar() == '@'){
-			target.setPlayerDamage(true);
-			result += System.lineSeparator() + "Target escaped player's view";
-		}
-
 		target.hurt(damage);
 		
 		try {
