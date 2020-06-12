@@ -96,7 +96,7 @@ public class Player extends Human {
 	/**
 	 * Action for quitting the game
 	 */
-	class QuitGameAction extends Action{
+	private class QuitGameAction extends Action{
 
     	@Override
     	public String execute(Actor actor, GameMap map) {
@@ -113,7 +113,7 @@ public class Player extends Human {
      * Action for ending the game
      *
      */
-    class EndGame extends Action {
+    private class EndGame extends Action {
     	/**
     	 * Result of the game
     	 */

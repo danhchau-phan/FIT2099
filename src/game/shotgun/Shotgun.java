@@ -41,7 +41,7 @@ public class Shotgun extends WeaponItem {
     	if (clipSize == 0) {
     		return Arrays.asList(new ReloadAction(this, DisplayChar.SHOTGUNAMMO.toChar()));
     	}
-		return Arrays.asList(new ShotgunShootingAction(this));
+		return Arrays.asList(new ShotgunShootingAction(this, new ShotgunSubMenu()));
     	
     }
 }

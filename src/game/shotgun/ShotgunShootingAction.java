@@ -24,7 +24,7 @@ public class ShotgunShootingAction extends AttackAction {
 	 */
 	private WeaponItem weapon;
 	private static final double PROBABILITY = 1;
-	private Menu menu = new ShotgunSubMenu();
+	private Menu menu;
 	private int[] xRange;
 	private int[] yRange;
 	private ArrayList<Actor> zombies;
@@ -38,8 +38,9 @@ public class ShotgunShootingAction extends AttackAction {
 	 * 
 	 * @param weapon weapon used
 	 */
-	public ShotgunShootingAction(WeaponItem weapon) {
+	public ShotgunShootingAction(WeaponItem weapon, Menu menu) {
 		this.weapon = weapon;
+		this.menu = menu;
 	}
 
 	/**

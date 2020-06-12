@@ -6,6 +6,7 @@ import game.ZombieCapability;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 class SniperShootingAction extends AttackAction {
 
@@ -16,8 +17,9 @@ class SniperShootingAction extends AttackAction {
 	private Menu menu;
 	private int aim;
 
-	public SniperShootingAction(WeaponItem weapon) {
+	public SniperShootingAction(WeaponItem weapon, Menu menu) {
 		this.weapon = weapon;
+		this.menu = menu;
 	}
 
 	/**
@@ -40,14 +42,6 @@ class SniperShootingAction extends AttackAction {
 			zombies = getZombies(0, middle, map.getYRange().max(), map);
 		} else if (x > middle) {
 			zombies = getZombies(middle, map.getXRange().max(), map.getYRange().max(), map);
-		}
-
-		// Ask the player to select a target to concentrate on
-		// If player has already concentrated, player cannot select another target
-		if (actor.getZombieTarget() == null) {
-			menu = new SniperSubMenu(zombies, actor);
-		} else {
-			menu = new SniperSubMenu(actor.getZombieTarget());
 		}
 
 		// Prompts the player his options executes the related action
@@ -97,7 +91,10 @@ class SniperShootingAction extends AttackAction {
 		 */
 		FireAction() {
 		}
-
+		
+		public List<Actor> getTargets() {
+			return zombies;
+		}
 		public void setTarget(Actor target) {
 			this.target = target;
 		}
@@ -118,8 +115,8 @@ class SniperShootingAction extends AttackAction {
 				damage = weapon.damage() * 2;
 				result = inflictDamage(actor, map, damage, PROBABILITYx2);
 			} else if (aim >= 2) {
-				actor.deleteZombieTarget();
 				result = killTarget(target, map);
+				actor.deleteZombieTarget();
 			} else if (aim == 0) {
 				damage = weapon.damage();
 				result = inflictDamage(actor, map, damage, PROBABILITY);
@@ -160,7 +157,9 @@ class SniperShootingAction extends AttackAction {
 		 */
 		AimAction() {
 		}
-
+		public List<Actor> getTargets() {
+			return zombies;
+		}
 		public void setTarget(Actor target) {
 			this.target = target;
 		}
@@ -203,9 +202,12 @@ class SniperShootingAction extends AttackAction {
 		 */
 		RetreatAction() {
 		}
-
+		public List<Actor> getTargets() {
+			return zombies;
+		}
 		public void setTarget(Actor target) {
 			this.target = target;
+			
 		}
 
 		/**
