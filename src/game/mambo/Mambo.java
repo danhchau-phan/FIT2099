@@ -1,5 +1,7 @@
 package game.mambo;
 
+import java.util.Random;
+
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
@@ -25,7 +27,12 @@ public class Mambo extends ZombieActor {
 	 */
 	public Mambo(GameMap map) {
 		super("MamboMarie", DisplayChar.MAMBOMARIE.toChar(), 150, ZombieCapability.UNDEAD);
-		map.addActor(this, new MamboLocation(map));
+		int x,y;
+		do {
+			x = new Random().nextInt(map.getXRange().max()) + map.getXRange().max() + 1; // randomize a position out of map's range
+			y = 0;
+			map.addActor(this, new MamboLocation(map,x,y));
+		} while (map.at(x,y).containsAnActor());
 		Mambo.population += 1;
 	}
 	

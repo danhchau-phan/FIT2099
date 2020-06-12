@@ -19,10 +19,10 @@ class MamboLocation extends Location {
 
 	private Ground ground;
 	
-	public MamboLocation(GameMap map) {
-		super(map, map.getXRange().max()+1, 0);
-		this.x = map.getXRange().max()+1;
-		this.y = 0;
+	public MamboLocation(GameMap map, int x, int y) {
+		super(map, x, y);
+		this.x = x;
+		this.y = y;
 		this.map = map;
 	}
 	
