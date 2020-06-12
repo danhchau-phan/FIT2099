@@ -16,13 +16,12 @@ class MamboLocation extends Location {
 	private GameMap map;
 	private int x;
 	private int y;
-
+	private static int buffer = 1; 
 	private Ground ground;
 	
-	public MamboLocation(GameMap map, int x, int y) {
-		super(map, x, y);
-		this.x = x;
-		this.y = y;
+	public MamboLocation(GameMap map) {
+		super(map, map.getXRange().max() + buffer, 0);
+		buffer += 1; // to ensure each MamboLocation has different (x,y) coordinates
 		this.map = map;
 	}
 	

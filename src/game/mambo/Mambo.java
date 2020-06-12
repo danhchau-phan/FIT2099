@@ -21,18 +21,14 @@ public class Mambo extends ZombieActor {
 	private Behaviour[] behaviours = {new MamboBehaviour(), new WanderBehaviour()};
 	private static int population;
 	
+	
 	/**
 	 * Constructor
 	 * @param map the map Mambo will spawn on
 	 */
 	public Mambo(GameMap map) {
 		super("MamboMarie", DisplayChar.MAMBOMARIE.toChar(), 150, ZombieCapability.UNDEAD);
-		int x,y;
-		do {
-			x = new Random().nextInt(map.getXRange().max()) + map.getXRange().max() + 1; // randomize a position out of map's range
-			y = 0;
-			map.addActor(this, new MamboLocation(map,x,y));
-		} while (map.at(x,y).containsAnActor());
+		map.addActor(this, new MamboLocation(map));
 		Mambo.population += 1;
 	}
 	
