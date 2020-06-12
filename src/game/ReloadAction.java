@@ -11,14 +11,16 @@ public class ReloadAction extends Action {
 
     private Item weapon;
     private List<Item> inventory;
+    private char ammoType;
 
     /**
      * Default constructor for ReloadAction
      * @param weapon weapon to be reloaded
      * @param inventory actor's inventory to find ammo
      */
-    public ReloadAction(Item weapon) {
+    public ReloadAction(Item weapon, char ammoType) {
         this.weapon = weapon;
+        this.ammoType = ammoType;
     }
 
     /**
@@ -33,22 +35,11 @@ public class ReloadAction extends Action {
     	inventory = actor.getInventory();
     	
         for (Item item : inventory){
-
-            if ((item.getDisplayChar() == 's' || item.getDisplayChar() == 'x') && item.getRounds() == 0){
-                return "No ammo found in inventory!";
-            }
-
-            if (item.getDisplayChar() == 's'){
+            if (item.getDisplayChar() == ammoType && item.getRounds() != 0){
                 weapon.reload(item.getRounds());
                 item.getDropAction().execute(actor, map);
                 map.at(map.locationOf(actor).x(),map.locationOf(actor).y()).removeItem(item);
-                return weapon.toString() + " reloaded with 12 rounds";
-            }
-            else if(item.getDisplayChar() == 'x'){
-                weapon.reload(item.getRounds());
-                item.getDropAction().execute(actor, map);
-                map.at(map.locationOf(actor).x(),map.locationOf(actor).y()).removeItem(item);
-                return weapon.toString() +  " reloaded with 5 rounds";
+                return weapon.toString() + " reloaded with" + item.getRounds() + "rounds";
             }
         }
 
