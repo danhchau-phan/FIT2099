@@ -9,7 +9,7 @@ import game.DisplayChar;
 import game.ReloadAction;
 
 
-class SniperRifle extends WeaponItem {
+public class SniperRifle extends WeaponItem {
 
     private static final int DAMAGE = 60;
     private int clipSize = 0;

@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.mambo.Mambo;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -8,6 +8,10 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
+import game.mambo.Mambo;
+import game.shotgun.ShotgunAmmo;
+import game.sniper.SniperRifeAmmo;
+import game.sniper.SniperRifle;
 
 /**
  * The main class for the zombie apocalypse game.
@@ -84,18 +88,18 @@ public class Application {
 		String[] humans = {"Carlton", "May", "Vicente", "Andrea", "Wendy",
 				"Elina", "Winter", "Clem", "Jacob", "Jaquelyn"};
 		int x, y;
-		for (String name : humans) {
-			do {
-				x = (int) Math.floor(Math.random() * 20.0 + 30.0);
-				y = (int) Math.floor(Math.random() * 7.0 + 5.0);
-			} 
-			while (gameMap.at(x, y).containsAnActor());
-			gameMap.at(x,  y).addActor(new Human(name));	
-		}
-
-		// Add a few Farmers
-        gameMap.at(39,10).addActor(new Farmer("George"));
-        gameMap.at(47,12).addActor(new Farmer("July"));
+//		for (String name : humans) {
+//			do {
+//				x = (int) Math.floor(Math.random() * 20.0 + 30.0);
+//				y = (int) Math.floor(Math.random() * 7.0 + 5.0);
+//			} 
+//			while (gameMap.at(x, y).containsAnActor());
+//			gameMap.at(x,  y).addActor(new Human(name));	
+//		}
+//
+//		// Add a few Farmers
+//        gameMap.at(39,10).addActor(new Farmer("George"));
+//        gameMap.at(47,12).addActor(new Farmer("July"));
 
 		// Place a simple weapon
 		gameMap.at(74, 20).addItem(new Plank());
@@ -109,14 +113,14 @@ public class Application {
 		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
 
 		// Place some random humans to town map
-		for (String name : humans) {
-			do {
-				x = (int) Math.floor(Math.random() * 20.0 + 45.0);
-				y = (int) Math.floor(Math.random() * 7.0 + 5.0);
-			} 
-			while (!townMap.at(x, y).canActorEnter(player));
-			townMap.at(x,  y).addActor(new Human(name));	
-		}
+//		for (String name : humans) {
+//			do {
+//				x = (int) Math.floor(Math.random() * 20.0 + 45.0);
+//				y = (int) Math.floor(Math.random() * 7.0 + 5.0);
+//			} 
+//			while (!townMap.at(x, y).canActorEnter(player));
+//			townMap.at(x,  y).addActor(new Human(name));	
+//		}
 
 		// Add Zombies to town map
 		townMap.at(30, 10).addActor(new Zombie("Groan"));
@@ -169,7 +173,7 @@ public class Application {
 //		// Town level Testing
 		gameMap.at(42, 14).addItem(new Vehicle(gameMap, townMap));
 		// MamboMarie Testing
-		Mambo mambo = new Mambo(gameMap);
+//		Mambo mambo = new Mambo(gameMap);
 
 		// Weapons testing
 //		player.addItemToInventory(new Shotgun());

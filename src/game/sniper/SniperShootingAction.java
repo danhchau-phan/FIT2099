@@ -2,6 +2,7 @@ package game.sniper;
 
 import edu.monash.fit2099.engine.*;
 import game.AttackAction;
+import game.ZombieCapability;
 
 import java.util.ArrayList;
 import java.util.Arrays;

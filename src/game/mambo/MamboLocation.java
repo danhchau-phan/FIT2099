@@ -1,7 +1,5 @@
 package game.mambo;
 
-import java.util.Collections;
-import java.util.List;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
@@ -9,6 +7,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import game.Dirt;
 
 class MamboLocation extends Location {
 	
@@ -16,9 +15,7 @@ class MamboLocation extends Location {
 	private int x;
 	private int y;
 
-	private final List<Item> items = Collections.emptyList(); 
 	private final Ground ground = new Dirt();
-	private final List<Exit> exits = Collections.emptyList();
 	
 	public MamboLocation(GameMap map) {
 		super(map, map.getXRange().max()+1, 0);
