@@ -329,12 +329,10 @@ public class ShotgunShootingAction extends AttackAction {
 
 		private void addTarget(ArrayList<Actor> hurtActors, WeaponItem weapon, int x, int y) {
 			if (map.at(x, y).containsAnActor()) {
-				if (map.at(x, y).getActor().hasCapability(ZombieCapability.UNDEAD)) {
-					Actor target = map.at(x, y).getActor();
-					if (Math.random() <= PROBABILITY) {
-						target.hurt(weapon.damage());
-						hurtActors.add(target);
-					}
+				Actor target = map.at(x, y).getActor();
+				if (Math.random() <= PROBABILITY) {
+					target.hurt(weapon.damage());
+					hurtActors.add(target);
 				}
 			}
 		}
