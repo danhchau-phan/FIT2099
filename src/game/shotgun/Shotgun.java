@@ -21,14 +21,6 @@ public class Shotgun extends WeaponItem {
     }
 
     /**
-     * Returns remaining ammo
-     */
-    @Override
-    public int getClipSize() {
-        return clipSize;
-    }
-
-    /**
      * Reduces the clip size by 1 every time the shotgun is fired
      */
     public void fire() {

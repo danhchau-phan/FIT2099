@@ -10,10 +10,6 @@ public interface ItemInterface {
 		return 0;
 	}
 
-	default int getClipSize(){
-		return 0;
-	}
-
 	default void reload(int rounds){}
 
 	default int getRounds(){
