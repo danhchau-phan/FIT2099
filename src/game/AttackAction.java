@@ -50,19 +50,19 @@ public class AttackAction extends Action {
 		target.hurt(damage);
 		
 		try {
-			result += terminateTarget(map);
+			result += removeTarget(map);
 		} catch (Exception e) {}
 
 		return result;
 	}
 	/**
-	 * Remove target from map, drop inventory items and create corpse if target is a human
+	 * Remove target from map and create corpse if target is a human
 	 * @param map The map the actor is on
 	 * @return a description of what happened that is reported back to execute()
 	 */
-	protected String terminateTarget(GameMap map) throws Exception {
+	private String removeTarget(GameMap map) throws Exception {
 		if (target.isConscious()) {
-			throw new Exception(this.target.toString() + " is still conscious. Cannot terminate.");
+			throw new Exception(this.target.toString() + " is still conscious. Cannot kill.");
 		}
 		
 		if (target.hasCapability(ZombieCapability.ALIVE)) {
@@ -72,7 +72,12 @@ public class AttackAction extends Action {
 		
 		return killTarget(target, map);
 	}
-	
+	/**
+	 * Kill target and remove target from map, drop inventory items of target to the ground
+	 * @param target target of the attack
+	 * @param map The map actor is on
+	 * @return String
+	 */
 	protected String killTarget(Actor target, GameMap map){
 
         // Drops inventory items

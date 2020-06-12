@@ -9,11 +9,20 @@ import edu.monash.fit2099.engine.GameMap;
 import game.mambo.AppearAction;
 import game.Behaviour;
 import game.mambo.ChantAction;
-
+/**
+ * Behaviour of a Mambo
+ *
+ */
 class MamboBehaviour implements Behaviour {
+	/**
+	 * Counter of turns
+	 */
 	private int turns = 0;
+	/**
+	 * Whether the Mambo has appeared on the map
+	 */
 	private boolean appeared = false;
-	private final static double APPEAR_PROBABILITY = 1;
+	private final static double APPEAR_PROBABILITY = 0.05;
 	private final static int VANISH_TURN = 31;
 	private final static int CHANTING_INTERVAL = 10;
 	

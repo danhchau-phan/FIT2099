@@ -4,25 +4,54 @@ import edu.monash.fit2099.engine.Actor;
 import game.Farmer;
 
 /**
- * This interface provides the ability to add methods to Actor, without modifying code in the engine,
- * or downcasting references in the game.   
+ * This interface provides the ability to add methods to Actor, without
+ * modifying code in the engine, or downcasting references in the game.
  */
 
 public interface ActorInterface {
-	default void updatePopulation() {};
+	/**
+	 * Update population of the class actor belongs to
+	 */
+	default void updatePopulation() {
+	};
 
-	default void setZombieTarget(Actor actor){}
+	/**
+	 * Set actor's zombie target during sniper shooting
+	 * 
+	 * @param actor
+	 */
+	default void setZombieTarget(Actor actor) {
+	}
 
-
+	/**
+	 * Get actor's zombie target
+	 * 
+	 * @return Actor
+	 */
 	default Actor getZombieTarget() {
 		return null;
 	}
 
-	default void deleteZombieTarget() {}
+	/**
+	 * Delete actor's zombie target
+	 */
+	default void deleteZombieTarget() {
+	}
 
-	default void setConcentration(int aim){}
+	/**
+	 * Set actor's level of concentration
+	 * 
+	 * @param aim number of rounds spent for aiming
+	 */
+	default void setConcentration(int aim) {
+	}
 
-	default int getConcentration(){
+	/**
+	 * Get actor's level of concentration
+	 * 
+	 * @return int
+	 */
+	default int getConcentration() {
 		return 0;
 	}
 }

@@ -4,10 +4,15 @@ import java.util.Random;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.NumberRange;
 import game.Zombie;
-
+/**
+ * Action for chanting
+ *
+ */
 class ChantAction extends Action{
+	/**
+	 * Number of zombies added at each chant
+	 */
 	private static final int NUM_ZOMBIES_ADDED = 5;
 	
 	public String execute(Actor actor, GameMap map) {

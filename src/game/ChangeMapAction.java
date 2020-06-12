@@ -4,9 +4,18 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.NumberRange;
-
+/**
+ * Action for changing map
+ *
+ */
 public class ChangeMapAction extends Action {
+	/**
+	 * Destination map
+	 */
 	private GameMap destination;
+	/**
+	 * Departure map
+	 */
 	private GameMap start;
 	
 	public ChangeMapAction(GameMap start, GameMap destination) {

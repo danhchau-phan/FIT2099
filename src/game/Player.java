@@ -3,10 +3,6 @@ package game;
 import edu.monash.fit2099.engine.*;
 import game.mambo.Mambo;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * Class representing the Player.
  */
@@ -15,7 +11,6 @@ public class Player extends Human {
 	private Menu menu = new Menu();
 	private Actor target = null;
 	private int concentration = 0;
-	private boolean playerDamage = false;
 
     /**
 	 * Constructor.
@@ -27,7 +22,10 @@ public class Player extends Human {
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 	}
-	
+	/**
+	 * Enum class for game result
+	 *
+	 */
 	private enum Result {
     	WIN ("Player wins"),
     	LOSE ("Player loses");
@@ -89,19 +87,15 @@ public class Player extends Human {
 	public int getConcentration() {
 		return concentration;
 	}
-
+	@Override
 	public void hurt(int points) {
 		super.hurt(points);
-		setPlayerDamage(true);
 		deleteZombieTarget();
     	setConcentration(0);
-    	playerDamage = false;
 	}
-	
-	private void setPlayerDamage(boolean attack) {
-		playerDamage = attack;
-	}
-
+	/**
+	 * Action for quitting the game
+	 */
 	class QuitGameAction extends Action{
 
     	@Override
@@ -115,15 +109,23 @@ public class Player extends Human {
     		return "Quit game";
     	}
     }
-    
+    /**
+     * Action for ending the game
+     *
+     */
     class EndGame extends Action {
-    	
+    	/**
+    	 * Result of the game
+    	 */
     	Result result;
+    	/**
+    	 * Constructor
+    	 * @param result result of the game
+    	 */
     	public EndGame(Result result) {
     		super();
     		this.result = result;
     	}
-    	
     	@Override
     	public String execute(Actor actor, GameMap map) {
     		map.removeActor(actor);
