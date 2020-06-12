@@ -180,8 +180,8 @@ public class Application {
 		// Weapons testing
 		player.addItemToInventory(new Shotgun());
 		player.addItemToInventory(new ShotgunAmmo());
-//		player.addItemToInventory(new SniperRifle());
-//		player.addItemToInventory(new SniperRifeAmmo());
+		player.addItemToInventory(new SniperRifle());
+		player.addItemToInventory(new SniperRifeAmmo());
 		world.run();
 	}
 }

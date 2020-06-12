@@ -1,5 +1,7 @@
 package edu.monash.fit2099.interfaces;
 
+import java.util.List;
+
 import edu.monash.fit2099.engine.Actor;
 
 /**
@@ -12,6 +14,9 @@ public interface ActionInterface {
 	 * 
 	 * @param target
 	 */
+	default List<Actor> getTargets() {
+		return null;
+		}
 	default void setTarget(Actor target) {
 	}
 }
