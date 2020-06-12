@@ -16,7 +16,7 @@ public class ReloadAction extends Action {
     /**
      * Default constructor for ReloadAction
      * @param weapon weapon to be reloaded
-     * @param inventory actor's inventory to find ammo
+     * @param ammoType sniper or shotgun ammo
      */
     public ReloadAction(Item weapon, char ammoType) {
         this.weapon = weapon;
