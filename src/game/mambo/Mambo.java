@@ -11,11 +11,18 @@ import game.WanderBehaviour;
 import game.ZombieActor;
 import game.ZombieCapability;
 
+/**
+ * Class representing a Mambo
+ *
+ */
 public class Mambo extends ZombieActor {
-
 	private Behaviour[] behaviours = {new MamboBehaviour(), new WanderBehaviour()};
 	private static int population;
-
+	
+	/**
+	 * Constructor
+	 * @param map the map Mambo will spawn on
+	 */
 	public Mambo(GameMap map) {
 		super("MamboMarie", DisplayChar.MAMBOMARIE.toChar(), 150, ZombieCapability.UNDEAD);
 		map.addActor(this, new MamboLocation(map));
@@ -39,7 +46,10 @@ public class Mambo extends ZombieActor {
 	public void updatePopulation() {
 		population -=1;
 	}
-	
+	/**
+	 * Get Mambo's population
+	 * @return int
+	 */
 	public static int getPopulation() {
 		return population;
 	}
