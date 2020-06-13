@@ -87,6 +87,7 @@ public class Player extends Human {
 	public int getConcentration() {
 		return concentration;
 	}
+
 	@Override
 	public void hurt(int points) {
 		super.hurt(points);
