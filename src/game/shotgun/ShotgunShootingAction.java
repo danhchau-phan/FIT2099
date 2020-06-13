@@ -52,11 +52,7 @@ public class ShotgunShootingAction extends AttackAction {
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		Location location = map.locationOf(actor);
 		Actions actions = new Actions();
-
-		int x = location.x();
-		int y = location.y();
 
 		weapon.fire();
 
@@ -331,9 +327,11 @@ public class ShotgunShootingAction extends AttackAction {
 		private void addTarget(ArrayList<Actor> hurtActors, WeaponItem weapon, int x, int y) {
 			if (map.at(x, y).containsAnActor()) {
 				Actor target = map.at(x, y).getActor();
-				if (Math.random() <= PROBABILITY) {
-					target.hurt(weapon.damage());
-					hurtActors.add(target);
+				if (target.getDisplayChar() != '@'){
+					if (Math.random() <= PROBABILITY) {
+						target.hurt(weapon.damage());
+						hurtActors.add(target);
+					}
 				}
 			}
 		}
