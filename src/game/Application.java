@@ -8,10 +8,9 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
-import game.mambo.Mambo;
 import game.shotgun.ShotgunAmmo;
 import game.shotgun.Shotgun;
-import game.sniper.SniperRifeAmmo;
+import game.sniper.SniperRifleAmmo;
 import game.sniper.SniperRifle;
 
 
@@ -137,13 +136,13 @@ public class Application {
 		gameMap.at(3, 3).addItem(new ShotgunAmmo());
 		gameMap.at(67, 24).addItem(new ShotgunAmmo());
 		gameMap.at(3, 20).addItem(new ShotgunAmmo());
-		gameMap.at(42, 24).addItem(new SniperRifeAmmo());
-		gameMap.at(14, 16).addItem(new SniperRifeAmmo());
+		gameMap.at(42, 24).addItem(new SniperRifleAmmo());
+		gameMap.at(14, 16).addItem(new SniperRifleAmmo());
 		townMap.at(37, 3).addItem(new ShotgunAmmo());
 		townMap.at(70, 4).addItem(new ShotgunAmmo());
 		townMap.at(67, 20).addItem(new ShotgunAmmo());
-		townMap.at(13, 20).addItem(new SniperRifeAmmo());
-		townMap.at(52, 5).addItem(new SniperRifeAmmo());
+		townMap.at(13, 20).addItem(new SniperRifleAmmo());
+		townMap.at(52, 5).addItem(new SniperRifleAmmo());
 
 
 		// TESTING
@@ -178,10 +177,10 @@ public class Application {
 //		Mambo mambo = new Mambo(gameMap);
 
 		// Weapons testing
-		player.addItemToInventory(new Shotgun());
-		player.addItemToInventory(new ShotgunAmmo());
+//		player.addItemToInventory(new Shotgun());
+//		player.addItemToInventory(new ShotgunAmmo());
 		player.addItemToInventory(new SniperRifle());
-		player.addItemToInventory(new SniperRifeAmmo());
+		player.addItemToInventory(new SniperRifleAmmo());
 		world.run();
 	}
 }

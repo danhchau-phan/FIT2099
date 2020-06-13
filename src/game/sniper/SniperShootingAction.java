@@ -44,7 +44,7 @@ class SniperShootingAction extends AttackAction {
 			zombies = getZombies(middle, map.getXRange().max(), map.getYRange().max(), map);
 		}
 
-		// Prompts the player his options executes the related action
+		// Prompts the player his options and executes the related action
 		Actions actions = new Actions();
 		actions.add(Arrays.asList(new FireSniperAction(), new AimAction(), new RetreatAction()));
 		return menu.showMenu(actor, actions, new Display()).execute(actor, map);
@@ -130,12 +130,12 @@ class SniperShootingAction extends AttackAction {
 			if (Math.random() <= prob) {
 				target.hurt(damage);
 				if (!target.isConscious()) {
-					actor.deleteZombieTarget();
 					result = killTarget(target, map);
 				} else {
 					result = target + " was " + weapon.verb() + " by a " + weapon.toString() + " for " + damage + " damage.";
 				}
 			}
+			actor.deleteZombieTarget();
 			return result;
 		}
 		
