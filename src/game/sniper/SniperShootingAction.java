@@ -46,7 +46,7 @@ class SniperShootingAction extends AttackAction {
 
 		// Prompts the player his options executes the related action
 		Actions actions = new Actions();
-		actions.add(Arrays.asList(new FireAction(), new AimAction(), new RetreatAction()));
+		actions.add(Arrays.asList(new FireSniperAction(), new AimAction(), new RetreatAction()));
 		return menu.showMenu(actor, actions, new Display()).execute(actor, map);
 
 	}
@@ -82,14 +82,14 @@ class SniperShootingAction extends AttackAction {
 	/**
 	 * Special action that shoots a selected zombie
 	 */
-	private class FireAction extends Action {
+	private class FireSniperAction extends Action {
 
 		Actor target;
 
 		/**
 		 * Default constructor
 		 */
-		FireAction() {
+		FireSniperAction() {
 		}
 		
 		public List<Actor> getTargets() {
