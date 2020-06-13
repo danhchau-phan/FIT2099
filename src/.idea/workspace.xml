@@ -4,9 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/game/shotgun/ShotgunShootingAction.java" line="329" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f7780e3-8434-4bb5-8171-77ebf4927977" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/Player.java" afterDir="false" />
-    </list>
+    <list default="true" id="8f7780e3-8434-4bb5-8171-77ebf4927977" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,16 +51,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/sniper/SniperShootingAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
+            <state relative-caret-position="2754">
               <caret line="231" lean-forward="true" selection-start-line="231" selection-end-line="231" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game/shotgun/Shotgun.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="72">
@@ -212,7 +210,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="getAllo&#9;PSI&#9;JAVA://edu.monash.fit2099.engine.Actor#getAllowableActions&#10;log&#9;ACTION&#9;Log.KeymapGroup" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1592050239574" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1592050788358" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -562,13 +560,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/shotgun/Shotgun.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="666">
@@ -609,8 +600,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game/sniper/SniperShootingAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
+        <state relative-caret-position="2754">
           <caret line="231" lean-forward="true" selection-start-line="231" selection-end-line="231" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/shotgun/Shotgun.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
         </state>
       </provider>
     </entry>
