@@ -3,7 +3,7 @@ package game.sniper;
 import game.DisplayChar;
 import game.PortableItem;
 
-public class SniperRifeAmmo extends PortableItem{
+public class SniperRifleAmmo extends PortableItem{
 
     /**
      * Sniper Ammo can be used to refill and fire the sniper rifle.
@@ -14,7 +14,7 @@ public class SniperRifeAmmo extends PortableItem{
     /**
      * Default constructor of Sniper ammo
      */
-    public SniperRifeAmmo() {
+    public SniperRifleAmmo() {
         super("Sniper Ammo", DisplayChar.SNIPERAMMO.toChar());
     }
 
